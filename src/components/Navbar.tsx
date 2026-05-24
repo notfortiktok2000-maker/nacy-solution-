@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Globe, ArrowRight, Menu, X, Check, MessageSquare } from "lucide-react";
+import Logo from "./Logo";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -73,13 +74,8 @@ export default function Navbar() {
         }`}
       >
         {/* Left Logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center transition-all duration-300 group-hover:bg-black/10 text-black">
-            <Globe className="w-4.5 h-4.5" />
-          </div>
-          <span className="font-poppins font-semibold text-lg tracking-tight text-[#1D1D1F] group-hover:text-black transition-colors duration-300">
-            NACY ST
-          </span>
+        <Link to="/" className="flex items-center transition-opacity duration-300 hover:opacity-85">
+          <Logo className="h-8 w-auto" />
         </Link>
 
         {/* Center links - Redirect to individual Route pages directly */}

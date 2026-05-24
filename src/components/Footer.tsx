@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Globe, Mail, MapPin, Phone, Linkedin, Instagram } from "lucide-react";
+import Logo from "./Logo";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,11 +11,8 @@ export default function Footer() {
         
         {/* Brand Column */}
         <div className="space-y-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded bg-white/10 border border-white/20 flex items-center justify-center">
-              <Globe className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-poppins font-semibold text-lg tracking-tight">NACY ST</span>
+          <div className="flex items-center">
+            <Logo className="h-8 w-auto" isLight={true} />
           </div>
           <p className="text-[#86868B] text-sm leading-relaxed max-w-xs">
             NACY Solutions designs websites, premium AI photo shoots, and high-performance videos for modern businesses. Where strategy meets intelligence.
