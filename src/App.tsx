@@ -8,10 +8,12 @@ import Checkout from './pages/Checkout';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 export default function App() {
   return (
     <div className="flex flex-col min-h-screen bg-white text-[#1D1D1F] font-inter selection:bg-[#0071E3] selection:text-white relative overflow-hidden">
+      <ScrollToTop />
       {/* Global Minimalist Light Background elements */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         {/* Subtle grid overlay */}
