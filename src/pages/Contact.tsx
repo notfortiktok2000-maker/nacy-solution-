@@ -29,7 +29,7 @@ export default function Contact() {
       setFormSuccess(true);
       
       // Open WhatsApp Link
-      window.open(`https://wa.me/212710900502?text=${formattedMessage}`, "_blank");
+      window.location.href = `https://wa.me/+212710900502?text=${formattedMessage}`;
       
       // Reset form
       setFirstName("");

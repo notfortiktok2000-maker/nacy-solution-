@@ -97,7 +97,7 @@ export default function Checkout() {
       setIsSubmitting(false);
 
       // Open WA contact number thread
-      window.open(`https://wa.me/212710900502?text=${waMessage}`, "_blank");
+      window.location.href = `https://wa.me/+212710900502?text=${waMessage}`;
       
       // Navigate back home to reset flow nicely
       navigate("/");

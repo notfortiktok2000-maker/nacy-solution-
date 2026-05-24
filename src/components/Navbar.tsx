@@ -47,7 +47,7 @@ export default function Navbar() {
     
     setTimeout(() => {
       // Direct WA URL
-      window.open(`https://wa.me/212710900502?text=${formattedMsg}`, "_blank");
+      window.location.href = `https://wa.me/+212710900502?text=${formattedMsg}`;
       setIsModalOpen(false);
       setIsSubmitted(false);
       setModalName("");

@@ -302,7 +302,7 @@ export default function Services() {
           </p>
           <div className="pt-2">
             <a
-              href="https://wa.me/212710900502?text=Hi%20NACY%20ST,%20I'm%20interested%20in%20a%20customized%20enterprise%20project."
+              href="https://wa.me/+212710900502?text=Hi%20NACY%20ST,%20I'm%20interested%20in%20a%20customized%20enterprise%20project."
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex"
