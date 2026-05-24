@@ -1,0 +1,6 @@
+{
+  "name": "NACY ST",
+  "description": "NACY ST - High-performance website creation, studio-grade AI photo shooting, and short-form video production in Tanger, Morocco and worldwide.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
