@@ -63,7 +63,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      if (window.scrollY >= 60) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -111,10 +111,10 @@ export default function Navbar() {
     <>
       <nav
         id="app-navbar"
-        className={`fixed top-0 left-0 w-full h-[72px] z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full h-[72px] z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-300 animate-navbar-slide-down ${
           isScrolled
-            ? "bg-white/80 border-b border-black/5 backdrop-blur-md shadow-sm"
-            : "bg-white/40 border-b border-transparent backdrop-blur-sm"
+            ? "bg-white/80 border-b border-black/5 backdrop-blur-[14px] shadow-sm"
+            : "bg-white/40 border-b border-transparent backdrop-blur-[4px]"
         }`}
       >
         {/* Left Logo */}

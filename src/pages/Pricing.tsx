@@ -81,7 +81,7 @@ export default function Pricing() {
       <div className="max-w-6xl mx-auto space-y-12">
         
         {/* Header Title Switcher */}
-        <div className="text-center space-y-4 max-w-2xl mx-auto">
+        <div className="text-center space-y-4 max-w-2xl mx-auto reveal-heading">
           <span className="font-poppins font-medium text-xs tracking-widest text-[#0071E3] uppercase block">
             {t("price.badge")}
           </span>
@@ -125,10 +125,10 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 reveal-group">
           
           {/* Card 1: Custom Web */}
-          <div className="bg-[#F5F5F7] p-8 rounded-3xl flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-2xl transition-all duration-300">
+          <div className="glass-card bg-[#F5F5F7]/85 p-8 rounded-3xl flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-2xl transition-all duration-300 stagger-item">
             <div className="space-y-6">
               <div>
                 <span className="text-xs font-bold text-[#86868B] uppercase tracking-wider block mb-1">{t("price.singleProject")}</span>
@@ -169,7 +169,7 @@ export default function Pricing() {
           </div>
 
           {/* Card 2: AI Photo shooting */}
-          <div className="bg-[#F5F5F7] p-8 rounded-3xl flex flex-col justify-between border-2 border-black relative hover:bg-white hover:shadow-2xl transition-all duration-300">
+          <div className="glass-card bg-[#F5F5F7]/85 p-8 rounded-3xl flex flex-col justify-between border-2 border-black relative hover:bg-white hover:shadow-2xl transition-all duration-300 stagger-item shadow-double-layer">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-black text-white font-semibold text-[10px] uppercase py-1 px-4 rounded-full tracking-wider">
               {t("price.mostPopular")}
             </div>
@@ -213,7 +213,7 @@ export default function Pricing() {
           </div>
 
           {/* Card 3: Video Production */}
-          <div className="bg-[#F5F5F7] p-8 rounded-3xl flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-2xl transition-all duration-300">
+          <div className="glass-card bg-[#F5F5F7]/85 p-8 rounded-3xl flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-2xl transition-all duration-300 stagger-item">
             <div className="space-y-6">
               <div>
                 <span className="text-xs font-bold text-[#86868B] uppercase tracking-wider block mb-1">{t("price.degressiveBilling")}</span>

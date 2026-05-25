@@ -16,7 +16,7 @@ export default function WhyUs() {
 
       <div className="max-w-5xl mx-auto space-y-16">
         {/* Header Block */}
-        <div className="text-center space-y-4 max-w-2xl mx-auto">
+        <div className="text-center space-y-4 max-w-2xl mx-auto reveal-heading">
           <span className="font-poppins font-medium text-xs tracking-widest text-[#0071E3] uppercase block">
             {t("why.badge")}
           </span>
@@ -29,9 +29,9 @@ export default function WhyUs() {
         </div>
 
         {/* 4 Core Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4 reveal-group">
           
-          <div className="bg-[#F5F5F7] p-8 rounded-2xl border border-black/5 flex gap-5">
+          <div className="glass-card bg-[#F5F5F7]/85 p-8 rounded-2xl border border-black/5 flex gap-5 stagger-item">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 border border-black/5 text-[#0071E3]">
               <Zap className="w-5 h-5" />
             </div>
@@ -43,7 +43,7 @@ export default function WhyUs() {
             </div>
           </div>
 
-          <div className="bg-[#F5F5F7] p-8 rounded-2xl border border-black/5 flex gap-5">
+          <div className="glass-card bg-[#F5F5F7]/85 p-8 rounded-2xl border border-black/5 flex gap-5 stagger-item">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 border border-black/5 text-[#0071E3]">
               <ShieldCheck className="w-5 h-5" />
             </div>
@@ -55,7 +55,7 @@ export default function WhyUs() {
             </div>
           </div>
 
-          <div className="bg-[#F5F5F7] p-8 rounded-2xl border border-black/5 flex gap-5">
+          <div className="glass-card bg-[#F5F5F7]/85 p-8 rounded-2xl border border-black/5 flex gap-5 stagger-item">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 border border-black/5 text-[#0071E3]">
               <MessageSquare className="w-5 h-5" />
             </div>
@@ -67,7 +67,7 @@ export default function WhyUs() {
             </div>
           </div>
 
-          <div className="bg-[#F5F5F7] p-8 rounded-2xl border border-black/5 flex gap-5">
+          <div className="glass-card bg-[#F5F5F7]/85 p-8 rounded-2xl border border-black/5 flex gap-5 stagger-item">
             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 border border-black/5 text-[#0071E3]">
               <Sparkles className="w-5 h-5" />
             </div>
@@ -82,7 +82,7 @@ export default function WhyUs() {
         </div>
 
         {/* Summary Table or Quote Block */}
-        <div className="border border-black/10 rounded-2xl p-8 bg-white space-y-6">
+        <div className="border border-black/10 rounded-2xl p-8 bg-white space-y-6 reveal-element">
           <div className="border-l-4 border-black pl-5">
             <p className="text-xl italic text-[#1D1D1F] font-semibold leading-relaxed">
               {t("why.quote")}

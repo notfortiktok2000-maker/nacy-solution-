@@ -81,7 +81,7 @@ export default function Services() {
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Title Area */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="text-center space-y-4 max-w-3xl mx-auto reveal-heading">
           <span className="font-poppins font-medium text-xs tracking-widest text-[#0071E3] uppercase block">
             {t("services.badge")}
           </span>
@@ -126,10 +126,10 @@ export default function Services() {
         </div>
 
         {/* Apple columns grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6 reveal-group">
           
           {/* Service 1: Custom Web */}
-          <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300">
+          <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item">
             <div className="space-y-6">
               <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
                 <Code className="w-6 h-6" />
@@ -178,7 +178,7 @@ export default function Services() {
           </div>
 
           {/* Service 2: AI Photo shooting */}
-          <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300">
+          <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item">
             <div className="space-y-6">
               <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
                 <Camera className="w-6 h-6" />
@@ -227,7 +227,7 @@ export default function Services() {
           </div>
 
           {/* Service 3: Video Production */}
-          <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300">
+          <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item">
             <div className="space-y-6">
               <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
                 <Video className="w-6 h-6" />

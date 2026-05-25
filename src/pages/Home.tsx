@@ -46,23 +46,17 @@ export default function Home() {
   const navigate = useNavigate();
   const { t, language } = useTranslation();
 
-  // Trigger animations
-  useEffect(() => {
-    const targets = document.querySelectorAll(".reveal-element");
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fadeUp");
-            entry.target.classList.remove("opacity-0");
-          }
-        });
-      },
-      { threshold: 0.05 }
-    );
-    targets.forEach((t) => obs.observe(t));
-    return () => obs.disconnect();
-  }, []);
+  const renderStaggeredWords = (text: string, startDelay: number) => {
+    return text.split(/\s+/).map((word, i) => (
+      <span
+        key={i}
+        className="inline-block animate-word-up"
+        style={{ animationDelay: `${startDelay + i * 95}ms` }}
+      >
+        {word}&nbsp;
+      </span>
+    ));
+  };
 
   return (
     <>
@@ -93,20 +87,26 @@ export default function Home() {
 
           {/* Main Headline */}
           <div className="space-y-4 pt-2">
-            <h1 className="font-poppins font-extrabold text-[#1D1D1F] tracking-tight leading-[1.05] animate-fadeUp text-5xl sm:text-6xl md:text-7xl">
-              {t("home.titlePart1")} <br />
-              <span className="text-[#0071E3]">{t("home.titlePart2")}</span> <br />
-              {t("home.titlePart3")}
+            <h1 className="font-poppins font-extrabold text-[#1D1D1F] tracking-tight leading-[1.1] text-4xl sm:text-6xl md:text-7xl overflow-hidden py-1">
+              <span className="block mb-2 sm:mb-3">
+                {renderStaggeredWords(t("home.titlePart1"), 220)}
+              </span>
+              <span className="text-[#0071E3] block mb-2 sm:mb-3">
+                {renderStaggeredWords(t("home.titlePart2"), 580)}
+              </span>
+              <span className="block">
+                {renderStaggeredWords(t("home.titlePart3"), 920)}
+              </span>
             </h1>
           </div>
 
           {/* Subtitle */}
-          <p className="font-inter text-base md:text-lg text-[#6E6E73] max-w-xl mx-auto animate-fadeUp [animation-delay:200ms] leading-relaxed">
+          <p className="font-inter text-base md:text-lg text-[#6E6E73] max-w-xl mx-auto animate-fadeIn [animation-delay:1250ms] [animation-duration:0.8s] leading-relaxed">
             {t("home.subtitle")}
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fadeUp [animation-delay:300ms]">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fadeIn [animation-delay:1350ms] [animation-duration:0.8s]">
             <Link to="/contact" className="btn-primary w-full sm:w-auto justify-center">
               <span>{t("home.btnStart")}</span>
               <ArrowRight className="w-4 h-4" />
@@ -167,27 +167,27 @@ export default function Home() {
         </div>
 
         {/* Dynamic numerical stats block directly embedded inside the Hero bounds */}
-        <div className="relative z-10 w-full max-w-4xl mx-auto px-6 mt-12 pb-4">
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-6 mt-12 pb-4 reveal-group">
           <div className="bg-white border border-black/10 rounded-2xl p-6 md:p-8 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center shadow-sm divide-y lg:divide-y-0 lg:divide-x divide-black/5">
-            <div className="pt-2 lg:pt-0">
+            <div className="pt-2 lg:pt-0 stagger-item">
               <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
                 <CountUp end={50} suffix="+" />
               </div>
               <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsProjects")}</p>
             </div>
-            <div className="pt-4 lg:pt-0">
+            <div className="pt-4 lg:pt-0 stagger-item">
               <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
                 <CountUp end={48} suffix="H" />
               </div>
               <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsConcept")}</p>
             </div>
-            <div className="pt-4 lg:pt-0">
+            <div className="pt-4 lg:pt-0 stagger-item">
               <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
                 <CountUp end={100} suffix="%" />
               </div>
               <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsSatisfaction")}</p>
             </div>
-            <div className="pt-4 lg:pt-0">
+            <div className="pt-4 lg:pt-0 stagger-item">
               <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
                 <CountUp end={3} />
               </div>
@@ -234,34 +234,34 @@ export default function Home() {
       {/* Core values block / Apple section */}
       <section className="py-24 px-6 md:px-12 bg-white border-b border-black/5">
         <div className="max-w-4xl mx-auto space-y-16">
-          <div className="text-center space-y-3">
+          <div className="text-center space-y-3 reveal-heading">
             <span className="text-xs font-semibold uppercase tracking-wider text-[#0071E3]">{t("home.valuesBadge")}</span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F]">{t("home.valuesHeading")}</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="space-y-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 reveal-group">
+            <div className="space-y-2 stagger-item">
               <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p1Title")}</h3>
               <p className="text-sm text-[#6E6E73] leading-relaxed">
                 {t("home.p1Desc")}
               </p>
             </div>
             
-            <div className="space-y-2">
+            <div className="space-y-2 stagger-item">
               <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p2Title")}</h3>
               <p className="text-sm text-[#6E6E73] leading-relaxed">
                 {t("home.p2Desc")}
               </p>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 stagger-item">
               <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p3Title")}</h3>
               <p className="text-sm text-[#6E6E73] leading-relaxed">
                 {t("home.p3Desc")}
               </p>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 stagger-item">
               <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p4Title")}</h3>
               <p className="text-sm text-[#6E6E73] leading-relaxed">
                 {t("home.p4Desc")}
@@ -274,7 +274,7 @@ export default function Home() {
       {/* Testimonials in clean minimalist Apple cards */}
       <section className="py-24 px-6 md:px-12 bg-[#F5F5F7] border-b border-black/5">
         <div className="max-w-5xl mx-auto space-y-12">
-          <div className="text-center space-y-2">
+          <div className="text-center space-y-2 reveal-heading">
             <span className="text-xs font-semibold text-[#0071E3] tracking-wider block uppercase">
               {t("home.testimonialsBadge")}
             </span>
@@ -283,10 +283,10 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4 reveal-group">
             
             {/* Card 1 */}
-            <div className="bg-white border border-black/5 p-8 rounded-2xl flex flex-col justify-between shadow-sm">
+            <div className="glass-card p-8 rounded-2xl flex flex-col justify-between stagger-item">
               <div className="space-y-4">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
@@ -307,7 +307,7 @@ export default function Home() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white border border-black/5 p-8 rounded-2xl flex flex-col justify-between shadow-sm">
+            <div className="glass-card p-8 rounded-2xl flex flex-col justify-between stagger-item">
               <div className="space-y-4">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
@@ -328,7 +328,7 @@ export default function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white border border-black/5 p-8 rounded-2xl flex flex-col justify-between shadow-sm">
+            <div className="glass-card p-8 rounded-2xl flex flex-col justify-between stagger-item">
               <div className="space-y-4">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (

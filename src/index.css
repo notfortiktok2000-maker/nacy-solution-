@@ -136,18 +136,25 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--border-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-card);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.12);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
   transform: translateY(-4px);
   border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 16px 36px rgba(0,0,0,0.16);
 }
 
-/* Premium black and white buttons */
+/* Card image inner visual zoom on parent hover */
+.glass-card group:hover img, .glass-card:hover img, [class*="card"]:hover img {
+  transform: scale(1.03);
+}
+
+/* Premium black and white buttons with spring-feel and shimmering */
 .btn-primary {
+  position: relative;
+  overflow: hidden;
   background: var(--gradient-btn);
   color: #FFFFFF;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -155,7 +162,8 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   padding: 10px 22px;
   border-radius: 980px; /* Apple pill button shape */
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.06);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.25s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -164,14 +172,37 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-primary:hover {
   background: #000000;
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12), 0 12px 28px rgba(0,0,0,0.15);
 }
 
 .btn-primary:active {
-  transform: scale(0.98);
+  transform: translateY(-2px) scale(0.97) !important;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.16),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+.btn-primary:hover::after {
+  animation: shimmerSweep 0.5s ease-out forwards;
 }
 
 .btn-outline {
+  position: relative;
+  overflow: hidden;
   background: transparent;
   border: 1px solid rgba(0, 0, 0, 0.15);
   color: #1D1D1F;
@@ -180,7 +211,8 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 14px;
   padding: 10px 22px;
   border-radius: 980px; /* Apple pill button shape */
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1.5px 4px rgba(0,0,0,0.01);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s ease, background-color 0.25s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -188,16 +220,47 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-outline:hover {
-  background: rgba(0, 0, 0, 0.03);
-  border-color: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04), 0 8px 20px rgba(0,0,0,0.06);
 }
 
 .btn-outline:active {
-  transform: scale(0.98);
+  transform: translateY(-2px) scale(0.97) !important;
 }
 
-/* Nav Link Hover Underline effect matches Apple standard clean hover */
-.nav-link {
+.btn-outline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 0, 0, 0.04),
+    transparent
+  );
+  transform: skewX(-25deg);
+}
+
+.btn-outline:hover::after {
+  animation: shimmerSweep 0.5s ease-out forwards;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* Nav Link Hover Underline effect matches Apple standard clean hover with left-to-right draw */
+.nav-link, .animate-underline {
   position: relative;
   transition: color 0.25s ease;
   color: var(--text-secondary);
@@ -205,6 +268,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover {
   color: var(--text-primary);
+}
+
+.nav-link::after, .animate-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -4px;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after, .animate-underline:hover::after {
+  transform: scaleX(1);
 }
 
 /* Apple inline link styling */
@@ -218,4 +298,193 @@ h1, h2, h3, h4, h5, h6 {
 
 .apple-link:hover {
   text-decoration: underline;
+}
+
+/* Global Smooth Behavior + Scroll Padding */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* offset for fixed navbar */
+}
+
+/* Page load brief fade-in */
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-page-enter {
+  animation: pageEnter 0.4s ease-out both;
+}
+
+/* Navbar slide down from top */
+@keyframes navbarSlideDown {
+  from {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animate-navbar-slide-down {
+  animation: navbarSlideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.05s;
+}
+
+/* Word-by-word staggered reveal animation for display typography */
+.animate-word-up {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: wordReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes wordReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ultra-subtle noise / grain texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.022; /* extremely light 2.2% - beautiful on whites/slates, felt only */
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Higher texture visibility for darker sections */
+footer::before, section.bg-slate-900::before, section.bg-[#1D1D1F]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.045; /* 4.5% overlay on dark areas */
+  z-index: 10;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseDarkFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseDarkFilter)'/%3E%3C/svg%3E");
+}
+
+/* Section Transitions Soft Bleeding Fades */
+.soft-bottom-fade {
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  overflow: hidden;
+}
+
+/* Scroll Reveals through IntersectionObserver */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-heading {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-heading.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-group {
+  will-change: transform, opacity;
+}
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.stagger-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Images fade in with slight zoom-out */
+.reveal-zoom-img {
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-zoom-img.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Standard Double-Layer Shadow presets */
+.shadow-double-layer {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Highlighted top edge light leaks for dark items */
+.lifted-edge-dark {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Custom Styled Scrollbar (Thin, Rounded, Apple look) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 113, 227, 0.4); /* #0071E3 with opacity */
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 113, 227, 0.6);
+}
+
+/* Prefers Reduced Motion settings override */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-element, 
+  .stagger-item, 
+  .reveal-heading, 
+  .reveal-zoom-img, 
+  .animate-word-up, 
+  .animate-fadeUp, 
+  .animate-scaleIn, 
+  .animate-navbar-slide-down, 
+  .btn-primary::after, 
+  .btn-outline::after {
+    transition: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
 }
