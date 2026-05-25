@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, Star, ArrowUpRight, ShieldCheck, Mail, Zap, MessageSquare, Phone, MapPin } from "lucide-react";
+import { useTranslation } from "../context/LanguageContext";
 
 // CountUp component for statistical numbers on the landing page
 function CountUp({ end, suffix = "", duration = 1200 }: { end: number; suffix?: string; duration?: number }) {
@@ -43,6 +44,7 @@ function CountUp({ end, suffix = "", duration = 1200 }: { end: number; suffix?: 
 
 export default function Home() {
   const navigate = useNavigate();
+  const { t, language } = useTranslation();
 
   // Trigger animations
   useEffect(() => {
@@ -65,10 +67,10 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>NACY ST — High-Performance Digital & Creative Agency</title>
-        <meta name="description" content="NACY Solutions (NACY ST) builds zero-template custom websites, realistic AI photo shoots, and viral social media videos with absolute precision in Tangier." />
-        <meta property="og:title" content="NACY ST — Specialized Digital Craftsmen" />
-        <meta property="og:description" content="Custom software engineering and professional creative services with immediate delivery timelines in Tangier, Morocco." />
+        <title>{t("home.metaTitle")}</title>
+        <meta name="description" content={t("home.metaDesc")} />
+        <meta property="og:title" content={t("home.metaOgTitle")} />
+        <meta property="og:description" content={t("home.metaOgDesc")} />
         <meta property="og:url" content="https://nacyst.com" />
       </Helmet>
 
@@ -85,32 +87,32 @@ export default function Home() {
           {/* Badge Line with REMOVED "Creative studio" (only Tangier Morocco remains) */}
           <div className="animate-fadeIn">
             <span className="font-poppins font-semibold text-xs text-[#0071E3] uppercase tracking-widest bg-[#F5F5F7] px-5 py-2 rounded-full border border-black/5 inline-block">
-              TANGIER, MOROCCO
+              {t("home.badge")}
             </span>
           </div>
 
           {/* Main Headline */}
           <div className="space-y-4 pt-2">
             <h1 className="font-poppins font-extrabold text-[#1D1D1F] tracking-tight leading-[1.05] animate-fadeUp text-5xl sm:text-6xl md:text-7xl">
-              WE BUILD <br />
-              <span className="text-[#0071E3]">WHAT OTHERS</span> <br />
-              ONLY PROMISE.
+              {t("home.titlePart1")} <br />
+              <span className="text-[#0071E3]">{t("home.titlePart2")}</span> <br />
+              {t("home.titlePart3")}
             </h1>
           </div>
 
           {/* Subtitle */}
           <p className="font-inter text-base md:text-lg text-[#6E6E73] max-w-xl mx-auto animate-fadeUp [animation-delay:200ms] leading-relaxed">
-            Beautiful hand-coded websites. Realistic studio product photography. High-conversion TikTok & Reels editing. Built with absolute integrity.
+            {t("home.subtitle")}
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fadeUp [animation-delay:300ms]">
             <Link to="/contact" className="btn-primary w-full sm:w-auto justify-center">
-              <span>Start a Project</span>
+              <span>{t("home.btnStart")}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/services" className="btn-outline w-full sm:w-auto justify-center">
-              <span>Explore Services</span>
+              <span>{t("home.btnServices")}</span>
             </Link>
           </div>
 
@@ -118,7 +120,7 @@ export default function Home() {
           <div className="pt-12 max-w-3xl mx-auto animate-scaleIn [animation-delay:400ms]">
             <div className="bg-[#F5F5F7] border border-black/5 rounded-2xl p-6 md:p-8 space-y-5">
               <span className="text-[11px] uppercase tracking-[0.2em] text-[#86868B] font-bold block">
-                Certified & Verified by Experts
+                {t("home.expertBadge")}
               </span>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-items-center pt-2">
@@ -134,7 +136,7 @@ export default function Home() {
                     </svg>
                     <span className="font-bold text-[#1D1D1F] text-sm">Google</span>
                   </div>
-                  <span className="text-[10px] text-[#86868B]">Google Cloud Certified</span>
+                  <span className="text-[10px] text-[#86868B]">{t("home.gCertified")}</span>
                 </div>
 
                 {/* Coursera */}
@@ -145,7 +147,7 @@ export default function Home() {
                     </svg>
                     <span className="font-bold text-[#0056D2] text-sm">coursera</span>
                   </div>
-                  <span className="text-[10px] text-[#86868B]">Ecosystem Certified</span>
+                  <span className="text-[10px] text-[#86868B]">{t("home.eCertified")}</span>
                 </div>
 
                 {/* Trustpilot */}
@@ -156,7 +158,7 @@ export default function Home() {
                     </svg>
                     <span className="font-bold text-[#1D1D1F] text-sm">Trustpilot</span>
                   </div>
-                  <span className="text-[10px] text-[#86868B]">Verified Integration</span>
+                  <span className="text-[10px] text-[#86868B]">{t("home.vIntegration")}</span>
                 </div>
 
               </div>
@@ -171,25 +173,25 @@ export default function Home() {
               <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
                 <CountUp end={50} suffix="+" />
               </div>
-              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">Projects Delivered</p>
+              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsProjects")}</p>
             </div>
             <div className="pt-4 lg:pt-0">
               <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
                 <CountUp end={48} suffix="H" />
               </div>
-              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">First Concept</p>
+              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsConcept")}</p>
             </div>
             <div className="pt-4 lg:pt-0">
               <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
                 <CountUp end={100} suffix="%" />
               </div>
-              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">Customer Satisfaction</p>
+              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsSatisfaction")}</p>
             </div>
             <div className="pt-4 lg:pt-0">
               <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
                 <CountUp end={3} />
               </div>
-              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">Core Offerings</p>
+              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsOfferings")}</p>
             </div>
           </div>
         </div>
@@ -199,31 +201,31 @@ export default function Home() {
       <section className="bg-[#F5F5F7] border-y border-black/5 py-4 overflow-hidden relative select-none">
         <div className="w-full flex items-center whitespace-nowrap">
           <div className="flex items-center gap-16 uppercase font-poppins font-bold text-xs tracking-[0.25em] text-[#86868B] animate-marquee" style={{ animationDuration: "25s" }}>
-            <span>Website Engineering</span>
+            <span>{t("marquee.website")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Studio Product AI Photography</span>
+            <span>{t("marquee.photo")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Viral TikTok & Reels Production</span>
+            <span>{t("marquee.video")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Fast Global Delivery</span>
+            <span>{t("marquee.delivery")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Tangier Morocco Specialists</span>
+            <span>{t("marquee.tangier")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Zero Sluggish Templates</span>
+            <span>{t("marquee.zeroTemplates")}</span>
             <span className="text-[#0071E3]">•</span>
 
             {/* Duplicate sequence for seamless loop */}
-            <span>Website Engineering</span>
+            <span>{t("marquee.website")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Studio Product AI Photography</span>
+            <span>{t("marquee.photo")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Viral TikTok & Reels Production</span>
+            <span>{t("marquee.video")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Fast Global Delivery</span>
+            <span>{t("marquee.delivery")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Tangier Morocco Specialists</span>
+            <span>{t("marquee.tangier")}</span>
             <span className="text-[#0071E3]">•</span>
-            <span>Zero Sluggish Templates</span>
+            <span>{t("marquee.zeroTemplates")}</span>
             <span className="text-[#0071E3]">•</span>
           </div>
         </div>
@@ -233,36 +235,36 @@ export default function Home() {
       <section className="py-24 px-6 md:px-12 bg-white border-b border-black/5">
         <div className="max-w-4xl mx-auto space-y-16">
           <div className="text-center space-y-3">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#0071E3]">Our Production Values</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F]">How we guarantee elite deliverables.</h2>
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#0071E3]">{t("home.valuesBadge")}</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F]">{t("home.valuesHeading")}</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="space-y-2">
-              <h3 className="font-bold text-lg text-[#1D1D1F]">1. Clear-cut Handcoding</h3>
+              <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p1Title")}</h3>
               <p className="text-sm text-[#6E6E73] leading-relaxed">
-                No sitebuilders, no generic templates. Every script, element, style, and interface layout we produce is hand-coded to match the highest modern efficiency standards.
+                {t("home.p1Desc")}
               </p>
             </div>
             
             <div className="space-y-2">
-              <h3 className="font-bold text-lg text-[#1D1D1F]">2. AI Production Velocity</h3>
+              <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p2Title")}</h3>
               <p className="text-sm text-[#6E6E73] leading-relaxed">
-                By integrating specialized generative models directly within our graphic pipeline, we bypass the need for expensive equipment while delivering higher realism in record time.
+                {t("home.p2Desc")}
               </p>
             </div>
 
             <div className="space-y-2">
-              <h3 className="font-bold text-lg text-[#1D1D1F]">3. Realtime WhatsApp Briefings</h3>
+              <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p3Title")}</h3>
               <p className="text-sm text-[#6E6E73] leading-relaxed">
-                Say goodbye to cold, sluggish support lines. We maintain direct, highly active communication on WhatsApp so you can review concepts in real time.
+                {t("home.p3Desc")}
               </p>
             </div>
 
             <div className="space-y-2">
-              <h3 className="font-bold text-lg text-[#1D1D1F]">4. Complete Transparancy</h3>
+              <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p4Title")}</h3>
               <p className="text-sm text-[#6E6E73] leading-relaxed">
-                No complex contracts, no surprise hidden fees. You select from our explicit billing matrices and receive premium assets with complete commercial copyright ownership.
+                {t("home.p4Desc")}
               </p>
             </div>
           </div>
@@ -274,10 +276,10 @@ export default function Home() {
         <div className="max-w-5xl mx-auto space-y-12">
           <div className="text-center space-y-2">
             <span className="text-xs font-semibold text-[#0071E3] tracking-wider block uppercase">
-              — Verified Praise
+              {t("home.testimonialsBadge")}
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F]">
-              What creative partners say about NACY ST
+              {t("home.testimonialsHeading")}
             </h2>
           </div>
 
@@ -292,14 +294,14 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm text-[#6E6E73] italic leading-relaxed">
-                  "The hand-coded website delivered by NACY ST instantly doubled our inbound property leads in Tangier. The technical coding and WhatsApp response velocity is truly outstanding!"
+                  {t("home.t1Text")}
                 </p>
               </div>
               <div className="pt-6 border-t border-black/5 mt-6 flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold">AM</div>
                 <div>
-                  <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">Anass M.</h4>
-                  <span className="text-[11px] text-[#86868B] block mt-1">Real Estate Director</span>
+                  <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t1Author")}</h4>
+                  <span className="text-[11px] text-[#86868B] block mt-1">{t("home.t1Role")}</span>
                 </div>
               </div>
             </div>
@@ -313,14 +315,14 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm text-[#6E6E73] italic leading-relaxed">
-                  "Their realistic studio AI photo shoots are mind-blowing. We uploaded simple mobile captures and received 45 high-end product photos in less than 48 hours."
+                  {t("home.t2Text")}
                 </p>
               </div>
               <div className="pt-6 border-t border-black/5 mt-6 flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold">SB</div>
                 <div>
-                  <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">Sofia B.</h4>
-                  <span className="text-[11px] text-[#86868B] block mt-1">Jewelry Atelier Founder</span>
+                  <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t2Author")}</h4>
+                  <span className="text-[11px] text-[#86868B] block mt-1">{t("home.t2Role")}</span>
                 </div>
               </div>
             </div>
@@ -334,14 +336,16 @@ export default function Home() {
                   ))}
                 </div>
                 <p className="text-sm text-[#6E6E73] italic leading-relaxed">
-                  "Exceptional short-form video montage skills. Our product Reels went viral instantly, generating over 100K impressions in 3 days. Recommend their degressive bulk packs!"
+                  {t("home.t3Text")}
                 </p>
               </div>
               <div className="pt-6 border-t border-black/5 mt-6 flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold">KH</div>
                 <div>
-                  <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">Khalid H.</h4>
-                  <span className="text-[11px] text-[#86868B] block mt-1">E-Commerce Merchant</span>
+                  <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t3Author")}</h4>
+                  <span className="text-[11px] text-[#86868B] block mt-1">
+                    {language === "EN" ? "E-Commerce Merchant" : "Commerçant E-Commerce"}
+                  </span>
                 </div>
               </div>
             </div>

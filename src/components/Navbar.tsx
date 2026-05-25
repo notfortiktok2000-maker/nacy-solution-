@@ -2,8 +2,52 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Globe, ArrowRight, Menu, X, Check, MessageSquare } from "lucide-react";
 import Logo from "./Logo";
+import { useTranslation } from "../context/LanguageContext";
+import { motion } from "motion/react";
+
+export function LanguageToggle() {
+  const { language, setLanguage } = useTranslation();
+
+  return (
+    <div className="relative inline-flex bg-black/[0.04] p-0.5 rounded-full border border-black/[0.03] select-none shrink-0" id="lang-switch-capsule">
+      <button
+        type="button"
+        onClick={() => setLanguage("EN")}
+        className={`relative z-10 py-1 px-3 text-[11px] font-bold tracking-wider rounded-full select-none cursor-pointer transition-colors duration-200 ${
+          language === "EN" ? "text-white" : "text-[#6E6E73] hover:text-black"
+        }`}
+      >
+        {language === "EN" && (
+          <motion.div
+            layoutId="activeLang"
+            className="absolute inset-0 bg-[#0071E3] rounded-full -z-10"
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          />
+        )}
+        EN
+      </button>
+      <button
+        type="button"
+        onClick={() => setLanguage("FR")}
+        className={`relative z-10 py-1 px-3 text-[11px] font-bold tracking-wider rounded-full select-none cursor-pointer transition-colors duration-200 ${
+          language === "FR" ? "text-white" : "text-[#6E6E73] hover:text-black"
+        }`}
+      >
+        {language === "FR" && (
+          <motion.div
+            layoutId="activeLang"
+            className="absolute inset-0 bg-[#0071E3] rounded-full -z-10"
+            transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          />
+        )}
+        FR
+      </button>
+    </div>
+  );
+}
 
 export default function Navbar() {
+  const { t, language } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,10 +101,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { label: "Services", href: "/services" },
-    { label: "Why Us", href: "/why-us" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Contact", href: "/contact" },
+    { label: "Services", href: "/services", key: "nav.services" },
+    { label: "Why Us", href: "/why-us", key: "nav.whyUs" },
+    { label: "Pricing", href: "/pricing", key: "nav.pricing" },
+    { label: "Contact", href: "/contact", key: "nav.contact" },
   ];
 
   return (
@@ -90,7 +134,7 @@ export default function Navbar() {
                   isActive ? "text-black font-semibold" : "text-[#6E6E73] hover:text-black"
                 }`}
               >
-                {link.label}
+                {t(link.key)}
                 {isActive && (
                   <span className="absolute bottom-[-4px] left-0 w-full h-0.5 bg-black rounded" />
                 )}
@@ -100,20 +144,22 @@ export default function Navbar() {
         </div>
 
         {/* Right CTA */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center gap-4">
+          <LanguageToggle />
           <button
             id="nav-cta-btn"
             type="button"
             onClick={() => setIsModalOpen(true)}
             className="btn-primary"
           >
-            <span>Free Quote</span>
+            <span>{t("nav.freeQuote")}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
         {/* Mobile controls */}
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center gap-3 md:hidden">
+          <LanguageToggle />
           <button
             id="mobile-nav-toggle"
             type="button"
@@ -144,10 +190,20 @@ export default function Navbar() {
                     isActive ? "text-black" : "text-[#6E6E73]"
                   }`}
                 >
-                  {link.label}
+                  {t(link.key)}
                 </Link>
               );
             })}
+          </div>
+
+          <div className="w-full h-px bg-black/5" />
+
+          {/* Language selection info on mobile */}
+          <div className="flex items-center justify-between py-1">
+            <span className="font-poppins font-semibold text-sm text-[#6E6E73]">
+              {language === "EN" ? "Language" : "Langue"}
+            </span>
+            <LanguageToggle />
           </div>
 
           <div className="w-full h-px bg-black/5" />
@@ -160,7 +216,7 @@ export default function Navbar() {
             }}
             className="w-full btn-primary justify-center text-center py-3"
           >
-            <span>Free Quote</span>
+            <span>{t("nav.freeQuote")}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -186,81 +242,81 @@ export default function Navbar() {
             </button>
 
             <span className="font-poppins font-semibold text-xs text-[#0071E3] uppercase tracking-wider block mb-2">
-              — Premium Diagnostics
+              {t("nav.diagnostic")}
             </span>
             <h3 className="font-poppins font-bold text-2xl mb-4 leading-tight">
-              Get Your Free Quote
+              {t("nav.quoteSubtitle")}
             </h3>
             <p className="text-[#6E6E73] text-sm mb-6 font-inter">
-              Describe your project goal below. We will analyze your specification and model a dedicated proposal under 24 hours.
+              {t("nav.quoteDescription")}
             </p>
 
             {isSubmitted ? (
-              <div className="h-64 flex flex-col items-center justify-center text-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                  <Check className="w-8 h-8 text-emerald-600 animate-pulse" />
-                </div>
-                <h4 className="font-poppins font-bold text-lg text-black">Briefing Pack Complete!</h4>
-                <p className="text-[#6E6E73] text-sm max-w-xs font-inter">
-                  We are launching a live chat on WhatsApp to immediately process your proposal parameters.
-                </p>
-              </div>
+               <div className="h-64 flex flex-col items-center justify-center text-center gap-4">
+                 <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                   <Check className="w-8 h-8 text-emerald-600 animate-pulse" />
+                 </div>
+                 <h4 className="font-poppins font-bold text-lg text-black">{t("nav.quoteComplete")}</h4>
+                 <p className="text-[#6E6E73] text-sm max-w-xs font-inter font-medium">
+                   {t("nav.quoteSuccessMsg")}
+                 </p>
+               </div>
             ) : (
               <form onSubmit={handleModalSubmit} className="space-y-4 font-inter text-sm">
                 <div>
                   <label className="block text-xs font-semibold uppercase text-[#6E6E73] mb-1.5 tracking-wider">
-                    Full Name
+                    {t("nav.fullName")}
                   </label>
                   <input
                     type="text"
                     required
                     value={modalName}
                     onChange={(e) => setModalName(e.target.value)}
-                    placeholder="e.g. Adam Smith"
+                    placeholder={t("nav.fullNamePlaceholder")}
                     className="w-full bg-black/5 border border-black/10 rounded-lg py-2.5 px-4 text-black text-xs focus:outline-none focus:border-[#0071E3] transition-colors"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold uppercase text-[#6E6E73] mb-1.5 tracking-wider">
-                    Email Address
+                    {t("nav.emailAddress")}
                   </label>
                   <input
                     type="email"
                     required
                     value={modalEmail}
                     onChange={(e) => setModalEmail(e.target.value)}
-                    placeholder="e.g. adam@company.com"
+                    placeholder={t("nav.emailAddressPlaceholder")}
                     className="w-full bg-black/5 border border-black/10 rounded-lg py-2.5 px-4 text-black text-xs focus:outline-none focus:border-[#0071E3] transition-colors"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold uppercase text-[#6E6E73] mb-1.5 tracking-wider">
-                    Preferred Service
+                    {t("nav.preferredService")}
                   </label>
                   <select
                     value={modalService}
                     onChange={(e) => setModalService(e.target.value)}
                     className="w-full bg-white border border-black/10 rounded-lg py-2.5 px-3 text-black text-xs focus:outline-none focus:border-[#0071E3] transition-colors"
                   >
-                    <option value="Website Creation">Digital Website Creation</option>
-                    <option value="AI Photo Shooting">Studio-Quality AI Photo Shooting</option>
-                    <option value="Video Production">Viral Short-Form Video Production</option>
-                    <option value="Custom Project">Other Bespoke Collaboration</option>
+                    <option value="Website Creation">{t("nav.serviceWeb")}</option>
+                    <option value="AI Photo Shooting">{t("nav.servicePhoto")}</option>
+                    <option value="Video Production">{t("nav.serviceVideo")}</option>
+                    <option value="Custom Project">{t("nav.serviceCustom")}</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold uppercase text-[#6E6E73] mb-1.5 tracking-wider">
-                    Project Details
+                    {t("nav.projectDetails")}
                   </label>
                   <textarea
                     required
                     rows={3}
                     value={modalMsg}
                     onChange={(e) => setModalMsg(e.target.value)}
-                    placeholder="Tell us what you would like to achieve, target launch, etc..."
+                    placeholder={t("nav.detailsPlaceholder")}
                     className="w-full bg-black/5 border border-black/10 rounded-lg py-2 px-3 text-black text-xs focus:outline-none focus:border-[#0071E3] transition-colors resize-none"
                   />
                 </div>
@@ -270,7 +326,7 @@ export default function Navbar() {
                   className="w-full btn-primary justify-center text-center mt-2"
                 >
                   <MessageSquare className="w-5 h-5" />
-                  <span>Send Request (Open WhatsApp)</span>
+                  <span>{t("nav.sendRequest")}</span>
                 </button>
               </form>
             )}

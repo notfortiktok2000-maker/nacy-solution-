@@ -3,9 +3,11 @@ import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 import { Code, Camera, Video, Check, ArrowRight } from "lucide-react";
 import { CurrencyType, CheckoutProduct } from "../types";
+import { useTranslation } from "../context/LanguageContext";
 
 export default function Services() {
   const navigate = useNavigate();
+  const { t, language } = useTranslation();
   const [currency, setCurrency] = useState<CurrencyType>("MAD");
   const [videoVolume, setVideoVolume] = useState<1 | 2 | 3 | 4>(3);
 
@@ -39,9 +41,9 @@ export default function Services() {
     const diff = originalPrices - currentPrices;
     if (diff <= 0) return "";
     
-    if (currency === "EUR") return `Save ${(diff * 0.093).toFixed(0)} €`;
-    if (currency === "USD") return `Save ${(diff * 0.1).toFixed(0)} $`;
-    return `Save ${diff} MAD`;
+    if (currency === "EUR") return t("price.save", { amount: `${(diff * 0.093).toFixed(0)} €` });
+    if (currency === "USD") return t("price.save", { amount: `${(diff * 0.1).toFixed(0)} $` });
+    return t("price.save", { amount: `${diff} MAD` });
   };
 
   const handlePurchase = (serviceName: string, amountId: "web" | "photo" | "video", detailAddition?: string) => {
@@ -61,7 +63,7 @@ export default function Services() {
       name: serviceName,
       price: numericPrice,
       currency: currency,
-      tierName: amountId === "video" ? `${videoVolume} Product Videos` : serviceName,
+      tierName: amountId === "video" ? `${videoVolume} ${language === "EN" ? "Product Videos" : "Vidéos de Produits"}` : serviceName,
       details: detailAddition || "Standard Offer"
     };
 
@@ -72,8 +74,8 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-white text-[#1D1D1F] pt-28 pb-20 px-6 md:px-12">
       <Helmet>
-        <title>Services | NACY ST — Premium Digital Solutions</title>
-        <meta name="description" content="Explore our primary high-conversion services: custom website engineering, professional AI photo shooting, and attention-grabbing product video editing in Tangier." />
+        <title>{t("services.metaTitle")}</title>
+        <meta name="description" content={t("services.metaDesc")} />
       </Helmet>
 
       <div className="max-w-7xl mx-auto space-y-16">
@@ -81,13 +83,13 @@ export default function Services() {
         {/* Title Area */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <span className="font-poppins font-medium text-xs tracking-widest text-[#0071E3] uppercase block">
-            — Specialized Services
+            {t("services.badge")}
           </span>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1D1D1F]">
-            High-performance digital assets built for conversion.
+            {t("services.heading")}
           </h1>
           <p className="text-[#6E6E73] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            We merge professional software engineering with deep algorithmic creativity. No sluggish templates, no bloated processes. Only refined high-tier deliverables.
+            {t("services.sub")}
           </p>
 
           <div className="flex justify-center pt-2">
@@ -99,7 +101,7 @@ export default function Services() {
                   currency === "MAD" ? "bg-black text-white shadow-sm" : "text-[#6E6E73] hover:text-black"
                 }`}
               >
-                MAD (Morocco)
+                {t("price.switchMad")}
               </button>
               <button
                 type="button"
@@ -108,7 +110,7 @@ export default function Services() {
                   currency === "EUR" ? "bg-black text-white shadow-sm" : "text-[#6E6E73] hover:text-black"
                 }`}
               >
-                EUR (Europe)
+                {t("price.switchEur")}
               </button>
               <button
                 type="button"
@@ -117,7 +119,7 @@ export default function Services() {
                   currency === "USD" ? "bg-black text-white shadow-sm" : "text-[#6E6E73] hover:text-black"
                 }`}
               >
-                USD (USA)
+                {t("price.switchUsd")}
               </button>
             </div>
           </div>
@@ -133,43 +135,43 @@ export default function Services() {
                 <Code className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">SERVICE 01</span>
-                <h2 className="text-2xl font-bold text-[#1D1D1F]">Website Creation</h2>
+                <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s01")}</span>
+                <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "Website Creation" : "Création de Site Web"}</h2>
               </div>
               <p className="text-[#6E6E73] text-sm leading-relaxed">
-                Hand-coded, optimized websites designed to win on Google. Lightning-fast response times, bespoke graphics, and clean design patterns tailored specifically to your conversion funnel.
+                {t("services.webDesc")}
               </p>
               <div className="space-y-3.5 pt-2">
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Custom bespoke design, strictly zero templates</span>
+                  <span>{t("services.webF1")}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Comprehensive SEO integration & semantic tags</span>
+                  <span>{t("services.webF2")}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Fluid ultra-responsive framework performance</span>
+                  <span>{t("services.webF3")}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>30 days of complimentary engineering updates</span>
+                  <span>{t("services.webF4")}</span>
                 </div>
               </div>
             </div>
             
             <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
               <div>
-                <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">Starting From</span>
+                <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.startingFrom")}</span>
                 <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("web")}</span>
               </div>
               <button
                 type="button"
-                onClick={() => handlePurchase("Website Creation", "web")}
+                onClick={() => handlePurchase(language === "EN" ? "Website Creation" : "Création de Site Web", "web")}
                 className="btn-primary"
               >
-                <span>Order Now</span>
+                <span>{t("services.orderNow")}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -182,43 +184,43 @@ export default function Services() {
                 <Camera className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">SERVICE 02</span>
-                <h2 className="text-2xl font-bold text-[#1D1D1F]">AI Photo Shooting</h2>
+                <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s02")}</span>
+                <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "AI Photo Shooting" : "Séance Photo IA"}</h2>
               </div>
               <p className="text-[#6E6E73] text-sm leading-relaxed">
-                Studio-grade high definition commercial product pictures at a fraction of standard cost. We use deep stable model layers to engineer professional lighting, perfect models, and customized global scenery.
+                {t("services.photoDesc")}
               </p>
               <div className="space-y-3.5 pt-2">
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Complete package of 45 high definition visuals</span>
+                  <span>{t("services.photoF1")}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Fully localized ambient light & backdrops</span>
+                  <span>{t("services.photoF2")}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Stable, ultra-realistic model generation</span>
+                  <span>{t("services.photoF3")}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Complete global commercial usage license</span>
+                  <span>{t("services.photoF4")}</span>
                 </div>
               </div>
             </div>
             
             <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
               <div>
-                <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">Total Package</span>
+                <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.totalPackage")}</span>
                 <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("photo")}</span>
               </div>
               <button
                 type="button"
-                onClick={() => handlePurchase("AI Photo Shooting", "photo", "Pack of 45 AI HD Photos")}
+                onClick={() => handlePurchase(language === "EN" ? "AI Photo Shooting" : "Séance Photo IA", "photo", language === "EN" ? "Pack of 45 AI HD Photos" : "Pack de 45 Photos IA HD")}
                 className="btn-primary"
               >
-                <span>Book Shoot</span>
+                <span>{t("services.bookShoot")}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -231,16 +233,18 @@ export default function Services() {
                 <Video className="w-6 h-6" />
               </div>
               <div className="space-y-1">
-                <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">SERVICE 03</span>
-                <h2 className="text-2xl font-bold text-[#1D1D1F]">Video Production</h2>
+                <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s03")}</span>
+                <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "Video Production" : "Production Vidéo"}</h2>
               </div>
               <p className="text-[#6E6E73] text-sm leading-relaxed">
-                Aggressive thumb-stopping video edits carefully scripted and cut for Reels, TikTok, and YouTube Shorts. Built on psychological engagement hooks to keep users locked in from state zero.
+                {t("services.videoDesc")}
               </p>
               
               {/* Volume selector */}
               <div className="space-y-2 pt-1">
-                <span className="text-[11px] text-[#6E6E73] block font-semibold uppercase tracking-wider">Select Video Batch Volume</span>
+                <span className="text-[11px] text-[#6E6E73] block font-semibold uppercase tracking-wider">
+                  {language === "EN" ? "Select Video Batch Volume" : "Sélectionner le volume d'envoi"}
+                </span>
                 <div className="grid grid-cols-4 gap-1 bg-black/5 p-0.5 rounded-lg text-center text-[11px]">
                   {[1, 2, 3, 4].map((v) => (
                     <button
@@ -260,22 +264,22 @@ export default function Services() {
               <div className="space-y-3.5">
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Vertical optimized TikTok/Reels framework</span>
+                  <span>{t("services.videoF1")}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Highly dynamic pace, text motion & audio synthesis</span>
+                  <span>{t("services.videoF2")}</span>
                 </div>
                 <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
                   <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>Professional organic voiceovers optional</span>
+                  <span>{t("services.videoF3")}</span>
                 </div>
               </div>
             </div>
             
             <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
               <div>
-                <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">Total Cost</span>
+                <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.totalCost")}</span>
                 <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("video")}</span>
                 {getVideoSavings() && (
                   <span className="block text-[9px] text-[#00a86b] font-bold tracking-tight">{getVideoSavings()}</span>
@@ -283,10 +287,10 @@ export default function Services() {
               </div>
               <button
                 type="button"
-                onClick={() => handlePurchase("Video Production", "video", `${videoVolume} high resolution videos`)}
+                onClick={() => handlePurchase(language === "EN" ? "Video Production" : "Production Vidéo", "video", language === "EN" ? `${videoVolume} high resolution videos` : `${videoVolume} vidéos haute résolution`)}
                 className="btn-primary"
               >
-                <span>Order Videos</span>
+                <span>{t("services.orderVideos")}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -296,18 +300,18 @@ export default function Services() {
 
         {/* Contact CTA */}
         <div className="bg-[#F5F5F7] rounded-3xl p-8 md:p-12 text-center space-y-4 border border-black/5">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F]">Need a completely customized setup?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F]">{t("services.customHeading")}</h2>
           <p className="text-[#6E6E73] text-sm max-w-xl mx-auto">
-            We specialize in bespoke systems, complete brand design, and long-term retainer scopes. Contact us right now on WhatsApp for a quick discussion.
+            {t("services.customSub")}
           </p>
           <div className="pt-2">
             <a
               href="https://wa.me/+212710900502?text=Hi%20NACY%20ST,%20I'm%20interested%20in%20a%20customized%20enterprise%20project."
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary inline-flex"
+              className="btn-primary inline-flex animate-pulse"
             >
-              <span>Discuss Custom Project</span>
+              <span>{t("services.customBtn")}</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>

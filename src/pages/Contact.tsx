@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Check, Mail, MapPin, Phone, MessageSquare } from "lucide-react";
+import { useTranslation } from "../context/LanguageContext";
 
 export default function Contact() {
+  const { t, language } = useTranslation();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -43,8 +45,8 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-white text-[#1D1D1F] pt-28 pb-20 px-6 md:px-12">
       <Helmet>
-        <title>Contact Us | NACY ST — Free Project Discovery</title>
-        <meta name="description" content="Reach out to NACY Solutions in Tangier. Fill in basic criteria to request an official cost projection estimate on our direct WhatsApp line." />
+        <title>{t("contact.metaTitle")}</title>
+        <meta name="description" content={t("contact.metaDesc")} />
       </Helmet>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -53,13 +55,13 @@ export default function Contact() {
         <div className="space-y-8 flex flex-col justify-center">
           <div className="space-y-4">
             <span className="font-poppins font-medium text-xs tracking-widest text-[#0071E3] uppercase block">
-              — Connect with us
+              {t("contact.badge")}
             </span>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1D1D1F] leading-tight">
-              Let's craft your next digital breakthrough.
+              {t("contact.heading")}
             </h1>
             <p className="text-[#6E6E73] text-sm md:text-base leading-relaxed">
-              Submit basic information about your current goals. Once submitted, your inquiry package will be finalized and we will open a direct chat on our Tangier WhatsApp helpline.
+              {t("contact.sub")}
             </p>
           </div>
 
@@ -69,8 +71,8 @@ export default function Contact() {
                 <MapPin className="w-5 h-5 text-black" />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-[#1D1D1F]">Our Office</h4>
-                <p className="text-xs text-[#6E6E73] mt-0.5">Tangier, Morocco</p>
+                <h4 className="font-semibold text-sm text-[#1D1D1F]">{t("contact.office")}</h4>
+                <p className="text-xs text-[#6E6E73] mt-0.5">{language === "EN" ? "Tangier, Morocco" : "Tanger, Maroc"}</p>
               </div>
             </div>
 
@@ -79,7 +81,7 @@ export default function Contact() {
                 <Mail className="w-5 h-5 text-black" />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-[#1D1D1F]">Email Support</h4>
+                <h4 className="font-semibold text-sm text-[#1D1D1F]">{t("contact.emailSupport")}</h4>
                 <p className="text-xs text-[#6E6E73] mt-0.5">eaagagency@gmail.cm</p>
               </div>
             </div>
@@ -89,7 +91,7 @@ export default function Contact() {
                 <Phone className="w-5 h-5 text-black" />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-[#1D1D1F]">WhatsApp Live Help</h4>
+                <h4 className="font-semibold text-sm text-[#1D1D1F]">{t("contact.liveHelp")}</h4>
                 <p className="text-xs text-[#6E6E73] mt-0.5">+212 7 10 90 05 02</p>
               </div>
             </div>
@@ -103,9 +105,9 @@ export default function Contact() {
               <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto">
                 <Check className="w-8 h-8 text-emerald-600 animate-bounce" />
               </div>
-              <h3 className="font-bold text-xl text-[#1D1D1F]">Inquiry Sent!</h3>
+              <h3 className="font-bold text-xl text-[#1D1D1F]">{t("contact.formSuccessTitle")}</h3>
               <p className="text-sm text-[#6E6E73] max-w-sm mx-auto">
-                Your briefing is compiled and ready. We are transitioning you to WhatsApp to start your instant session briefing.
+                {t("contact.formSuccessText")}
               </p>
               <div className="pt-4">
                 <button
@@ -113,7 +115,7 @@ export default function Contact() {
                   onClick={() => setFormSuccess(false)}
                   className="btn-outline"
                 >
-                  Submit Another Message
+                  {t("contact.formAnotherBtn")}
                 </button>
               </div>
             </div>
@@ -121,7 +123,7 @@ export default function Contact() {
             <form onSubmit={handleContactSubmit} className="space-y-4 font-inter text-sm">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">First Name</label>
+                  <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">{t("contact.formFirstName")}</label>
                   <input
                     type="text"
                     required
@@ -132,7 +134,7 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">Last Name</label>
+                  <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">{t("contact.formLastName")}</label>
                   <input
                     type="text"
                     required
@@ -146,7 +148,7 @@ export default function Contact() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">WhatsApp Number</label>
+                  <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">{t("contact.formPhone")}</label>
                   <input
                     type="tel"
                     required
@@ -157,21 +159,21 @@ export default function Contact() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">Interested Service</label>
+                  <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">{t("contact.formService")}</label>
                   <select
                     value={service}
                     onChange={(e) => setService(e.target.value)}
                     className="w-full bg-white border border-black/10 rounded-lg py-2.5 px-3 text-[#1D1D1F] text-xs focus:outline-none focus:border-[#0071E3]"
                   >
-                    <option value="Website Creation">Digital Website Creation</option>
-                    <option value="AI Photo Shooting">Studio AI Photo Shooting</option>
-                    <option value="Video Production">Viral Video Production</option>
+                    <option value="Website Creation">{language === "EN" ? "Digital Website Creation" : "Création de Site Web Numérique"}</option>
+                    <option value="AI Photo Shooting">{language === "EN" ? "Studio AI Photo Shooting" : "Séance Photo IA en Studio"}</option>
+                    <option value="Video Production">{language === "EN" ? "Viral Video Production" : "Production Vidéo Virale"}</option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">Email Address</label>
+                <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">{t("contact.formEmail")}</label>
                 <input
                   type="email"
                   required
@@ -183,13 +185,13 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">Project Overview</label>
+                <label className="block text-xs font-semibold text-[#6E6E73] mb-1.5 uppercase">{t("contact.formOverview")}</label>
                 <textarea
                   required
                   rows={4}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Tell us about your brand, requirements, and budget targets..."
+                  placeholder={t("contact.formOverviewPlaceholder")}
                   className="w-full bg-white border border-black/10 rounded-lg py-2.5 px-4 text-[#1D1D1F] text-xs focus:outline-none focus:border-[#0071E3] resize-none"
                 />
               </div>
@@ -199,7 +201,7 @@ export default function Contact() {
                 disabled={isFormSending}
                 className="w-full btn-primary justify-center text-xs py-3.5 mt-4 disabled:opacity-50"
               >
-                {isFormSending ? "Processing..." : "Open WhatsApp Briefing"}
+                {isFormSending ? t("contact.formSending") : t("contact.formSubmitBtn")}
               </button>
             </form>
           )}

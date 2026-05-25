@@ -12,9 +12,11 @@ import {
   FileText
 } from "lucide-react";
 import { CheckoutProduct, UserFormData } from "../types";
+import { useTranslation } from "../context/LanguageContext";
 
 export default function Checkout() {
   const navigate = useNavigate();
+  const { t, language } = useTranslation();
   const [product, setProduct] = useState<CheckoutProduct | null>(null);
 
   // Form states matching structural type requirements
@@ -63,12 +65,12 @@ export default function Checkout() {
       !formData.ville || 
       !formData.cp
     ) {
-      setErrorMsg("Please fill in all the required form fields.");
+      setErrorMsg(t("checkout.formFieldsErr"));
       return;
     }
 
     if (!product) {
-      setErrorMsg("No selected product was found in your session.");
+      setErrorMsg(t("checkout.formNoProduct"));
       return;
     }
 
@@ -80,7 +82,7 @@ export default function Checkout() {
     const currencySymbols = { MAD: "MAD", EUR: "€", USD: "$" };
     const priceFormatted = `${product.price} ${currencySymbols[product.currency] || product.currency}`;
 
-    // Build WhatsApp message content in English
+    // Build WhatsApp message content
     const waMessage = 
       `New Order — NACY ST%0A` +
       `Client: *${formData.prenom} ${formData.nom}*%0A` +
@@ -109,7 +111,7 @@ export default function Checkout() {
     return (
       <div className="min-h-screen bg-white text-[#1D1D1F] flex items-center justify-center px-6 pt-24 pb-12">
         <Helmet>
-          <title>Session Expired | NACY ST Checkout</title>
+          <title>{language === "EN" ? "Session Expired" : "Session Expirée"} | NACY ST Checkout</title>
           <meta name="robots" content="noindex, nofollow" />
         </Helmet>
         
@@ -118,9 +120,9 @@ export default function Checkout() {
             <AlertTriangle className="w-6 h-6" />
           </div>
           <div className="space-y-2">
-            <h2 className="font-bold text-xl text-[#1D1D1F]">Your order bag is empty</h2>
+            <h2 className="font-bold text-xl text-[#1D1D1F]">{t("checkout.emptyTitle")}</h2>
             <p className="text-sm text-[#6E6E73] leading-relaxed">
-              Please select one of our premium services (Website Creation, AI Photo Shooting or Video Production) from our services directory first.
+              {t("checkout.emptySub")}
             </p>
           </div>
           <Link
@@ -128,7 +130,7 @@ export default function Checkout() {
             className="w-full btn-primary justify-center py-3"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span>Go to Services</span>
+            <span>{t("checkout.emptyBtn")}</span>
           </Link>
         </div>
       </div>
@@ -138,7 +140,7 @@ export default function Checkout() {
   return (
     <div className="min-h-screen bg-white pt-28 pb-16 px-6 md:px-12 text-[#1D1D1F] font-inter">
       <Helmet>
-        <title>Finalize Your Selection | NACY ST Checkout</title>
+        <title>{t("checkout.metaTitle")}</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
@@ -150,13 +152,13 @@ export default function Checkout() {
           className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#86868B] hover:text-[#0071E3] transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-          <span>Back to Services</span>
+          <span>{t("checkout.backBtn")}</span>
         </Link>
 
         {/* Header Title */}
         <div className="space-y-1">
-          <span className="font-semibold text-xs text-[#0071E3] uppercase tracking-widest block">— ORDER SUMMARY</span>
-          <h1 className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">Finalize Your Project</h1>
+          <span className="font-semibold text-xs text-[#0071E3] uppercase tracking-widest block">{t("checkout.summaryBadge")}</span>
+          <h1 className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">{t("checkout.heading")}</h1>
         </div>
 
         {/* Main Columns */}
@@ -165,7 +167,7 @@ export default function Checkout() {
           {/* Left Column: Product Info (Col Span 5) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-[#F5F5F7] border border-black/5 rounded-3xl p-6 md:p-8 space-y-6 shadow-sm">
-              <h2 className="font-semibold text-lg text-[#1D1D1F] border-b border-black/5 pb-3">Package Details</h2>
+              <h2 className="font-semibold text-lg text-[#1D1D1F] border-b border-black/5 pb-3">{t("checkout.packDetails")}</h2>
               
               {/* Service Circle logo & Name */}
               <div className="flex items-center gap-4">
@@ -175,7 +177,7 @@ export default function Checkout() {
                 <div>
                   <h3 className="font-bold text-base text-[#1D1D1F]">{product.name}</h3>
                   <span className="inline-block bg-[#0071E3]/10 border border-[#0071E3]/20 text-[#0071E3] text-[10px] uppercase font-bold px-2 py-0.5 rounded-full mt-1">
-                    {product.tierName || "Standard Offer"}
+                    {product.tierName || (language === "EN" ? "Standard Offer" : "Offre Standard")}
                   </span>
                 </div>
               </div>
@@ -183,22 +185,22 @@ export default function Checkout() {
               {/* Service pricing items table layout */}
               <div className="space-y-2.5 text-xs text-[#6E6E73] pt-2">
                 <div className="flex justify-between">
-                  <span>Base Package Prestation</span>
+                  <span>{t("checkout.basePrestation")}</span>
                   <span className="text-[#1D1D1F] font-semibold">
                     {product.price} {product.currency === "EUR" ? "€" : product.currency === "USD" ? "$" : "MAD"}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Post-launch support</span>
-                  <span className="text-[#00a86b] font-semibold">Included / Free</span>
+                  <span>{t("checkout.support")}</span>
+                  <span className="text-[#00a86b] font-semibold">{t("checkout.free")}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Processing fees</span>
+                  <span>{t("checkout.fees")}</span>
                   <span className="text-[#00a86b] font-semibold">0.00 MAD</span>
                 </div>
                 <div className="h-px bg-black/5 my-2" />
                 <div className="flex justify-between text-sm font-semibold text-[#1D1D1F]">
-                  <span>Total Due</span>
+                  <span>{t("checkout.totalDue")}</span>
                   <span className="text-[#0071E3] text-lg font-bold">
                     {product.price} {product.currency === "EUR" ? "€" : product.currency === "USD" ? "$" : "MAD"}
                   </span>
@@ -207,7 +209,7 @@ export default function Checkout() {
 
               <div className="bg-white/40 border border-black/5 p-4 rounded-xl text-center">
                 <p className="text-[11px] text-[#86868B] italic leading-relaxed">
-                  &ldquo;Once confirmed, we&apos;ll reach out within 24 hours to get started.&rdquo;
+                  &ldquo;{t("checkout.disclaimer")}&rdquo;
                 </p>
               </div>
             </div>
@@ -216,7 +218,7 @@ export default function Checkout() {
           {/* Right Column: User Data Form (Col Span 7) */}
           <div className="lg:col-span-7">
             <div className="bg-[#F5F5F7] border border-black/5 rounded-3xl p-6 md:p-8 space-y-6 shadow-sm">
-              <h2 className="font-semibold text-lg text-[#1D1D1F] border-b border-black/5 pb-3">Billing & Contact Details</h2>
+              <h2 className="font-semibold text-lg text-[#1D1D1F] border-b border-black/5 pb-3">{t("checkout.billingDetails")}</h2>
               
               {errorMsg && (
                 <div className="bg-red-500/10 border border-red-500/25 p-4 rounded-xl text-xs text-red-600 flex items-center gap-3">
@@ -230,7 +232,7 @@ export default function Checkout() {
                 {/* Name fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">First Name *</label>
+                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("contact.formFirstName")} *</label>
                     <div className="relative">
                       <User className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                       <input
@@ -245,7 +247,7 @@ export default function Checkout() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">Last Name *</label>
+                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("contact.formLastName")} *</label>
                     <div className="relative">
                       <User className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                       <input
@@ -263,7 +265,7 @@ export default function Checkout() {
 
                 {/* WhatsApp Phone */}
                 <div>
-                  <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">WhatsApp Phone Number *</label>
+                  <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("checkout.phoneLabel")} *</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                     <input
@@ -280,7 +282,7 @@ export default function Checkout() {
 
                 {/* Street Address */}
                 <div>
-                  <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">Full Billing Address *</label>
+                  <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("checkout.addressLabel")} *</label>
                   <div className="relative">
                     <MapPin className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                     <input
@@ -289,7 +291,7 @@ export default function Checkout() {
                       required
                       value={formData.adresse}
                       onChange={handleInputChange}
-                      placeholder="Street, District, App Number"
+                      placeholder={t("checkout.addressPlaceholder")}
                       className="w-full bg-white border border-black/10 rounded-lg py-2.5 pl-9 pr-4 text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] text-xs"
                     />
                   </div>
@@ -298,7 +300,7 @@ export default function Checkout() {
                 {/* Ville & Code Postal */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">City *</label>
+                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("checkout.cityLabel")} *</label>
                     <input
                       type="text"
                       name="ville"
@@ -310,7 +312,7 @@ export default function Checkout() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">Postal / ZIP Code *</label>
+                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("checkout.postalLabel")} *</label>
                     <input
                       type="text"
                       name="cp"
@@ -327,11 +329,11 @@ export default function Checkout() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-primary justify-center text-sm py-3.5 mt-4 disabled:slate-40"
+                  className="w-full btn-primary justify-center text-sm py-3.5 mt-4 disabled:opacity-40"
                 >
                   <MessageSquare className="w-5 h-5" />
                   <span>
-                    {isSubmitting ? "Finalizing Order..." : "Confirm Project & Open WhatsApp"}
+                    {isSubmitting ? t("checkout.submitting") : t("checkout.submitBtn")}
                   </span>
                 </button>
               </form>
@@ -341,15 +343,15 @@ export default function Checkout() {
         </div>
 
         {/* Security / Quality Check Badges bottom element */}
-        <div className="flex justify-center items-center gap-6 pt-4 text-[#86868B] text-xs">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 pt-4 text-[#86868B] text-xs text-center">
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-            <span>Secure Instant Briefing</span>
+            <span>{t("checkout.badgeSecure")}</span>
           </div>
-          <div className="h-4 w-px bg-black/10" />
+          <div className="hidden sm:block h-4 w-px bg-black/10" />
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-            <span>Direct Tangier, Morocco Assistance Line</span>
+            <span>{t("checkout.badgeAssistance")}</span>
           </div>
         </div>
 

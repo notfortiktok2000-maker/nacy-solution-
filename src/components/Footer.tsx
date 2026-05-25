@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { Globe, Mail, MapPin, Phone, Linkedin, Instagram } from "lucide-react";
 import Logo from "./Logo";
+import { useTranslation } from "../context/LanguageContext";
 
 export default function Footer() {
+  const { t, language } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -15,7 +17,7 @@ export default function Footer() {
             <Logo className="h-8 w-auto" isLight={true} />
           </div>
           <p className="text-[#86868B] text-sm leading-relaxed max-w-xs">
-            NACY Solutions designs websites, premium AI photo shoots, and high-performance videos for modern businesses. Where strategy meets intelligence.
+            {t("footer.desc")}
           </p>
           {/* Social Icons */}
           <div className="flex items-center gap-4 pt-2">
@@ -56,52 +58,64 @@ export default function Footer() {
 
         {/* Services Column */}
         <div className="space-y-4">
-          <h4 className="font-poppins font-semibold text-sm uppercase tracking-wider text-white">Services</h4>
+          <h4 className="font-poppins font-semibold text-sm uppercase tracking-wider text-white">
+            {t("footer.services")}
+          </h4>
           <ul className="space-y-2.5 text-sm text-[#86868B]">
             <li>
-              <Link to="/services" className="hover:text-white transition-colors">Website Creation</Link>
+              <Link to="/services" className="hover:text-white transition-colors">{t("nav.serviceWeb")}</Link>
             </li>
             <li>
-              <Link to="/services" className="hover:text-white transition-colors">AI Photo Shooting</Link>
+              <Link to="/services" className="hover:text-white transition-colors">{t("nav.servicePhoto")}</Link>
             </li>
             <li>
-              <Link to="/services" className="hover:text-white transition-colors">Video Production</Link>
+              <Link to="/services" className="hover:text-white transition-colors">{t("nav.serviceVideo")}</Link>
             </li>
             <li>
-              <Link to="/services" className="hover:text-white transition-colors">Custom Projects</Link>
+              <Link to="/services" className="hover:text-white transition-colors">{t("nav.serviceCustom")}</Link>
             </li>
           </ul>
         </div>
 
         {/* Agency Page Links */}
         <div className="space-y-4">
-          <h4 className="font-poppins font-semibold text-sm uppercase tracking-wider text-white">The Agency</h4>
+          <h4 className="font-poppins font-semibold text-sm uppercase tracking-wider text-white">
+            {t("footer.quickLinks")}
+          </h4>
           <ul className="space-y-2.5 text-sm text-[#86868B]">
             <li>
-              <Link to="/why-us" className="hover:text-white transition-colors">Why NACY ST</Link>
+              <Link to="/why-us" className="hover:text-white transition-colors">
+                {language === "EN" ? "Why NACY ST" : "Pourquoi NACY ST"}
+              </Link>
             </li>
             <li>
               <Link to="/pricing" className="hover:text-white transition-colors gap-2 inline-flex items-center">
-                <span>Multi-Currency Pricing</span>
+                <span>{language === "EN" ? "Multi-Currency Pricing" : "Tarifs Multi-Devises"}</span>
                 <span className="text-[9px] bg-[#0071E3] text-white px-1.5 py-0.5 rounded-full uppercase scale-90">Live</span>
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="hover:text-white transition-colors">Free Consultation</Link>
+              <Link to="/contact" className="hover:text-white transition-colors">
+                {language === "EN" ? "Free Consultation" : "Consultation Gratuite"}
+              </Link>
             </li>
             <li>
-              <Link to="/checkout" className="hover:text-white transition-colors">Instant Order Calculator</Link>
+              <Link to="/checkout" className="hover:text-white transition-colors">
+                {language === "EN" ? "Instant Order Calculator" : "Calculateur de commande instantané"}
+              </Link>
             </li>
           </ul>
         </div>
 
         {/* Contact Column */}
         <div className="space-y-4">
-          <h4 className="font-poppins font-semibold text-sm uppercase tracking-wider text-white">Get in Touch</h4>
+          <h4 className="font-poppins font-semibold text-sm uppercase tracking-wider text-white">
+            {t("footer.location")}
+          </h4>
           <ul className="space-y-3.5 text-sm text-[#86868B]">
             <li className="flex items-start gap-3">
               <MapPin className="w-[18px] h-[18px] text-white shrink-0 mt-0.5" />
-              <span>Tangier, Morocco</span>
+              <span>{t("footer.locationName")}</span>
             </li>
             <li className="flex items-start gap-3">
               <Mail className="w-[18px] h-[18px] text-white shrink-0 mt-0.5" />
@@ -123,12 +137,18 @@ export default function Footer() {
       {/* Dividers & Bottom bar */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#86868B]">
         <p>
-          &copy; {currentYear} NACY ST. All rights reserved.
+          &copy; {currentYear} NACY ST. {t("footer.allRights")}
         </p>
         <div className="flex gap-6">
-          <span className="hover:text-white cursor-pointer">Privacy Policy</span>
-          <span className="hover:text-white cursor-pointer">Terms of Service</span>
-          <span className="text-[#86868B]">Engineered in Tangier</span>
+          <span className="hover:text-white cursor-pointer">
+            {language === "EN" ? "Privacy Policy" : "Politique de confidentialité"}
+          </span>
+          <span className="hover:text-white cursor-pointer">
+            {language === "EN" ? "Terms of Service" : "Conditions d'utilisation"}
+          </span>
+          <span className="text-[#86868B]">
+            {language === "EN" ? "Engineered in Tangier" : "Développé à Tanger"}
+          </span>
         </div>
       </div>
     </footer>
