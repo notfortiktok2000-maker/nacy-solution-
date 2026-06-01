@@ -4,7 +4,8 @@ import { Helmet } from "react-helmet-async";
 import { ArrowRight, Star, ArrowUpRight, ShieldCheck, Mail, Zap, MessageSquare, Phone, MapPin, Compass } from "lucide-react";
 import { useTranslation } from "../context/LanguageContext";
 import TiltCard from "../components/TiltCard";
-import AnimatedProgressBar from "../components/AnimatedProgressBar";
+import { initHeroScene } from "../three-d/scene-hero";
+import { requestGyroPermission } from "../utils/gyroscope";
 
 // Easing function: easeOutExpo for ultra-smooth count-up physics
 function easeOutExpo(x: number): number {
@@ -65,6 +66,25 @@ function CountUp({ end, suffix = "", duration = 2000 }: { end: number; suffix?: 
 export default function Home() {
   const navigate = useNavigate();
   const { t, language } = useTranslation();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    // Automatically trigger/enable gyroscope permissions & fallback listeners
+    requestGyroPermission().catch((err) => {
+      console.warn("Automatic gyro permission initialization warned/failed:", err);
+    });
+
+    let destroyScene: (() => void) | null = null;
+    if (canvasRef.current) {
+      destroyScene = initHeroScene(canvasRef.current);
+    }
+
+    return () => {
+      if (destroyScene) {
+        destroyScene();
+      }
+    };
+  }, []);
 
   const renderStaggeredWords = (text: string, startDelay: number) => {
     return text.split(/\s+/).map((word, i) => (
@@ -104,6 +124,11 @@ export default function Home() {
           <div className="absolute w-[450px] h-[450px] rounded-full top-[25%] right-[10%] bg-gradient-to-bl from-indigo-500/10 to-[#0071E3]/15 blur-[85px] animate-drift-blob-3" />
         </div>
 
+        {/* Interactive 3D Sphere backdrop from Cinematic Mode with auto-gyro / fallback mouse tilt */}
+        <div className="absolute inset-x-0 top-0 bottom-0 z-0 overflow-hidden opacity-[0.25] sm:opacity-[0.35] animate-fadeIn pointer-events-none select-none max-h-[85vh] flex items-center justify-center">
+          <canvas ref={canvasRef} className="w-full h-full object-cover" />
+        </div>
+
         {/* Content Section (Centered) */}
         <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center space-y-8">
           {/* Badge Line with REMOVED "Creative studio" (only Tangier Morocco remains) */}
@@ -139,46 +164,17 @@ export default function Home() {
               <span>{t("home.btnStart")}</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/cinematic" className="bg-[#1D1D1F] hover:bg-black text-white hover:text-[#00ffd1] border border-white/10 px-6 py-3.5 rounded-full font-semibold text-sm transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2 group shadow-md active:scale-95 cursor-pointer">
-              <Compass className="w-4 h-4 text-[#00ffd1] group-hover:rotate-180 transition-transform duration-500 ease-out" />
-              <span>3D Cinematic Experience</span>
-            </Link>
             <Link to="/services" className="btn-outline w-full sm:w-auto justify-center">
               <span>{t("home.btnServices")}</span>
             </Link>
           </div>
 
-          {/* INTERACTIVE FLOATING 3D GLASSMORPHISM PERFORMANCE TELEMETRY DASHBOARD */}
+          {/* INTERACTIVE FLOATING 3D GLASSMORPHISM TRUST PANEL */}
           <div className="pt-12 max-w-2xl mx-auto animate-scaleIn [animation-delay:400ms]">
-            <TiltCard className="glass-card bg-white/70 border border-black/10 rounded-3xl p-6 md:p-8 text-left space-y-6 animate-float-dashboard select-none">
+            <TiltCard className="glass-card bg-white/70 border border-black/10 rounded-3xl p-6 md:p-8 text-left select-none animate-float-dashboard">
               
-              {/* Telemetry Header */}
-              <div className="flex items-center justify-between border-b border-black/[0.05] pb-3">
-                <div className="space-y-1">
-                  <span className="text-[10px] font-bold font-mono text-[#0071E3] tracking-[0.2em] uppercase block">
-                    NACY SOL SYSTEM TELEMETRY
-                  </span>
-                  <h3 className="font-poppins font-bold text-lg text-[#1D1D1F]">
-                    {t("home.expertBadge")}
-                  </h3>
-                </div>
-                <div className="flex items-center gap-1.5 bg-emerald-500/10 text-emerald-600 border border-emerald-500/15 py-1 px-3 rounded-full text-[10px] font-bold tracking-wider font-mono animate-pulse">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-                  REALTIME ACTIVE
-                </div>
-              </div>
-
-              {/* Progress telemetries */}
-              <div className="space-y-4">
-                <AnimatedProgressBar label={language === "EN" ? "Custom Web App Performance" : "Performance Application Web"} percentage={98} />
-                <AnimatedProgressBar label={language === "EN" ? "AI Retouch Photo Precision" : "Précision de Retouche Photo IA"} percentage={96} />
-                <AnimatedProgressBar label={language === "EN" ? "Studio Video CTR Lift" : "Augmentation Vidéo CTR"} percentage={93} />
-              </div>
-
-              <div className="w-full h-px bg-black/[0.05]" />
-
               {/* Trust Certifications inside the beautiful panel */}
-              <div className="grid grid-cols-3 gap-4 items-center justify-items-center pt-1 text-center">
+              <div className="grid grid-cols-3 gap-4 items-center justify-items-center text-center">
                 
                 {/* Google */}
                 <div className="flex flex-col items-center gap-1 group">

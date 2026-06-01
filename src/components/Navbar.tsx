@@ -105,7 +105,6 @@ export default function Navbar() {
     { label: "Why Us", href: "/why-us", key: "nav.whyUs" },
     { label: "Pricing", href: "/pricing", key: "nav.pricing" },
     { label: "Contact", href: "/contact", key: "nav.contact" },
-    { label: "3D Experience", href: "/cinematic", key: "nav.cinematic" },
   ];
 
   return (

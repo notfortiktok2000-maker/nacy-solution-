@@ -40,11 +40,11 @@ export function initHeroScene(canvas: HTMLCanvasElement) {
   const material = new THREE.MeshStandardMaterial({
     color: 0x0071e3,
     wireframe: true,
-    emissive: 0x011d3d,
-    roughness: 0.1,
-    metalness: 0.9,
+    emissive: 0x000000,
+    roughness: 0.5,
+    metalness: 0.5,
     transparent: true,
-    opacity: 0.85
+    opacity: 0.18
   });
 
   const mesh = new THREE.Mesh(geometry, material);
@@ -79,11 +79,11 @@ export function initHeroScene(canvas: HTMLCanvasElement) {
   );
 
   const particleMaterial = new THREE.PointsMaterial({
-    color: 0x00ffd1,
+    color: 0x0071e3,
     size: isLow ? 0.035 : 0.025,
     transparent: true,
-    opacity: 0.7,
-    blending: THREE.AdditiveBlending
+    opacity: 0.22,
+    blending: THREE.NormalBlending
   });
 
   const particles = new THREE.Points(particleGeometry, particleMaterial);
