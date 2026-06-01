@@ -1,0 +1,318 @@
+/* Cinematic Section Transitions for Mobile "Section Hijack" scroll system */
+
+#scroll-container {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #000000;
+  width: 100%;
+}
+
+.snap-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  will-change: transform, opacity, clip-path;
+  transition: all 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+  background-color: #ffffff;
+}
+
+/* Layer positions */
+.snap-section.active {
+  z-index: 20;
+  opacity: 1;
+  transform: none !important;
+  pointer-events: auto;
+}
+
+.snap-section.inactive {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ────────────────────────────────────────────────────────
+   SLICE UP: Slices section into vertical/horizontal strips 
+   ──────────────────────────────────────────────────────── */
+.slice-up-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 30;
+}
+
+.slice-up-strip {
+  flex: 1;
+  background-color: #ffffff;
+  width: 100%;
+  will-change: transform;
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+  transform-origin: top center;
+}
+
+.snap-section.exiting-slice-up .slice-up-strip {
+  transform: translateY(-100%) scaleY(0);
+}
+
+/* ────────────────────────────────────────────────────────
+   DEPTH PUSH: scales down and fades, next slides in parallax
+   ──────────────────────────────────────────────────────── */
+.snap-section.exiting-depth-push {
+  transform: scale(0.85) !important;
+  opacity: 0;
+  filter: blur(4px);
+  z-index: 10;
+}
+
+.snap-section.entering-depth-push {
+  transform: translateX(100%) !important;
+  z-index: 25;
+}
+
+.snap-section.entering-depth-push.active {
+  transform: translateX(0) !important;
+}
+
+/* ────────────────────────────────────────────────────────
+   LIQUID WIPE: Circular reveal via clip-path
+   ──────────────────────────────────────────────────────── */
+.snap-section.entering-liquid-wipe {
+  clip-path: circle(0% at 50% 50%);
+  z-index: 26;
+  opacity: 1;
+}
+
+.snap-section.entering-liquid-wipe.active {
+  clip-path: circle(150% at 50% 50%);
+  animation: liquid-wipe-anim 0.85s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes liquid-wipe-anim {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+  100% {
+    clip-path: circle(150% at 50% 50%);
+  }
+}
+
+/* ────────────────────────────────────────────────────────
+   FOLD DOWN: 3D perspective fold down rotation
+   ──────────────────────────────────────────────────────── */
+.snap-section.exiting-fold-down {
+  transform-origin: top center;
+  transform: perspective(1200px) rotateX(-90deg) !important;
+  opacity: 0;
+  z-index: 25;
+}
+
+.snap-section.entering-fold-down {
+  transform: none;
+  z-index: 10;
+  opacity: 1;
+}
+
+/* ────────────────────────────────────────────────────────
+   GLITCH FLASH: 3 rapid electronic flashes with horizontal push
+   ──────────────────────────────────────────────────────── */
+.glitch-flash-active {
+  animation: glitch-flash-frames 0.35s steps(1) 1;
+}
+
+@keyframes glitch-flash-frames {
+  0% {
+    opacity: 1;
+    filter: invert(0) saturate(1);
+    transform: translateX(0);
+  }
+  15% {
+    opacity: 0.1;
+    filter: invert(1) hue-rotate(90deg) saturate(3);
+    transform: translateX(8px);
+  }
+  30% {
+    opacity: 0.8;
+    filter: invert(0);
+    transform: translateX(-6px);
+  }
+  45% {
+    opacity: 0.05;
+    filter: invert(0.5) hue-rotate(240deg);
+    transform: translateX(12px);
+  }
+  60% {
+    opacity: 0.9;
+    filter: saturate(2);
+    transform: translateX(-4px);
+  }
+  75% {
+    opacity: 0.2;
+    transform: translateX(3px);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: translateX(0);
+  }
+}
+
+/* RGB Channels Simulated Splits */
+.glitch-split-r {
+  transform: translateX(-2px);
+  color: #ff0055;
+}
+.glitch-split-g {
+  transform: translateX(2px);
+  color: #00ffaa;
+}
+
+/* ────────────────────────────────────────────────────────
+   SMOOTH FADE PARALLAX: Cross dissolve + vertical speeds
+   ──────────────────────────────────────────────────────── */
+.snap-section.exiting-smooth-fade {
+  opacity: 0;
+  transform: translateY(-20%) !important;
+  z-index: 10;
+}
+
+.snap-section.entering-smooth-fade {
+  opacity: 0;
+  transform: translateY(20%) !important;
+  z-index: 20;
+}
+
+.snap-section.entering-smooth-fade.active {
+  opacity: 1;
+  transform: translateY(0%) !important;
+}
+
+/* Parallax Content speed multipliers list */
+.parallax-fast {
+  transform: translateY(var(--parallax-offset-fast, 0px));
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.parallax-medium {
+  transform: translateY(var(--parallax-offset-medium, 0px));
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.parallax-subtle {
+  transform: translateY(var(--parallax-offset-subtle, 0px));
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ────────────────────────────────────────────────────────
+   PROGRESS SCROLL INDICATOR BAR (RIGHT PANEL)
+   ──────────────────────────────────────────────────────── */
+#scroll-progress {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.progress-line-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: rgba(29, 29, 31, 0.1);
+  z-index: -1;
+  border-radius: 99px;
+}
+
+.progress-line-fill {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 0%;
+  background-color: #0071E3;
+  z-index: -1;
+  transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  border-radius: 99px;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 2px solid rgba(29, 29, 31, 0.25);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.progress-dot:hover, .progress-dot.active {
+  transform: scale(1.3);
+  border-color: #0071E3;
+  box-shadow: 0 0 10px rgba(0, 113, 227, 0.4);
+}
+
+.progress-dot.active {
+  background-color: #0071E3;
+  animation: progress-pulse 1.8s infinite ease-in-out;
+}
+
+.progress-dot-tooltip {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background-color: #1d1d1f;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.progress-dot:hover .progress-dot-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+@keyframes progress-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(0, 113, 227, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 113, 227, 0);
+  }
+}
+
+/* Core layouts for canvas */
+.three-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.9;
+}

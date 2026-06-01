@@ -90,8 +90,8 @@ export default function Navbar() {
       `Requesting a free quote from the website.`;
     
     setTimeout(() => {
-      // Direct WA URL
-      window.location.href = `https://wa.me/+212710900502?text=${formattedMsg}`;
+      // Direct WA URL opening in new window
+      window.open(`https://wa.me/212710900502?text=${formattedMsg}`, "_blank", "noopener,noreferrer");
       setIsModalOpen(false);
       setIsSubmitted(false);
       setModalName("");
@@ -105,6 +105,7 @@ export default function Navbar() {
     { label: "Why Us", href: "/why-us", key: "nav.whyUs" },
     { label: "Pricing", href: "/pricing", key: "nav.pricing" },
     { label: "Contact", href: "/contact", key: "nav.contact" },
+    { label: "3D Experience", href: "/cinematic", key: "nav.cinematic" },
   ];
 
   return (

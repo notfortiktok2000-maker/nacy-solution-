@@ -30,8 +30,8 @@ export default function Contact() {
       setIsFormSending(false);
       setFormSuccess(true);
       
-      // Open WhatsApp Link
-      window.location.href = `https://wa.me/+212710900502?text=${formattedMessage}`;
+      // Open WhatsApp Link in new tab securely
+      window.open(`https://wa.me/212710900502?text=${formattedMessage}`, "_blank", "noopener,noreferrer");
       
       // Reset form
       setFirstName("");

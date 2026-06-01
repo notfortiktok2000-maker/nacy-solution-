@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { ArrowRight, Star, ArrowUpRight, ShieldCheck, Mail, Zap, MessageSquare, Phone, MapPin } from "lucide-react";
+import { ArrowRight, Star, ArrowUpRight, ShieldCheck, Mail, Zap, MessageSquare, Phone, MapPin, Compass } from "lucide-react";
 import { useTranslation } from "../context/LanguageContext";
 import TiltCard from "../components/TiltCard";
 import AnimatedProgressBar from "../components/AnimatedProgressBar";
@@ -138,6 +138,10 @@ export default function Home() {
             <Link to="/contact" className="btn-primary w-full sm:w-auto justify-center">
               <span>{t("home.btnStart")}</span>
               <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/cinematic" className="bg-[#1D1D1F] hover:bg-black text-white hover:text-[#00ffd1] border border-white/10 px-6 py-3.5 rounded-full font-semibold text-sm transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2 group shadow-md active:scale-95 cursor-pointer">
+              <Compass className="w-4 h-4 text-[#00ffd1] group-hover:rotate-180 transition-transform duration-500 ease-out" />
+              <span>3D Cinematic Experience</span>
             </Link>
             <Link to="/services" className="btn-outline w-full sm:w-auto justify-center">
               <span>{t("home.btnServices")}</span>

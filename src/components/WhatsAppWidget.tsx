@@ -6,17 +6,12 @@ export default function WhatsAppWidget() {
   const { language } = useTranslation();
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const phone = "+212710900502";
+  const phone = "212710900502";
   const messageEn = "Hi Nacy Solutions, I visited your website and would like to request a free quote/consultation!";
   const messageFr = "Bonjour Nacy Solutions, j'ai visité votre site web et je souhaite obtenir un devis gratuit!";
   
   const activeMessage = language === "FR" ? messageFr : messageEn;
   const tooltipText = language === "FR" ? "Discutez avec nous" : "Chat on WhatsApp";
-
-  const handleOpenWhatsApp = () => {
-    const encodedMessage = encodeURIComponent(activeMessage);
-    window.location.href = `https://wa.me/${phone}?text=${encodedMessage}`;
-  };
 
   return (
     <div 
@@ -33,11 +28,12 @@ export default function WhatsAppWidget() {
         {tooltipText}
       </div>
 
-      {/* Main Pulse Button */}
-      <button
-        type="button"
+      {/* Main Pulse Anchor link */}
+      <a
         id="whatsapp-floating-trigger"
-        onClick={handleOpenWhatsApp}
+        href={`https://wa.me/${phone}?text=${encodeURIComponent(activeMessage)}`}
+        target="_blank"
+        rel="noopener noreferrer"
         className="relative bg-[#25D366] text-white w-14 h-14 rounded-full shadow-2xl hover:shadow-[0_8px_32px_rgba(37,211,102,0.45)] transition-all duration-300 transform active:scale-95 flex items-center justify-center cursor-pointer group"
         aria-label="WhatsApp Contact"
       >
@@ -47,7 +43,7 @@ export default function WhatsAppWidget() {
 
         {/* WhatsApp Icon */}
         <MessageCircle className="w-6 h-6 transform group-hover:scale-110 transition-transform duration-300" />
-      </button>
+      </a>
     </div>
   );
 }

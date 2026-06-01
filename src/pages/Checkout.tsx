@@ -98,8 +98,8 @@ export default function Checkout() {
       sessionStorage.removeItem("nacy_selected_product");
       setIsSubmitting(false);
 
-      // Open WA contact number thread
-      window.location.href = `https://wa.me/+212710900502?text=${waMessage}`;
+      // Open WA contact number thread in new tab securely
+      window.open(`https://wa.me/212710900502?text=${waMessage}`, "_blank", "noopener,noreferrer");
       
       // Navigate back home to reset flow nicely
       navigate("/");
