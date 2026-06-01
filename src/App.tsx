@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import { LanguageProvider } from './context/LanguageContext';
+import WhatsAppWidget from './components/WhatsAppWidget';
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
             </Routes>
           </main>
           <Footer />
+          <WhatsAppWidget />
         </div>
       </div>
     </LanguageProvider>

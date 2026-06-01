@@ -469,6 +469,145 @@ footer::before, section.bg-slate-900::before, section.bg-[#1D1D1F]::before {
   background: rgba(0, 113, 227, 0.6);
 }
 
+/* --- VERTOMEDIAGLOBAL HIGH-PERFORMANCE ANIMATIONS --- */
+
+@keyframes floatDashboard {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04), 0 16px 36px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0,0,0,0.03);
+  }
+  50% {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 28px rgba(0, 71, 227, 0.06), 0 24px 50px rgba(0, 0, 0, 0.08), 0 0 0 1.5px rgba(0, 113, 227, 0.06);
+  }
+}
+.animate-float-dashboard {
+  animation: floatDashboard 3.5s ease-in-out infinite;
+}
+
+@keyframes driftBlob1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(60px, -40px) scale(1.18);
+  }
+  66% {
+    transform: translate(-40px, 30px) scale(0.85);
+  }
+}
+@keyframes driftBlob2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-70px, 50px) scale(1.22);
+  }
+}
+@keyframes driftBlob3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, 60px) scale(0.9);
+  }
+}
+.animate-drift-blob-1 {
+  animation: driftBlob1 15s ease-in-out infinite;
+}
+.animate-drift-blob-2 {
+  animation: driftBlob2 12s ease-in-out infinite alternate;
+}
+.animate-drift-blob-3 {
+  animation: driftBlob3 14s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes ripplePulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+.whatsapp-pulse-ring {
+  position: absolute;
+  inset: -6px;
+  border: 1.5px solid #25D366;
+  border-radius: 999px;
+  pointer-events: none;
+  animation: ripplePulse 2.2s ease-out infinite;
+  z-index: -1;
+}
+
+@keyframes barShine {
+  0% {
+    left: -120%;
+  }
+  100% {
+    left: 120%;
+  }
+}
+.progress-bar-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  animation: barShine 3.2s infinite ease-in-out;
+}
+
+/* Premium Primary Button scale & glow matching brand color */
+.btn-primary-glow {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-primary-glow:hover {
+  transform: scale(1.04) translateY(-1.5px);
+  box-shadow: 0 0 20px 2px rgba(0, 113, 227, 0.45);
+}
+
+/* Number pulse on end */
+@keyframes numberPulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 0px rgba(0, 113, 227, 0);
+  }
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(0, 113, 227, 0.25);
+  }
+}
+.animate-number-glow {
+  animation: numberPulseGlow 1.8s ease-in-out infinite;
+}
+
+/* Infinite logos/badges marquee */
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 24s linear infinite;
+}
+.animate-marquee-smooth:hover {
+  animation-play-state: paused;
+}
+
 /* Prefers Reduced Motion settings override */
 @media (prefers-reduced-motion: reduce) {
   .reveal-element, 

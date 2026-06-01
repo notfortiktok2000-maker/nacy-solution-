@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Code, Camera, Video, Check, ArrowRight } from "lucide-react";
 import { CurrencyType, CheckoutProduct } from "../types";
 import { useTranslation } from "../context/LanguageContext";
+import TiltCard from "../components/TiltCard";
 
 export default function Services() {
   const navigate = useNavigate();
@@ -129,172 +130,178 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6 reveal-group">
           
           {/* Service 1: Custom Web */}
-          <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item">
-            <div className="space-y-6">
-              <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
-                <Code className="w-6 h-6" />
+          <TiltCard className="h-full">
+            <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item h-full">
+              <div className="space-y-6">
+                <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
+                  <Code className="w-6 h-6" />
+                </div>
+                <div className="space-y-1">
+                  <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s01")}</span>
+                  <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "Website Creation" : "Création de Site Web"}</h2>
+                </div>
+                <p className="text-[#6E6E73] text-sm leading-relaxed">
+                  {t("services.webDesc")}
+                </p>
+                <div className="space-y-3.5 pt-2">
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.webF1")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.webF2")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.webF3")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.webF4")}</span>
+                  </div>
+                </div>
               </div>
-              <div className="space-y-1">
-                <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s01")}</span>
-                <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "Website Creation" : "Création de Site Web"}</h2>
-              </div>
-              <p className="text-[#6E6E73] text-sm leading-relaxed">
-                {t("services.webDesc")}
-              </p>
-              <div className="space-y-3.5 pt-2">
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.webF1")}</span>
+              
+              <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
+                <div>
+                  <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.startingFrom")}</span>
+                  <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("web")}</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.webF2")}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.webF3")}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.webF4")}</span>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => handlePurchase(language === "EN" ? "Website Creation" : "Création de Site Web", "web")}
+                  className="btn-primary"
+                >
+                  <span>{t("services.orderNow")}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
-            
-            <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
-              <div>
-                <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.startingFrom")}</span>
-                <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("web")}</span>
-              </div>
-              <button
-                type="button"
-                onClick={() => handlePurchase(language === "EN" ? "Website Creation" : "Création de Site Web", "web")}
-                className="btn-primary"
-              >
-                <span>{t("services.orderNow")}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+          </TiltCard>
 
           {/* Service 2: AI Photo shooting */}
-          <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item">
-            <div className="space-y-6">
-              <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
-                <Camera className="w-6 h-6" />
+          <TiltCard className="h-full">
+            <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item h-full">
+              <div className="space-y-6">
+                <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
+                  <Camera className="w-6 h-6" />
+                </div>
+                <div className="space-y-1">
+                  <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s02")}</span>
+                  <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "AI Photo Shooting" : "Séance Photo IA"}</h2>
+                </div>
+                <p className="text-[#6E6E73] text-sm leading-relaxed">
+                  {t("services.photoDesc")}
+                </p>
+                <div className="space-y-3.5 pt-2">
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.photoF1")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.photoF2")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.photoF3")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.photoF4")}</span>
+                  </div>
+                </div>
               </div>
-              <div className="space-y-1">
-                <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s02")}</span>
-                <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "AI Photo Shooting" : "Séance Photo IA"}</h2>
-              </div>
-              <p className="text-[#6E6E73] text-sm leading-relaxed">
-                {t("services.photoDesc")}
-              </p>
-              <div className="space-y-3.5 pt-2">
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.photoF1")}</span>
+              
+              <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
+                <div>
+                  <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.totalPackage")}</span>
+                  <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("photo")}</span>
                 </div>
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.photoF2")}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.photoF3")}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.photoF4")}</span>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => handlePurchase(language === "EN" ? "AI Photo Shooting" : "Séance Photo IA", "photo", language === "EN" ? "Pack of 45 AI HD Photos" : "Pack de 45 Photos IA HD")}
+                  className="btn-primary"
+                >
+                  <span>{t("services.bookShoot")}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
             </div>
-            
-            <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
-              <div>
-                <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.totalPackage")}</span>
-                <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("photo")}</span>
-              </div>
-              <button
-                type="button"
-                onClick={() => handlePurchase(language === "EN" ? "AI Photo Shooting" : "Séance Photo IA", "photo", language === "EN" ? "Pack of 45 AI HD Photos" : "Pack de 45 Photos IA HD")}
-                className="btn-primary"
-              >
-                <span>{t("services.bookShoot")}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+          </TiltCard>
 
           {/* Service 3: Video Production */}
-          <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item">
-            <div className="space-y-6">
-              <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
-                <Video className="w-6 h-6" />
-              </div>
-              <div className="space-y-1">
-                <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s03")}</span>
-                <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "Video Production" : "Production Vidéo"}</h2>
-              </div>
-              <p className="text-[#6E6E73] text-sm leading-relaxed">
-                {t("services.videoDesc")}
-              </p>
-              
-              {/* Volume selector */}
-              <div className="space-y-2 pt-1">
-                <span className="text-[11px] text-[#6E6E73] block font-semibold uppercase tracking-wider">
-                  {language === "EN" ? "Select Video Batch Volume" : "Sélectionner le volume d'envoi"}
-                </span>
-                <div className="grid grid-cols-4 gap-1 bg-black/5 p-0.5 rounded-lg text-center text-[11px]">
-                  {[1, 2, 3, 4].map((v) => (
-                    <button
-                      key={v}
-                      type="button"
-                      onClick={() => setVideoVolume(v as any)}
-                      className={`py-1 rounded cursor-pointer ${
-                        videoVolume === v ? "bg-black text-white" : "text-[#6E6E73] hover:text-black font-medium"
-                      }`}
-                    >
-                      {v} Video{v > 1 ? "s" : ""}
-                    </button>
-                  ))}
+          <TiltCard className="h-full">
+            <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item h-full">
+              <div className="space-y-6">
+                <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
+                  <Video className="w-6 h-6" />
                 </div>
-              </div>
+                <div className="space-y-1">
+                  <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s03")}</span>
+                  <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "Video Production" : "Production Vidéo"}</h2>
+                </div>
+                <p className="text-[#6E6E73] text-sm leading-relaxed">
+                  {t("services.videoDesc")}
+                </p>
+                
+                {/* Volume selector */}
+                <div className="space-y-2 pt-1">
+                  <span className="text-[11px] text-[#6E6E73] block font-semibold uppercase tracking-wider">
+                    {language === "EN" ? "Select Video Batch Volume" : "Sélectionner le volume d'envoi"}
+                  </span>
+                  <div className="grid grid-cols-4 gap-1 bg-black/5 p-0.5 rounded-lg text-center text-[11px]">
+                    {[1, 2, 3, 4].map((v) => (
+                      <button
+                        key={v}
+                        type="button"
+                        onClick={() => setVideoVolume(v as any)}
+                        className={`py-1 rounded cursor-pointer ${
+                          videoVolume === v ? "bg-black text-white" : "text-[#6E6E73] hover:text-black font-medium"
+                        }`}
+                      >
+                        {v} Video{v > 1 ? "s" : ""}
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
-              <div className="space-y-3.5">
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.videoF1")}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.videoF2")}</span>
-                </div>
-                <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
-                  <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
-                  <span>{t("services.videoF3")}</span>
+                <div className="space-y-3.5">
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.videoF1")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.videoF2")}</span>
+                  </div>
+                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                    <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
+                    <span>{t("services.videoF3")}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
-              <div>
-                <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.totalCost")}</span>
-                <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("video")}</span>
-                {getVideoSavings() && (
-                  <span className="block text-[9px] text-[#00a86b] font-bold tracking-tight">{getVideoSavings()}</span>
-                )}
+              
+              <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
+                <div>
+                  <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.totalCost")}</span>
+                  <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("video")}</span>
+                  {getVideoSavings() && (
+                    <span className="block text-[9px] text-[#00a86b] font-bold tracking-tight">{getVideoSavings()}</span>
+                  )}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handlePurchase(language === "EN" ? "Video Production" : "Production Vidéo", "video", language === "EN" ? `${videoVolume} high resolution videos` : `${videoVolume} vidéos haute résolution`)}
+                  className="btn-primary"
+                >
+                  <span>{t("services.orderVideos")}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={() => handlePurchase(language === "EN" ? "Video Production" : "Production Vidéo", "video", language === "EN" ? `${videoVolume} high resolution videos` : `${videoVolume} vidéos haute résolution`)}
-                className="btn-primary"
-              >
-                <span>{t("services.orderVideos")}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
             </div>
-          </div>
+          </TiltCard>
 
         </div>
 

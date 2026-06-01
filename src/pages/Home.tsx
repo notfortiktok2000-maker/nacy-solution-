@@ -3,12 +3,20 @@ import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { ArrowRight, Star, ArrowUpRight, ShieldCheck, Mail, Zap, MessageSquare, Phone, MapPin } from "lucide-react";
 import { useTranslation } from "../context/LanguageContext";
+import TiltCard from "../components/TiltCard";
+import AnimatedProgressBar from "../components/AnimatedProgressBar";
+
+// Easing function: easeOutExpo for ultra-smooth count-up physics
+function easeOutExpo(x: number): number {
+  return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+}
 
 // CountUp component for statistical numbers on the landing page
-function CountUp({ end, suffix = "", duration = 1200 }: { end: number; suffix?: string; duration?: number }) {
+function CountUp({ end, suffix = "", duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
   const [count, setCount] = useState(0);
   const elementRef = useRef<HTMLSpanElement>(null);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -28,18 +36,30 @@ function CountUp({ end, suffix = "", duration = 1200 }: { end: number; suffix?: 
     let startTime: number | null = null;
     const step = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      setCount(Math.floor(progress * end));
-      if (progress < 1) {
+      const progressRatio = Math.min((timestamp - startTime) / duration, 1);
+      
+      // Apply easeOutExpo
+      const easedProgress = easeOutExpo(progressRatio);
+      setCount(Math.floor(easedProgress * end));
+      
+      if (progressRatio < 1) {
         requestAnimationFrame(step);
       } else {
         setCount(end);
+        setIsCompleted(true);
       }
     };
     requestAnimationFrame(step);
   }, [hasStarted, end, duration]);
 
-  return <span ref={elementRef}>{count}{suffix}</span>;
+  return (
+    <span 
+      ref={elementRef} 
+      className={`inline-block transition-all duration-500 ${isCompleted ? "animate-number-glow" : ""}`}
+    >
+      {count}{suffix}
+    </span>
+  );
 }
 
 export default function Home() {
@@ -70,10 +90,18 @@ export default function Home() {
 
       {/* Hero Section Container */}
       <section id="hero" className="relative min-h-[90vh] bg-white overflow-hidden pt-36 pb-16 flex flex-col justify-between">
-        {/* Apple subtle line grid background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Animated Gradient Blobs behind hero container */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <div className="absolute inset-0 opacity-[0.03] hero-grid-overlay" />
-          <div className="absolute w-[500px] h-[500px] top-[-100px] left-[-150px] bg-[radial-gradient(circle,rgba(0,113,227,0.03)_0%,transparent_70%)] rounded-full animate-orb1" />
+          
+          {/* Blob 1 - Accent Blue glow */}
+          <div className="absolute w-[600px] h-[600px] rounded-full top-[-150px] left-[-200px] bg-gradient-to-tr from-[#0071E3]/15 to-[#00c6ff]/10 blur-[90px] animate-drift-blob-1" />
+          
+          {/* Blob 2 - Soft Teal/Cyan glow */}
+          <div className="absolute w-[500px] h-[500px] rounded-full bottom-[-100px] right-[-150px] bg-gradient-to-br from-[#0071E3]/20 to-emerald-400/10 blur-[100px] animate-drift-blob-2" />
+          
+          {/* Blob 3 - Light Purple/Crimson blend */}
+          <div className="absolute w-[450px] h-[450px] rounded-full top-[25%] right-[10%] bg-gradient-to-bl from-indigo-500/10 to-[#0071E3]/15 blur-[85px] animate-drift-blob-3" />
         </div>
 
         {/* Content Section (Centered) */}
@@ -116,53 +144,76 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* RENDERED EXPERT PARTS DIRECTLY IN PLACE OF THE DECORATIVE PRODUCTION ENGINE DASHBOARD MOCK */}
-          <div className="pt-12 max-w-3xl mx-auto animate-scaleIn [animation-delay:400ms]">
-            <div className="bg-[#F5F5F7] border border-black/5 rounded-2xl p-6 md:p-8 space-y-5">
-              <span className="text-[11px] uppercase tracking-[0.2em] text-[#86868B] font-bold block">
-                {t("home.expertBadge")}
-              </span>
+          {/* INTERACTIVE FLOATING 3D GLASSMORPHISM PERFORMANCE TELEMETRY DASHBOARD */}
+          <div className="pt-12 max-w-2xl mx-auto animate-scaleIn [animation-delay:400ms]">
+            <TiltCard className="glass-card bg-white/70 border border-black/10 rounded-3xl p-6 md:p-8 text-left space-y-6 animate-float-dashboard select-none">
               
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 items-center justify-items-center pt-2">
+              {/* Telemetry Header */}
+              <div className="flex items-center justify-between border-b border-black/[0.05] pb-3">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-bold font-mono text-[#0071E3] tracking-[0.2em] uppercase block">
+                    NACY SOL SYSTEM TELEMETRY
+                  </span>
+                  <h3 className="font-poppins font-bold text-lg text-[#1D1D1F]">
+                    {t("home.expertBadge")}
+                  </h3>
+                </div>
+                <div className="flex items-center gap-1.5 bg-emerald-500/10 text-emerald-600 border border-emerald-500/15 py-1 px-3 rounded-full text-[10px] font-bold tracking-wider font-mono animate-pulse">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+                  REALTIME ACTIVE
+                </div>
+              </div>
+
+              {/* Progress telemetries */}
+              <div className="space-y-4">
+                <AnimatedProgressBar label={language === "EN" ? "Custom Web App Performance" : "Performance Application Web"} percentage={98} />
+                <AnimatedProgressBar label={language === "EN" ? "AI Retouch Photo Precision" : "Précision de Retouche Photo IA"} percentage={96} />
+                <AnimatedProgressBar label={language === "EN" ? "Studio Video CTR Lift" : "Augmentation Vidéo CTR"} percentage={93} />
+              </div>
+
+              <div className="w-full h-px bg-black/[0.05]" />
+
+              {/* Trust Certifications inside the beautiful panel */}
+              <div className="grid grid-cols-3 gap-4 items-center justify-items-center pt-1 text-center">
                 
                 {/* Google */}
                 <div className="flex flex-col items-center gap-1 group">
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24">
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24">
                       <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69c-.29 1.5-1.14 2.78-2.4 3.65v3.02h3.87c2.26-2.08 3.58-5.15 3.58-8.52z"/>
                       <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.87-3.02c-1.08.73-2.47 1.16-4.06 1.16-3.13 0-5.78-2.11-6.73-4.96H1.27v3.11C3.25 21.3 7.31 24 12 24z"/>
                       <path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54V6.62H1.27a11.95 11.95 0 0 0 0 10.76l4-3.11z"/>
                       <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.27 6.62l4 3.11c.95-2.85 3.6-4.98 6.73-4.98z"/>
                     </svg>
-                    <span className="font-bold text-[#1D1D1F] text-sm">Google</span>
+                    <span className="font-bold text-[#1D1D1F] text-xs">Google</span>
                   </div>
-                  <span className="text-[10px] text-[#86868B]">{t("home.gCertified")}</span>
+                  <span className="text-[9px] text-[#86868B] tracking-tight">{t("home.gCertified")}</span>
                 </div>
 
                 {/* Coursera */}
                 <div className="flex flex-col items-center gap-1 group">
-                  <div className="flex items-center gap-2">
-                    <svg className="w-4 h-4 fill-[#0056D2]" viewBox="0 0 24 24">
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-3.5 h-3.5 fill-[#0056D2]" viewBox="0 0 24 24">
                       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm1.94 17.5c-4.32-.41-5.63-2.16-5.63-5.5 0-3.34 1.31-5.09 5.63-5.5.94 0 1.88.04 2.82.08v2.33c-.94-.04-1.88-.08-2.82-.08-2.33 0-2.89.84-2.89 3.17s.56 3.17 2.89 3.17c.94 0 1.88-.04 2.82-.08v2.33c-.94.04-1.88.08-2.82.08z"/>
                     </svg>
-                    <span className="font-bold text-[#0056D2] text-sm">coursera</span>
+                    <span className="font-bold text-[#0056D2] text-xs">coursera</span>
                   </div>
-                  <span className="text-[10px] text-[#86868B]">{t("home.eCertified")}</span>
+                  <span className="text-[9px] text-[#86868B] tracking-tight">{t("home.eCertified")}</span>
                 </div>
 
                 {/* Trustpilot */}
                 <div className="flex flex-col items-center gap-1 group">
-                  <div className="flex items-center gap-1.5">
-                    <svg className="w-4.5 h-4.5 fill-[#00B67A]" viewBox="0 0 24 24">
+                  <div className="flex items-center gap-1">
+                    <svg className="w-4 h-4 fill-[#00B67A]" viewBox="0 0 24 24">
                       <path d="M23.95 9.2c-.08-.24-.26-.43-.5-.48l-7.34-.63-2.85-6.8a.5.5 0 0 0-.92 0L9.49 8.1 2.15 8.7a.5.5 0 0 0-.29.87l5.57 4.8-1.68 7.15c-.06.26.04.53.26.68.22.15.5.15.72 0l6.27-3.83 6.27 3.83a.47.47 0 0 0 .52 0c.2-.14.3-.42.25-.68l-1.68-7.15 5.57-4.8a.49.49 0 0 0 .15-.52z"/>
                     </svg>
-                    <span className="font-bold text-[#1D1D1F] text-sm">Trustpilot</span>
+                    <span className="font-bold text-[#1D1D1F] text-xs">Trustpilot</span>
                   </div>
-                  <span className="text-[10px] text-[#86868B]">{t("home.vIntegration")}</span>
+                  <span className="text-[9px] text-[#86868B] tracking-tight">{t("home.vIntegration")}</span>
                 </div>
 
               </div>
-            </div>
+            </TiltCard>
           </div>
         </div>
 
