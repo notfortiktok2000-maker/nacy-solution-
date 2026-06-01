@@ -265,15 +265,15 @@ export default function CinematicExperience() {
           {/* Core Content */}
           <div className="absolute inset-0 z-20 flex flex-col justify-center items-center px-6 text-center text-white select-none">
             <div className="max-w-2xl space-y-6 pt-12">
-              <span className="text-[10px] font-mono font-bold text-[#00ffd1] tracking-[0.25em] bg-[#00ffd1]/10 border border-[#00ffd1]/20 px-4 py-1.5 rounded-full uppercase inline-block animate-pulse">
+              <span className="text-[10px] font-poppins font-semibold text-[#00ffd1] tracking-[0.25em] bg-[#00ffd1]/10 border border-[#00ffd1]/20 px-4 py-1.5 rounded-full uppercase inline-block animate-pulse">
                 {t("home.badge")}
               </span>
               
-              <h1 className="font-poppins font-black text-4xl sm:text-6xl tracking-tight leading-[1.05] bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
+              <h1 className="font-poppins font-extrabold text-4xl sm:text-6xl tracking-tight leading-[1.05] text-[#F8FAFC] drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]">
                 NACY SOLUTIONS
               </h1>
               
-              <p className="text-white/60 font-inter text-sm md:text-md max-w-lg mx-auto leading-relaxed">
+              <p className="text-[#CBD5E1] font-inter text-sm md:text-md max-w-lg mx-auto leading-relaxed font-semibold">
                 {language === "FR" 
                   ? "Atelier d'excellence numérique. Nous programmons des systèmes haut de gamme et des univers visuels entièrement sur-mesure."
                   : "We craft elite handcoded systems, photorealistic artificial intelligence models, and viral video assets with extreme structural speed."
@@ -293,7 +293,7 @@ export default function CinematicExperience() {
             </div>
 
             {/* Hint mouse / swipe */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40 animate-bounce">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-45 animate-bounce">
               <span className="text-[9px] uppercase tracking-[0.15em] font-mono">Swipe Up</span>
               <ChevronDown className="w-4 h-4" />
             </div>
@@ -310,8 +310,8 @@ export default function CinematicExperience() {
           <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 max-w-4xl mx-auto select-none">
             <div className="space-y-6 md:space-y-8 pt-12">
               <div className="text-center space-y-1">
-                <span className="text-xs font-mono font-bold text-[#00ffd1] tracking-wider block">SERVICE BATCH MENU</span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
+                <span className="text-xs font-poppins font-bold text-[#00ffd1] tracking-widest block">SERVICE BATCH MENU</span>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#F8FAFC] font-poppins drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                   {language === "FR" ? "Ce que nous créons" : "Our Specialized Production Stack"}
                 </h2>
               </div>
@@ -320,35 +320,35 @@ export default function CinematicExperience() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 
                 {/* Custom Web (index 0) */}
-                <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/5 space-y-4 hover:border-[#0071E3]/35 transition-all duration-300">
-                  <span className="text-[10px] text-[#0071E3] font-bold font-mono tracking-wider block">01 / DEV</span>
-                  <h3 className="text-lg font-bold text-white">{language === "FR" ? "Création Site Web" : "Website Creation"}</h3>
-                  <p className="text-xs text-white/50 leading-relaxed">{t("services.webDesc")}</p>
-                  <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs">
-                    <span className="text-white/40">{t("services.startingFrom")}</span>
-                    <span className="font-mono font-bold text-white">{getProductPrice("web")}</span>
+                <div className="bg-[#121226]/85 backdrop-blur-md rounded-2xl p-6 border border-white/15 space-y-4 hover:border-[#0071E3]/55 transition-all duration-300 shadow-xl shadow-black/35">
+                  <span className="text-[10px] text-[#0071E3] font-bold font-poppins tracking-wider block">01 / DEV CUSTOM</span>
+                  <h3 className="text-lg font-bold text-[#F8FAFC] font-poppins">{language === "FR" ? "Création Site Web" : "Website Creation"}</h3>
+                  <p className="text-xs text-[#CBD5E1] font-medium leading-relaxed">{t("services.webDesc")}</p>
+                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs">
+                    <span className="text-[#CBD5E1]/70 font-semibold">{t("services.startingFrom")}</span>
+                    <span className="font-poppins font-bold text-[#00ffd1]">{getProductPrice("web")}</span>
                   </div>
                 </div>
 
                 {/* AI Photo (index 1) */}
-                <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/5 space-y-4 hover:border-[#00ffd1]/35 transition-all duration-300">
-                  <span className="text-[10px] text-[#00ffd1] font-bold font-mono tracking-wider block">02 / STUDIO IA</span>
-                  <h3 className="text-lg font-bold text-white">{language === "FR" ? "Séance Photo IA" : "AI Photo Shooting"}</h3>
-                  <p className="text-xs text-white/50 leading-relaxed">{t("services.photoDesc")}</p>
-                  <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs">
-                    <span className="text-white/40">{t("services.totalPackage")}</span>
-                    <span className="font-mono font-bold text-white">{getProductPrice("photo")}</span>
+                <div className="bg-[#121226]/85 backdrop-blur-md rounded-2xl p-6 border border-white/15 space-y-4 hover:border-[#00ffd1]/55 transition-all duration-300 shadow-xl shadow-black/35">
+                  <span className="text-[10px] text-[#00ffd1] font-bold font-poppins tracking-wider block">02 / STUDIO IA</span>
+                  <h3 className="text-lg font-bold text-[#F8FAFC] font-poppins">{language === "FR" ? "Séance Photo IA" : "AI Photo Shooting"}</h3>
+                  <p className="text-xs text-[#CBD5E1] font-medium leading-relaxed">{t("services.photoDesc")}</p>
+                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs">
+                    <span className="text-[#CBD5E1]/70 font-semibold">{t("services.totalPackage")}</span>
+                    <span className="font-poppins font-bold text-[#00ffd1]">{getProductPrice("photo")}</span>
                   </div>
                 </div>
 
                 {/* Video prod (index 2) */}
-                <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/5 space-y-4 hover:border-[#8200ff]/35 transition-all duration-300">
-                  <span className="text-[10px] text-[#8200ff] font-bold font-mono tracking-wider block">03 / SOCIALS</span>
-                  <h3 className="text-lg font-bold text-white">{language === "FR" ? "Production Vidéo" : "Video Production"}</h3>
-                  <p className="text-xs text-white/50 leading-relaxed">{t("services.videoDesc")}</p>
-                  <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs">
-                    <span className="text-white/40">{t("services.startingFrom")}</span>
-                    <span className="font-mono font-bold text-white">{getProductPrice("video")}</span>
+                <div className="bg-[#121226]/85 backdrop-blur-md rounded-2xl p-6 border border-white/15 space-y-4 hover:border-[#8200ff]/55 transition-all duration-300 shadow-xl shadow-black/35">
+                  <span className="text-[10px] text-[#c084fc] font-bold font-poppins tracking-wider block">03 / SOCIALS</span>
+                  <h3 className="text-lg font-bold text-[#F8FAFC] font-poppins">{language === "FR" ? "Production Vidéo" : "Video Production"}</h3>
+                  <p className="text-xs text-[#CBD5E1] font-medium leading-relaxed">{t("services.videoDesc")}</p>
+                  <div className="pt-2 border-t border-white/10 flex items-center justify-between text-xs">
+                    <span className="text-[#CBD5E1]/70 font-semibold">{t("services.startingFrom")}</span>
+                    <span className="font-poppins font-bold text-[#00ffd1]">{getProductPrice("video")}</span>
                   </div>
                 </div>
 
@@ -376,34 +376,34 @@ export default function CinematicExperience() {
           {/* Subtle design matrix background */}
           <div className="absolute inset-0 opacity-[0.03] hero-grid-overlay" />
 
-          <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 max-w-4xl mx-auto select-none">
+          <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 max-w-4xl mx-auto select-none font-inter">
             <div className="space-y-6 pt-12">
               <div className="text-center space-y-1">
-                <span className="text-xs font-semibold text-[#0071E3] font-mono tracking-widest block">{t("home.valuesBadge")}</span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-white">{t("home.valuesHeading")}</h2>
+                <span className="text-xs font-semibold text-[#00ffd1] font-poppins tracking-widest block">{t("home.valuesBadge")}</span>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#F8FAFC] font-poppins drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">{t("home.valuesHeading")}</h2>
               </div>
 
               {/* Values list layout */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                 
-                <div className="bg-[#1D1D1F]/45 p-6 rounded-2xl border border-white/5 space-y-2">
-                  <h3 className="font-bold text-sm text-[#00ffd1]">{t("home.p1Title")}</h3>
-                  <p className="text-xs text-white/60 leading-relaxed">{t("home.p1Desc")}</p>
+                <div className="bg-[#131322]/85 p-6 rounded-2xl border border-white/10 space-y-2 shadow-lg hover:border-[#0071E3]/40 transition-colors duration-300">
+                  <h3 className="font-bold text-sm text-[#00ffd1] font-poppins">{t("home.p1Title")}</h3>
+                  <p className="text-xs text-[#CBD5E1] leading-relaxed font-semibold">{t("home.p1Desc")}</p>
                 </div>
 
-                <div className="bg-[#1D1D1F]/45 p-6 rounded-2xl border border-white/5 space-y-2">
-                  <h3 className="font-bold text-sm text-[#00ffd1]">{t("home.p2Title")}</h3>
-                  <p className="text-xs text-white/60 leading-relaxed">{t("home.p2Desc")}</p>
+                <div className="bg-[#131322]/85 p-6 rounded-2xl border border-white/10 space-y-2 shadow-lg hover:border-[#0071E3]/40 transition-colors duration-300">
+                  <h3 className="font-bold text-sm text-[#00ffd1] font-poppins">{t("home.p2Title")}</h3>
+                  <p className="text-xs text-[#CBD5E1] leading-relaxed font-semibold">{t("home.p2Desc")}</p>
                 </div>
 
-                <div className="bg-[#1D1D1F]/45 p-6 rounded-2xl border border-white/5 space-y-2">
-                  <h3 className="font-bold text-sm text-[#00ffd1]">{t("home.p3Title")}</h3>
-                  <p className="text-xs text-white/60 leading-relaxed">{t("home.p3Desc")}</p>
+                <div className="bg-[#131322]/85 p-6 rounded-2xl border border-white/10 space-y-2 shadow-lg hover:border-[#0071E3]/40 transition-colors duration-300">
+                  <h3 className="font-bold text-sm text-[#00ffd1] font-poppins">{t("home.p3Title")}</h3>
+                  <p className="text-xs text-[#CBD5E1] leading-relaxed font-semibold">{t("home.p3Desc")}</p>
                 </div>
 
-                <div className="bg-[#1D1D1F]/45 p-6 rounded-2xl border border-white/5 space-y-2">
-                  <h3 className="font-bold text-sm text-[#00ffd1]">{t("home.p4Title")}</h3>
-                  <p className="text-xs text-white/60 leading-relaxed">{t("home.p4Desc")}</p>
+                <div className="bg-[#131322]/85 p-6 rounded-2xl border border-white/10 space-y-2 shadow-lg hover:border-[#0071E3]/40 transition-colors duration-300">
+                  <h3 className="font-bold text-sm text-[#00ffd1] font-poppins">{t("home.p4Title")}</h3>
+                  <p className="text-xs text-[#CBD5E1] leading-relaxed font-semibold">{t("home.p4Desc")}</p>
                 </div>
 
               </div>
@@ -428,58 +428,67 @@ export default function CinematicExperience() {
         >
           <canvas ref={canvasStatsRef} className="three-canvas" id="canvas-stats" />
 
-          <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 max-w-xl mx-auto select-none">
-            <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 space-y-6 pt-8">
+          <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 max-w-xl mx-auto select-none card-3d-wrapper animate-page-enter">
+            <div className="bg-gradient-to-br from-[#121222]/95 via-[#0d0d18]/98 to-[#050510]/100 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 md:p-8 space-y-6 pt-8 shadow-[0_20px_50px_rgba(0,0,0,0.85),inset_0_1px_1px_rgba(255,255,255,0.15)] transform transition-transform duration-500 hover:scale-[1.01]">
               <div className="flex items-center justify-between border-b border-white/5 pb-3">
                 <div className="space-y-1">
-                  <span className="text-[9px] font-bold font-mono text-[#00ffd1] tracking-widest uppercase block">
+                  <span className="text-[10px] font-semibold font-poppins text-[#00ffd1] tracking-[0.2em] uppercase block">
                     SYSTEM METRICS CORE
                   </span>
-                  <h3 className="font-poppins font-black text-lg text-white">
+                  <h3 className="font-poppins font-extrabold text-xl sm:text-2xl text-[#F8FAFC] leading-none">
                     {t("home.expertBadge")}
                   </h3>
                 </div>
-                <span className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 py-1 px-2.5 rounded text-[9px] font-bold uppercase tracking-wider font-mono animate-pulse">
+                <span className="bg-[#00ffd1]/10 text-[#00ffd1] border border-[#00ffd1]/20 py-1 px-2.5 rounded text-[10px] font-bold uppercase tracking-widest font-poppins animate-pulse">
                   ACTIVE
                 </span>
               </div>
 
               {/* Bar stats */}
-              <div className="space-y-4">
+              <div className="space-y-5">
                 
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   <div className="flex justify-between text-xs font-semibold">
-                    <span className="text-white/70">{language === "FR" ? "Performance Application Web" : "Custom Web App Performance"}</span>
-                    <span className="font-mono text-[#00ffd1]">98%</span>
+                    <span className="text-[#CBD5E1] font-poppins font-medium">{language === "FR" ? "Performance Application Web" : "Custom Web App Performance"}</span>
+                    <span className="font-mono font-bold text-[#00ffd1] text-xs">98%</span>
                   </div>
-                  <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-[#0071E3] to-[#00ffd1] w-[98%]" />
+                  <div className="h-4 bg-[#0a0a14] rounded-full overflow-hidden border border-white/5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.85)] relative">
+                    <div 
+                      className="h-full rounded-full bg-gradient-to-r from-[#004BB5] via-[#0071E3] to-[#00ffd1] shadow-[0_0_15px_rgba(0,113,227,0.7),inset_0_-3px_3px_rgba(0,0,0,0.4),inset_0_2px_2px_rgba(255,255,255,0.4)] transition-all duration-1000 ease-out" 
+                      style={{ width: "98%" }}
+                    />
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   <div className="flex justify-between text-xs font-semibold">
-                    <span className="text-white/70">{language === "FR" ? "Précision de Retouche Photo IA" : "AI Retouch Photo Precision"}</span>
-                    <span className="font-mono text-[#00ffd1]">96%</span>
+                    <span className="text-[#CBD5E1] font-poppins font-medium">{language === "FR" ? "Précision de Retouche Photo IA" : "AI Retouch Photo Precision"}</span>
+                    <span className="font-mono font-bold text-[#00ffd1] text-xs">96%</span>
                   </div>
-                  <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-[#0071E3] to-[#00ffd1] w-[96%]" />
+                  <div className="h-4 bg-[#0a0a14] rounded-full overflow-hidden border border-white/5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.85)] relative">
+                    <div 
+                      className="h-full rounded-full bg-gradient-to-r from-[#004BB5] via-[#0071E3] to-[#00ffd1] shadow-[0_0_15px_rgba(0,113,227,0.7),inset_0_-3px_3px_rgba(0,0,0,0.4),inset_0_2px_2px_rgba(255,255,255,0.4)] transition-all duration-1000 ease-out" 
+                      style={{ width: "96%" }}
+                    />
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   <div className="flex justify-between text-xs font-semibold">
-                    <span className="text-white/70">{language === "FR" ? "Augmentation Vidéo CTR" : "Studio Video CTR Lift"}</span>
-                    <span className="font-mono text-[#00ffd1]">93%</span>
+                    <span className="text-[#CBD5E1] font-poppins font-medium">{language === "FR" ? "Augmentation Vidéo CTR" : "Studio Video CTR Lift"}</span>
+                    <span className="font-mono font-bold text-[#a855f7] text-xs">93%</span>
                   </div>
-                  <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                    <div className="h-full bg-gradient-to-r from-[#00ffd1] to-[#8200ff] w-[93%]" />
+                  <div className="h-4 bg-[#0a0a14] rounded-full overflow-hidden border border-white/5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.85)] relative">
+                    <div 
+                      className="h-full rounded-full bg-gradient-to-r from-[#0071E3] via-[#00ffd1] to-[#8b5cf6] shadow-[0_0_15px_rgba(139,92,246,0.7),inset_0_-3px_3px_rgba(0,0,0,0.4),inset_0_2px_2px_rgba(255,255,255,0.4)] transition-all duration-1000 ease-out" 
+                      style={{ width: "93%" }}
+                    />
                   </div>
                 </div>
 
               </div>
 
-              <div className="flex justify-between items-center text-[10px] text-white/40 pt-2 border-t border-white/5 font-mono">
+              <div className="flex justify-between items-center text-[10px] text-[#F8FAFC]/70 pt-2 border-t border-white/5 font-mono">
                 <span>MAD / USD / EUR SUPPORT</span>
                 <span>SECURED AES-256</span>
               </div>
@@ -505,11 +514,11 @@ export default function CinematicExperience() {
         >
           <div className="absolute inset-0 opacity-[0.03] hero-grid-overlay" />
 
-          <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 max-w-4xl mx-auto select-none">
+          <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 max-w-4xl mx-auto select-none mt-4">
             <div className="space-y-6 pt-12">
               <div className="text-center space-y-1.5">
-                <span className="text-xs font-mono font-bold text-[#0071E3] uppercase tracking-wider block">{t("price.badge")}</span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-white">{t("price.heading")}</h2>
+                <span className="text-xs font-poppins font-bold text-[#00ffd1] uppercase tracking-widest block">{t("price.badge")}</span>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#F8FAFC] font-poppins drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">{t("price.heading")}</h2>
                 
                 {/* Currency select */}
                 <div className="flex justify-center gap-1.5 pt-1">
@@ -518,8 +527,8 @@ export default function CinematicExperience() {
                       key={curr}
                       type="button"
                       onClick={() => setCurrency(curr)}
-                      className={`text-[10px] font-mono font-bold py-1 px-3 rounded ${
-                        currency === curr ? "bg-[#0071E3] text-white" : "bg-white/5 text-white/50 hover:text-white"
+                      className={`text-[10px] font-poppins font-bold py-1 px-3 rounded cursor-pointer transition-all ${
+                        currency === curr ? "bg-[#0071E3] text-white" : "bg-white/5 text-[#CBD5E1]/60 hover:text-white"
                       }`}
                     >
                       {curr}
@@ -532,14 +541,14 @@ export default function CinematicExperience() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 
                 {/* Custom Web (index 0) */}
-                <div className="bg-white/5 rounded-2xl p-5 border border-white/5 relative flex flex-col justify-between">
+                <div className="bg-[#131322]/85 backdrop-blur-md rounded-2xl p-5 border border-white/10 relative flex flex-col justify-between shadow-xl">
                   <div className="space-y-3.5">
-                    <span className="text-[9px] uppercase tracking-wider font-bold text-white/30 block">{t("price.singleProject")}</span>
-                    <h3 className="text-md font-bold text-white">{language === "FR" ? "Création Site Web" : "Website Creation"}</h3>
+                    <span className="text-[9px] uppercase tracking-wider font-bold text-[#CBD5E1]/50 block">{t("price.singleProject")}</span>
+                    <h3 className="text-md font-bold text-[#F8FAFC] font-poppins">{language === "FR" ? "Création Site Web" : "Website Creation"}</h3>
                     <div className="py-1">
                       <span className="text-2xl font-bold font-mono text-[#00ffd1]">{getProductPrice("web")}</span>
                     </div>
-                    <ul className="space-y-2 text-[11px] text-white/50 font-inter">
+                    <ul className="space-y-2 text-[11px] text-[#CBD5E1] font-inter font-medium">
                       <li className="flex items-center gap-2">
                         <Check className="w-3.5 h-3.5 text-[#00ffd1] shrink-0" />
                         <span>Responsive Prototype</span>
@@ -553,24 +562,24 @@ export default function CinematicExperience() {
                   <button
                     type="button"
                     onClick={() => handleOpenWhatsApp(`Bonjour, je suis intéressé par l'offre Création Site Web à ${getProductPrice("web")}.`)}
-                    className="w-full bg-[#0071E3] text-white font-semibold text-xs py-2 px-4 rounded-full mt-4 cursor-pointer text-center"
+                    className="w-full bg-[#0071E3] hover:bg-[#0071E3]/90 text-white font-semibold text-xs py-2.5 px-4 rounded-full mt-4 cursor-pointer text-center transition-colors"
                   >
                     {t("services.orderNow")}
                   </button>
                 </div>
 
                 {/* AI Photo (index 1) - Best Popular Card */}
-                <div className="bg-white/5 rounded-2xl p-5 border-2 border-[#00ffd1] relative flex flex-col justify-between">
+                <div className="bg-[#131322]/95 backdrop-blur-md rounded-2xl p-5 border-2 border-[#00ffd1] relative flex flex-col justify-between shadow-[0_0_25px_rgba(0,255,209,0.15)]">
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#00ffd1] text-black font-extrabold text-[9px] uppercase px-3.5 py-0.5 rounded-full tracking-wider">
                     {t("price.mostPopular")}
                   </div>
                   <div className="space-y-3.5">
-                    <span className="text-[9px] uppercase tracking-wider font-bold text-white/30 block">{t("price.commercialAssets")}</span>
-                    <h3 className="text-md font-bold text-white">{language === "FR" ? "Séance Photo IA" : "AI Photo Shooting"}</h3>
+                    <span className="text-[9px] uppercase tracking-wider font-bold text-[#CBD5E1]/50 block">{t("price.commercialAssets")}</span>
+                    <h3 className="text-md font-bold text-[#F8FAFC] font-poppins">{language === "FR" ? "Séance Photo IA" : "AI Photo Shooting"}</h3>
                     <div className="py-1">
                       <span className="text-2xl font-bold font-mono text-[#00ffd1]">{getProductPrice("photo")}</span>
                     </div>
-                    <ul className="space-y-2 text-[11px] text-white/50 font-inter">
+                    <ul className="space-y-2 text-[11px] text-[#CBD5E1] font-inter font-medium">
                       <li className="flex items-center gap-2">
                         <Check className="w-3.5 h-3.5 text-[#00ffd1] shrink-0" />
                         <span>45 HD Studio assets</span>
@@ -591,14 +600,14 @@ export default function CinematicExperience() {
                 </div>
 
                 {/* Video prod (index 2) */}
-                <div className="bg-white/5 rounded-2xl p-5 border border-white/5 relative flex flex-col justify-between">
+                <div className="bg-[#131322]/85 backdrop-blur-md rounded-2xl p-5 border border-white/10 relative flex flex-col justify-between shadow-xl">
                   <div className="space-y-3.5">
-                    <span className="text-[9px] uppercase tracking-wider font-bold text-white/30 block">{t("price.degressiveBilling")}</span>
-                    <h3 className="text-md font-bold text-white">{language === "FR" ? "Production Vidéo" : "Video Production"}</h3>
+                    <span className="text-[9px] uppercase tracking-wider font-bold text-[#CBD5E1]/50 block">{t("price.degressiveBilling")}</span>
+                    <h3 className="text-md font-bold text-[#F8FAFC] font-poppins">{language === "FR" ? "Production Vidéo" : "Video Production"}</h3>
                     <div className="py-1">
                       <span className="text-2xl font-bold font-mono text-[#00ffd1]">{getProductPrice("video")}</span>
                     </div>
-                    <ul className="space-y-2 text-[11px] text-white/50 font-inter">
+                    <ul className="space-y-2 text-[11px] text-[#CBD5E1] font-inter font-medium">
                       <li className="flex items-center gap-2">
                         <Check className="w-3.5 h-3.5 text-[#00ffd1] shrink-0" />
                         <span>Short-form vertical format</span>
@@ -612,7 +621,7 @@ export default function CinematicExperience() {
                   <button
                     type="button"
                     onClick={() => handleOpenWhatsApp(`Bonjour, je souhaite réserver l'offre Production Vidéo à ${getProductPrice("video")}.`)}
-                    className="w-full bg-[#0071E3] text-white font-semibold text-xs py-2 px-4 rounded-full mt-4 cursor-pointer text-center"
+                    className="w-full bg-[#0071E3] hover:bg-[#0071E3]/90 text-white font-semibold text-xs py-2 px-4 rounded-full mt-4 cursor-pointer text-center transition-colors"
                   >
                     {t("services.orderNow")}
                   </button>
@@ -624,7 +633,7 @@ export default function CinematicExperience() {
                 <button
                   type="button"
                   onClick={() => changeSection(5)}
-                  className="bg-white/10 text-white font-medium text-xs px-5 py-2.5 rounded-full cursor-pointer transition-all inline-flex items-center gap-2 border border-white/5"
+                  className="bg-white/10 hover:bg-white/15 text-white font-semibold text-xs px-5 py-2.5 rounded-full cursor-pointer transition-all inline-flex items-center gap-2 border border-white/5"
                 >
                   <span>{language === "FR" ? "Suivant : FAQ Support" : "Next: FAQ Support"}</span>
                   <ChevronDown className="w-3.5 h-3.5" />
@@ -644,19 +653,19 @@ export default function CinematicExperience() {
           <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 max-w-2xl mx-auto select-none">
             <div className="space-y-6 pt-12">
               <div className="text-center space-y-1">
-                <span className="text-xs font-mono font-bold text-[#0071E3] tracking-widest uppercase block">FAQ QUESTIONS</span>
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
+                <span className="text-xs font-poppins font-bold text-[#00ffd1] tracking-widest uppercase block">FAQ QUESTIONS</span>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#F8FAFC] font-poppins drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                   {language === "FR" ? "Questions Fréquentes" : "Frictionless Intelligence FAQ"}
                 </h2>
               </div>
 
               <div className="space-y-4">
                 
-                <div className="bg-[#1D1D1F]/50 border border-white/5 rounded-2xl p-5 space-y-2">
-                  <h3 className="text-sm font-bold text-white">
+                <div className="bg-[#131322]/85 border border-white/10 rounded-2xl p-5 space-y-2 shadow-lg">
+                  <h3 className="text-sm font-bold text-[#F8FAFC] font-poppins">
                     {language === "FR" ? "Pourquoi choisir le code sur-mesure (sans template) ?" : "Why custom-coding instead of normal templates (WordPress)?"}
                   </h3>
-                  <p className="text-xs text-white/60 leading-relaxed">
+                  <p className="text-xs text-[#CBD5E1] leading-relaxed font-semibold">
                     {language === "FR" 
                       ? "Les templates standards ralentissent votre indexation SEO et contiennent des codes inutiles. Nous écrivons des structures légères en TypeScript et React pour garantir 95%+ de performances."
                       : "Standard prebuilt templates are slow, heavy, and rank poorly on Google. We construct lightweight systems handcoded from scratch using modern react states."
@@ -664,11 +673,11 @@ export default function CinematicExperience() {
                   </p>
                 </div>
 
-                <div className="bg-[#1D1D1F]/50 border border-white/5 rounded-2xl p-5 space-y-2">
-                  <h3 className="text-sm font-bold text-white">
+                <div className="bg-[#131322]/85 border border-white/10 rounded-2xl p-5 space-y-2 shadow-lg">
+                  <h3 className="text-sm font-bold text-[#F8FAFC] font-poppins">
                     {language === "FR" ? "Comment s'organise l'intégration de la séance photo IA ?" : "How does the artificial intelligence photo pipeline work?"}
                   </h3>
-                  <p className="text-xs text-white/60 leading-relaxed">
+                  <p className="text-xs text-[#CBD5E1] leading-relaxed font-semibold">
                     {language === "FR" 
                       ? "Vous nous transmettez de simples clichés mobiles de vos produits. Nos algorithmes avancés de stable diffusion modélisent l'environnement 3D, l'éclairage et les décors requis."
                       : "You upload elementary snapshots of your assets. Our customized deep learning models re-engineer lightning, backdrops, and reflections to deliver breathtaking outcomes."
@@ -699,16 +708,16 @@ export default function CinematicExperience() {
           <canvas ref={canvasCtaRef} className="three-canvas" id="canvas-cta" />
 
           <div className="absolute inset-0 z-20 flex flex-col justify-center px-6 max-w-xl mx-auto select-none">
-            <div className="bg-black/50 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center space-y-6 pt-8">
-              <span className="text-[10px] font-mono font-bold text-[#00ffd1] bg-[#00ffd1]/10 border border-[#00ffd1]/20 px-4 py-1.5 rounded-full tracking-widest uppercase inline-block animate-pulse">
+            <div className="bg-black/75 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center space-y-6 pt-8 shadow-2xl shadow-black/80">
+              <span className="text-[10px] font-poppins font-bold text-[#00ffd1] bg-[#00ffd1]/10 border border-[#00ffd1]/20 px-4 py-1.5 rounded-full tracking-widest uppercase inline-block animate-pulse">
                 WHATSAPP LIVE BRIEFING
               </span>
 
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#F8FAFC] leading-tight font-poppins drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                 {language === "FR" ? "Démarrons votre projet" : "Request a Free Proposal"}
               </h2>
 
-              <p className="text-xs text-white/60 max-w-sm mx-auto leading-relaxed">
+              <p className="text-xs text-[#CBD5E1] font-semibold max-w-sm mx-auto leading-relaxed">
                 {language === "FR"
                   ? "Nous analysons votre cahier des charges et formulons une proposition technique chiffrée sous 24h via discussion directe."
                   : "Say goodbye to complex contracts. Let's form an authentic WhatsApp thread to examine concepts and map deliverables in real-time."
@@ -723,8 +732,8 @@ export default function CinematicExperience() {
                 <span>{language === "FR" ? "Discuter sur WhatsApp" : "Discuss on WhatsApp (Open)"}</span>
               </button>
 
-              <div className="flex justify-center items-center gap-2.5 text-[10px] text-white/40 pt-2 font-mono">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <div className="flex justify-center items-center gap-2.5 text-[10px] text-[#F8FAFC]/55 pt-2 font-mono">
+                <Check className="w-4 h-4 text-emerald-400" />
                 <span>DIRECT LINE: +212 7 10 90 05 02</span>
               </div>
 
