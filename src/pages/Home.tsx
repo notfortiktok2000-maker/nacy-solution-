@@ -282,74 +282,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Core values block / Apple section */}
-      <section className="py-24 px-6 md:px-12 bg-white border-b border-black/5">
-        <div className="max-w-4xl mx-auto space-y-16">
-          <div className="text-center space-y-3 reveal-heading">
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#0071E3]">{t("home.valuesBadge")}</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F]">{t("home.valuesHeading")}</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 reveal-group">
-            <div className="space-y-2 stagger-item">
-              <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p1Title")}</h3>
-              <p className="text-sm text-[#6E6E73] leading-relaxed">
-                {t("home.p1Desc")}
-              </p>
-            </div>
-            
-            <div className="space-y-2 stagger-item">
-              <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p2Title")}</h3>
-              <p className="text-sm text-[#6E6E73] leading-relaxed">
-                {t("home.p2Desc")}
-              </p>
-            </div>
-
-            <div className="space-y-2 stagger-item">
-              <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p3Title")}</h3>
-              <p className="text-sm text-[#6E6E73] leading-relaxed">
-                {t("home.p3Desc")}
-              </p>
-            </div>
-
-            <div className="space-y-2 stagger-item">
-              <h3 className="font-bold text-lg text-[#1D1D1F]">{t("home.p4Title")}</h3>
-              <p className="text-sm text-[#6E6E73] leading-relaxed">
-                {t("home.p4Desc")}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials in clean minimalist Apple cards */}
-      <section className="py-24 px-6 md:px-12 bg-[#F5F5F7] border-b border-black/5">
+      <section className="py-24 px-6 md:px-12 bg-white border-b border-black/5">
         <div className="max-w-5xl mx-auto space-y-12">
-          <div className="text-center space-y-2 reveal-heading">
-            <span className="text-xs font-semibold text-[#0071E3] tracking-wider block uppercase">
-              {t("home.testimonialsBadge")}
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1D1D1F]">
-              {t("home.testimonialsHeading")}
+          <div className="space-y-3 reveal-heading text-left">
+            <h2 className="font-poppins text-3xl md:text-5xl font-extrabold text-[#1D1D1F] tracking-tight">
+              What they say.
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4 reveal-group">
             
             {/* Card 1 */}
-            <div className="glass-card p-8 rounded-2xl flex flex-col justify-between stagger-item">
-              <div className="space-y-4">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-black text-black" />
-                  ))}
+            <div className="bg-white p-8 rounded-2xl flex flex-col justify-between stagger-item border border-black/5 shadow-sm">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24">
+                      <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69c-.29 1.5-1.14 2.78-2.4 3.65v3.02h3.87c2.26-2.08 3.58-5.15 3.58-8.52z"/>
+                      <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.87-3.02c-1.08.73-2.47 1.16-4.06 1.16-3.13 0-5.78-2.11-6.73-4.96H1.27v3.11C3.25 21.3 7.31 24 12 24z"/>
+                      <path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54V6.62H1.27a11.95 11.95 0 0 0 0 10.76l4-3.11z"/>
+                      <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.27 6.62l4 3.11c.95-2.85 3.6-4.98 6.73-4.98z"/>
+                    </svg>
+                    <span className="font-bold text-[#1D1D1F] text-xs">Google</span>
+                  </div>
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-black text-black" />
+                    ))}
+                  </div>
                 </div>
-                <p className="text-sm text-[#6E6E73] italic leading-relaxed">
-                  {t("home.t1Text")}
+                <p className="text-sm text-[#1D1D1F] leading-relaxed">
+                  "{t("home.t1Text")}"
                 </p>
               </div>
-              <div className="pt-6 border-t border-black/5 mt-6 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold">AM</div>
+              <div className="pt-6 mt-6 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold shrink-0">AM</div>
                 <div>
                   <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t1Author")}</h4>
                   <span className="text-[11px] text-[#86868B] block mt-1">{t("home.t1Role")}</span>
@@ -358,19 +326,27 @@ export default function Home() {
             </div>
 
             {/* Card 2 */}
-            <div className="glass-card p-8 rounded-2xl flex flex-col justify-between stagger-item">
-              <div className="space-y-4">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-black text-black" />
-                  ))}
+            <div className="bg-white p-8 rounded-2xl flex flex-col justify-between stagger-item border border-black/5 shadow-sm">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <svg className="w-4 h-4 fill-[#00B67A]" viewBox="0 0 24 24">
+                      <path d="M23.95 9.2c-.08-.24-.26-.43-.5-.48l-7.34-.63-2.85-6.8a.5.5 0 0 0-.92 0L9.49 8.1 2.15 8.7a.5.5 0 0 0-.29.87l5.57 4.8-1.68 7.15c-.06.26.04.53.26.68.22.15.5.15.72 0l6.27-3.83 6.27 3.83a.47.47 0 0 0 .52 0c.2-.14.3-.42.25-.68l-1.68-7.15 5.57-4.8a.49.49 0 0 0 .15-.52z"/>
+                    </svg>
+                    <span className="font-bold text-[#1D1D1F] text-xs">Trustpilot</span>
+                  </div>
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-black text-black" />
+                    ))}
+                  </div>
                 </div>
-                <p className="text-sm text-[#6E6E73] italic leading-relaxed">
-                  {t("home.t2Text")}
+                <p className="text-sm text-[#1D1D1F] leading-relaxed">
+                  "{t("home.t2Text")}"
                 </p>
               </div>
-              <div className="pt-6 border-t border-black/5 mt-6 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold">SB</div>
+              <div className="pt-6 mt-6 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold shrink-0">SB</div>
                 <div>
                   <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t2Author")}</h4>
                   <span className="text-[11px] text-[#86868B] block mt-1">{t("home.t2Role")}</span>
@@ -379,19 +355,25 @@ export default function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="glass-card p-8 rounded-2xl flex flex-col justify-between stagger-item">
-              <div className="space-y-4">
-                <div className="flex gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-black text-black" />
-                  ))}
+            <div className="bg-white p-8 rounded-2xl flex flex-col justify-between stagger-item border border-black/5 shadow-sm">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4 text-[#0071E3]" />
+                    <span className="font-bold text-[#1D1D1F] text-xs">Verified Client</span>
+                  </div>
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-black text-black" />
+                    ))}
+                  </div>
                 </div>
-                <p className="text-sm text-[#6E6E73] italic leading-relaxed">
-                  {t("home.t3Text")}
+                <p className="text-sm text-[#1D1D1F] leading-relaxed">
+                  "{t("home.t3Text")}"
                 </p>
               </div>
-              <div className="pt-6 border-t border-black/5 mt-6 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold">KH</div>
+              <div className="pt-6 mt-6 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold shrink-0">KH</div>
                 <div>
                   <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t3Author")}</h4>
                   <span className="text-[11px] text-[#86868B] block mt-1">
@@ -404,6 +386,70 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Portfolio Section */}
+      <section className="py-24 px-6 md:px-12 bg-white border-b border-black/5">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <div className="space-y-3 reveal-heading text-left">
+            <h2 className="font-poppins text-3xl md:text-5xl font-extrabold text-[#1D1D1F] tracking-tight">
+              The work speaks.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-group h-auto md:h-[600px]">
+            {/* Left Column - Tall Card */}
+            <div className="group relative bg-[#1D1D1F] rounded-2xl overflow-hidden h-[400px] md:h-full cursor-pointer stagger-item shadow-sm transition-transform duration-500 hover:scale-[1.01]">
+              <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/10 to-black/80 pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
+              <div className="absolute top-6 left-6 z-10">
+                <span className="bg-white/10 backdrop-blur-md text-white border border-white/10 py-1.5 px-3 rounded-full text-[10px] font-semibold uppercase tracking-wider">
+                  WEB
+                </span>
+              </div>
+              <div className="absolute bottom-6 left-6 z-10">
+                <h3 className="text-white font-bold text-2xl mb-1">Nacy E-Commerce</h3>
+                <p className="text-white/60 text-xs font-semibold uppercase tracking-widest">Full-Stack Custom App</p>
+              </div>
+            </div>
+
+            {/* Right Column - Two shorter stacked cards */}
+            <div className="grid grid-rows-2 gap-6 h-[400px] md:h-full">
+              {/* Card 1 */}
+              <div className="group relative bg-[#1D1D1F] rounded-2xl overflow-hidden cursor-pointer stagger-item shadow-sm transition-transform duration-500 hover:scale-[1.02]">
+                <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/10 to-black/80 pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
+                <div className="absolute top-6 left-6 z-10">
+                  <span className="bg-white/10 backdrop-blur-md text-white border border-white/10 py-1.5 px-3 rounded-full text-[10px] font-semibold uppercase tracking-wider">
+                    VIDEO AD · TOURISM
+                  </span>
+                </div>
+                <div className="absolute bottom-6 left-6 z-10">
+                  <h3 className="text-white font-bold text-xl mb-1">Sahara Expedition</h3>
+                  <p className="text-white/60 text-xs font-semibold uppercase tracking-widest">Cinematic Campaign</p>
+                </div>
+              </div>
+              
+              {/* Card 2 */}
+              <div className="group relative bg-[#1D1D1F] rounded-2xl overflow-hidden cursor-pointer stagger-item shadow-sm transition-transform duration-500 hover:scale-[1.02]">
+                <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/10 to-black/80 pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
+                <div className="absolute top-6 left-6 z-10">
+                  <span className="bg-white/10 backdrop-blur-md text-white border border-white/10 py-1.5 px-3 rounded-full text-[10px] font-semibold uppercase tracking-wider">
+                    STATIC ADS
+                  </span>
+                </div>
+                <div className="absolute bottom-6 left-6 z-10">
+                  <h3 className="text-white font-bold text-xl mb-1">Oasis Real Estate</h3>
+                  <p className="text-white/60 text-xs font-semibold uppercase tracking-widest">A/B Tested Creatives</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center pt-6 reveal-group">
+            <p className="text-sm text-[#86868B] font-inter">Full portfolio available on request.</p>
+          </div>
+        </div>
+      </section>
+
+
 
     </>
   );
