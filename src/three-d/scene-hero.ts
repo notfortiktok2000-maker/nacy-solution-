@@ -78,11 +78,26 @@ export function initHeroScene(canvas: HTMLCanvasElement) {
     new THREE.BufferAttribute(positions, 3)
   );
 
+  // Create a circular texture dynamically
+  const particleCanvas = document.createElement("canvas");
+  particleCanvas.width = 64;
+  particleCanvas.height = 64;
+  const particleCtx = particleCanvas.getContext("2d");
+  if (particleCtx) {
+    particleCtx.beginPath();
+    particleCtx.arc(32, 32, 32, 0, Math.PI * 2);
+    particleCtx.fillStyle = "#ffffff";
+    particleCtx.fill();
+  }
+  const circleTexture = new THREE.CanvasTexture(particleCanvas);
+
   const particleMaterial = new THREE.PointsMaterial({
     color: 0x0071e3,
     size: isLow ? 0.035 : 0.025,
+    map: circleTexture,
     transparent: true,
     opacity: 0.22,
+    alphaTest: 0.1,
     blending: THREE.NormalBlending
   });
 
