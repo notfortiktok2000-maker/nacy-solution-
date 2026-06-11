@@ -287,7 +287,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto space-y-12">
           <div className="space-y-3 reveal-heading text-left">
             <h2 className="font-poppins text-3xl md:text-5xl font-extrabold text-[#1D1D1F] tracking-tight">
-              What they say.
+              {t("home.testimonialsHeadingTitle")}
             </h2>
           </div>
 
@@ -377,7 +377,7 @@ export default function Home() {
                 <div>
                   <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t3Author")}</h4>
                   <span className="text-[11px] text-[#86868B] block mt-1">
-                    {language === "EN" ? "E-Commerce Merchant" : "Commerçant E-Commerce"}
+                    {t("home.t3Role")}
                   </span>
                 </div>
               </div>
@@ -392,7 +392,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto space-y-12">
           <div className="space-y-3 reveal-heading text-left">
             <h2 className="font-poppins text-3xl md:text-5xl font-extrabold text-[#1D1D1F] tracking-tight">
-              The work speaks.
+              {t("home.portfolioHeading")}
             </h2>
           </div>
 
@@ -402,12 +402,12 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/10 to-black/80 pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
               <div className="absolute top-6 left-6 z-10">
                 <span className="bg-white/10 backdrop-blur-md text-white border border-white/10 py-1.5 px-3 rounded-full text-[10px] font-semibold uppercase tracking-wider">
-                  WEB
+                  {t("home.portfolioT1Badge")}
                 </span>
               </div>
               <div className="absolute bottom-6 left-6 z-10">
-                <h3 className="text-white font-bold text-2xl mb-1">Nacy E-Commerce</h3>
-                <p className="text-white/60 text-xs font-semibold uppercase tracking-widest">Full-Stack Custom App</p>
+                <h3 className="text-white font-bold text-2xl mb-1">{t("home.portfolioT1Title")}</h3>
+                <p className="text-white/60 text-xs font-semibold uppercase tracking-widest">{t("home.portfolioT1Sub")}</p>
               </div>
             </div>
 
@@ -418,12 +418,12 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/10 to-black/80 pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
                 <div className="absolute top-6 left-6 z-10">
                   <span className="bg-white/10 backdrop-blur-md text-white border border-white/10 py-1.5 px-3 rounded-full text-[10px] font-semibold uppercase tracking-wider">
-                    VIDEO AD · TOURISM
+                    {t("home.portfolioT2Badge")}
                   </span>
                 </div>
                 <div className="absolute bottom-6 left-6 z-10">
-                  <h3 className="text-white font-bold text-xl mb-1">Sahara Expedition</h3>
-                  <p className="text-white/60 text-xs font-semibold uppercase tracking-widest">Cinematic Campaign</p>
+                  <h3 className="text-white font-bold text-xl mb-1">{t("home.portfolioT2Title")}</h3>
+                  <p className="text-white/60 text-xs font-semibold uppercase tracking-widest">{t("home.portfolioT2Sub")}</p>
                 </div>
               </div>
               
@@ -432,19 +432,19 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/10 to-black/80 pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
                 <div className="absolute top-6 left-6 z-10">
                   <span className="bg-white/10 backdrop-blur-md text-white border border-white/10 py-1.5 px-3 rounded-full text-[10px] font-semibold uppercase tracking-wider">
-                    STATIC ADS
+                    {t("home.portfolioT3Badge")}
                   </span>
                 </div>
                 <div className="absolute bottom-6 left-6 z-10">
-                  <h3 className="text-white font-bold text-xl mb-1">Oasis Real Estate</h3>
-                  <p className="text-white/60 text-xs font-semibold uppercase tracking-widest">A/B Tested Creatives</p>
+                  <h3 className="text-white font-bold text-xl mb-1">{t("home.portfolioT3Title")}</h3>
+                  <p className="text-white/60 text-xs font-semibold uppercase tracking-widest">{t("home.portfolioT3Sub")}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div className="text-center pt-6 reveal-group">
-            <p className="text-sm text-[#86868B] font-inter">Full portfolio available on request.</p>
+            <p className="text-sm text-[#86868B] font-inter">{t("home.portfolioAvailable")}</p>
           </div>
         </div>
       </section>
