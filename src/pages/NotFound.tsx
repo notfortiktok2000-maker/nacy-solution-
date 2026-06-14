@@ -4,14 +4,14 @@ import { ArrowLeft, Compass } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-6 pt-24 pb-12 text-[#1D1D1F]">
+    <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center px-6 pt-24 pb-12 text-[#F5F5F7]">
       <Helmet>
         <title>Page Not Found (404) | NACY ST</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
       <div className="max-w-md w-full text-center space-y-6">
-        <div className="w-16 h-16 rounded-full bg-black/5 flex items-center justify-center mx-auto text-[#0071E3] animate-bounce">
+        <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto text-[#0071E3] animate-bounce">
           <Compass className="w-8 h-8" />
         </div>
 
@@ -19,10 +19,10 @@ export default function NotFound() {
           <span className="font-semibold text-xs text-[#0071E3] uppercase tracking-widest block">
             — Index Error 404
           </span>
-          <h1 className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
+          <h1 className="font-bold text-3xl md:text-4xl text-[#F5F5F7]">
             Page Not Found
           </h1>
-          <p className="text-sm text-[#6E6E73] leading-relaxed">
+          <p className="text-sm text-[#A1A1A6] leading-relaxed">
             The requested resource doesn&apos;t exist or has been permanently moved. Our engineering team in Tangier has been notified.
           </p>
         </div>

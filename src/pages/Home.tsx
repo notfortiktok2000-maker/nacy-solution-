@@ -109,7 +109,7 @@ export default function Home() {
       </Helmet>
 
       {/* Hero Section Container */}
-      <section id="hero" className="relative min-h-[90vh] bg-white overflow-hidden pt-36 pb-16 flex flex-col justify-between">
+      <section id="hero" className="relative min-h-[90vh] bg-black overflow-hidden pt-36 pb-16 flex flex-col justify-between">
         {/* Animated Gradient Blobs behind hero container */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
           <div className="absolute inset-0 opacity-[0.03] hero-grid-overlay" />
@@ -133,14 +133,14 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center space-y-8">
           {/* Badge Line with REMOVED "Creative studio" (only Tangier Morocco remains) */}
           <div className="animate-fadeIn">
-            <span className="font-poppins font-semibold text-xs text-[#0071E3] uppercase tracking-widest bg-[#F5F5F7] px-5 py-2 rounded-full border border-black/5 inline-block">
+            <span className="font-poppins font-semibold text-xs text-[#0071E3] uppercase tracking-widest bg-[#121212] px-5 py-2 rounded-full border border-white/10 inline-block">
               {t("home.badge")}
             </span>
           </div>
 
           {/* Main Headline */}
           <div className="space-y-4 pt-2">
-            <h1 className="font-poppins font-extrabold text-[#1D1D1F] tracking-tight leading-[1.1] text-4xl sm:text-6xl md:text-7xl overflow-hidden py-1">
+            <h1 className="font-poppins font-extrabold text-[#F5F5F7] tracking-tight leading-[1.1] text-4xl sm:text-6xl md:text-7xl overflow-hidden py-1">
               <span className="block mb-2 sm:mb-3">
                 {renderStaggeredWords(t("home.titlePart1"), 220)}
               </span>
@@ -154,7 +154,7 @@ export default function Home() {
           </div>
 
           {/* Subtitle */}
-          <p className="font-inter text-base md:text-lg text-[#6E6E73] max-w-xl mx-auto animate-fadeIn [animation-delay:1250ms] [animation-duration:0.8s] leading-relaxed">
+          <p className="font-inter text-base md:text-lg text-[#A1A1A6] max-w-xl mx-auto animate-fadeIn [animation-delay:1250ms] [animation-duration:0.8s] leading-relaxed">
             {t("home.subtitle")}
           </p>
 
@@ -171,7 +171,7 @@ export default function Home() {
 
           {/* INTERACTIVE FLOATING 3D GLASSMORPHISM TRUST PANEL */}
           <div className="pt-12 max-w-2xl mx-auto animate-scaleIn [animation-delay:400ms]">
-            <TiltCard className="glass-card bg-white/70 border border-black/10 rounded-3xl p-6 md:p-8 text-left select-none animate-float-dashboard">
+            <TiltCard className="glass-card bg-[#0A0A0A]/70 border border-white/10 rounded-3xl p-6 md:p-8 text-left select-none animate-float-dashboard">
               
               {/* Trust Certifications inside the beautiful panel */}
               <div className="grid grid-cols-3 gap-4 items-center justify-items-center text-center">
@@ -185,7 +185,7 @@ export default function Home() {
                       <path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54V6.62H1.27a11.95 11.95 0 0 0 0 10.76l4-3.11z"/>
                       <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.27 6.62l4 3.11c.95-2.85 3.6-4.98 6.73-4.98z"/>
                     </svg>
-                    <span className="font-bold text-[#1D1D1F] text-xs">Google</span>
+                    <span className="font-bold text-[#F5F5F7] text-xs">Google</span>
                   </div>
                   <span className="text-[9px] text-[#86868B] tracking-tight">{t("home.gCertified")}</span>
                 </div>
@@ -207,7 +207,7 @@ export default function Home() {
                     <svg className="w-4 h-4 fill-[#00B67A]" viewBox="0 0 24 24">
                       <path d="M23.95 9.2c-.08-.24-.26-.43-.5-.48l-7.34-.63-2.85-6.8a.5.5 0 0 0-.92 0L9.49 8.1 2.15 8.7a.5.5 0 0 0-.29.87l5.57 4.8-1.68 7.15c-.06.26.04.53.26.68.22.15.5.15.72 0l6.27-3.83 6.27 3.83a.47.47 0 0 0 .52 0c.2-.14.3-.42.25-.68l-1.68-7.15 5.57-4.8a.49.49 0 0 0 .15-.52z"/>
                     </svg>
-                    <span className="font-bold text-[#1D1D1F] text-xs">Trustpilot</span>
+                    <span className="font-bold text-[#F5F5F7] text-xs">Trustpilot</span>
                   </div>
                   <span className="text-[9px] text-[#86868B] tracking-tight">{t("home.vIntegration")}</span>
                 </div>
@@ -219,37 +219,37 @@ export default function Home() {
 
         {/* Dynamic numerical stats block directly embedded inside the Hero bounds */}
         <div className="relative z-10 w-full max-w-4xl mx-auto px-6 mt-12 pb-4 reveal-group">
-          <div className="bg-white border border-black/10 rounded-2xl p-6 md:p-8 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center shadow-sm divide-y lg:divide-y-0 lg:divide-x divide-black/5">
+          <div className="bg-[#121212] border border-white/10 rounded-2xl p-6 md:p-8 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center shadow-sm divide-y lg:divide-y-0 lg:divide-x divide-black/5">
             <div className="pt-2 lg:pt-0 stagger-item">
-              <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
+              <div className="font-bold text-3xl md:text-4xl text-[#F5F5F7]">
                 <CountUp end={50} suffix="+" />
               </div>
-              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsProjects")}</p>
+              <p className="text-xs text-[#A1A1A6] mt-1 font-semibold uppercase tracking-wider">{t("home.statsProjects")}</p>
             </div>
             <div className="pt-4 lg:pt-0 stagger-item">
-              <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
+              <div className="font-bold text-3xl md:text-4xl text-[#F5F5F7]">
                 <CountUp end={48} suffix="H" />
               </div>
-              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsConcept")}</p>
+              <p className="text-xs text-[#A1A1A6] mt-1 font-semibold uppercase tracking-wider">{t("home.statsConcept")}</p>
             </div>
             <div className="pt-4 lg:pt-0 stagger-item">
-              <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
+              <div className="font-bold text-3xl md:text-4xl text-[#F5F5F7]">
                 <CountUp end={100} suffix="%" />
               </div>
-              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsSatisfaction")}</p>
+              <p className="text-xs text-[#A1A1A6] mt-1 font-semibold uppercase tracking-wider">{t("home.statsSatisfaction")}</p>
             </div>
             <div className="pt-4 lg:pt-0 stagger-item">
-              <div className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">
+              <div className="font-bold text-3xl md:text-4xl text-[#F5F5F7]">
                 <CountUp end={3} />
               </div>
-              <p className="text-xs text-[#6E6E73] mt-1 font-semibold uppercase tracking-wider">{t("home.statsOfferings")}</p>
+              <p className="text-xs text-[#A1A1A6] mt-1 font-semibold uppercase tracking-wider">{t("home.statsOfferings")}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Marquee Band (Autoscroll Keywords) */}
-      <section className="bg-[#F5F5F7] border-y border-black/5 py-4 overflow-hidden relative select-none">
+      <section className="bg-[#121212] border-y border-white/10 py-4 overflow-hidden relative select-none">
         <div className="w-full flex items-center whitespace-nowrap">
           <div className="flex items-center gap-16 uppercase font-poppins font-bold text-xs tracking-[0.25em] text-[#86868B] animate-marquee" style={{ animationDuration: "25s" }}>
             <span>{t("marquee.website")}</span>
@@ -283,10 +283,10 @@ export default function Home() {
       </section>
 
       {/* Testimonials in clean minimalist Apple cards */}
-      <section className="py-24 px-6 md:px-12 bg-white border-b border-black/5">
+      <section className="py-24 px-6 md:px-12 bg-black border-b border-white/10">
         <div className="max-w-5xl mx-auto space-y-12">
           <div className="space-y-3 reveal-heading text-left">
-            <h2 className="font-poppins text-3xl md:text-5xl font-extrabold text-[#1D1D1F] tracking-tight">
+            <h2 className="font-poppins text-3xl md:text-5xl font-extrabold text-[#F5F5F7] tracking-tight">
               {t("home.testimonialsHeadingTitle")}
             </h2>
           </div>
@@ -294,7 +294,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4 reveal-group">
             
             {/* Card 1 */}
-            <div className="bg-white p-8 rounded-2xl flex flex-col justify-between stagger-item border border-black/5 shadow-sm">
+            <div className="bg-[#121212] p-8 rounded-2xl flex flex-col justify-between stagger-item border border-white/10 shadow-sm">
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
@@ -304,78 +304,78 @@ export default function Home() {
                       <path fill="#FBBC05" d="M5.27 14.27a7.2 7.2 0 0 1 0-4.54V6.62H1.27a11.95 11.95 0 0 0 0 10.76l4-3.11z"/>
                       <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.25 2.7 1.27 6.62l4 3.11c.95-2.85 3.6-4.98 6.73-4.98z"/>
                     </svg>
-                    <span className="font-bold text-[#1D1D1F] text-xs">Google</span>
+                    <span className="font-bold text-[#F5F5F7] text-xs">Google</span>
                   </div>
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-black text-black" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-white text-white" />
                     ))}
                   </div>
                 </div>
-                <p className="text-sm text-[#1D1D1F] leading-relaxed">
+                <p className="text-sm text-[#F5F5F7] leading-relaxed">
                   "{t("home.t1Text")}"
                 </p>
               </div>
               <div className="pt-6 mt-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold shrink-0">AM</div>
+                <div className="w-10 h-10 rounded-full bg-[#F5F5F7] text-[#0A0A0A] flex items-center justify-center text-xs font-bold shrink-0">AM</div>
                 <div>
-                  <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t1Author")}</h4>
+                  <h4 className="font-semibold text-sm text-[#F5F5F7] leading-none">{t("home.t1Author")}</h4>
                   <span className="text-[11px] text-[#86868B] block mt-1">{t("home.t1Role")}</span>
                 </div>
               </div>
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white p-8 rounded-2xl flex flex-col justify-between stagger-item border border-black/5 shadow-sm">
+            <div className="bg-[#121212] p-8 rounded-2xl flex flex-col justify-between stagger-item border border-white/10 shadow-sm">
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
                     <svg className="w-4 h-4 fill-[#00B67A]" viewBox="0 0 24 24">
                       <path d="M23.95 9.2c-.08-.24-.26-.43-.5-.48l-7.34-.63-2.85-6.8a.5.5 0 0 0-.92 0L9.49 8.1 2.15 8.7a.5.5 0 0 0-.29.87l5.57 4.8-1.68 7.15c-.06.26.04.53.26.68.22.15.5.15.72 0l6.27-3.83 6.27 3.83a.47.47 0 0 0 .52 0c.2-.14.3-.42.25-.68l-1.68-7.15 5.57-4.8a.49.49 0 0 0 .15-.52z"/>
                     </svg>
-                    <span className="font-bold text-[#1D1D1F] text-xs">Trustpilot</span>
+                    <span className="font-bold text-[#F5F5F7] text-xs">Trustpilot</span>
                   </div>
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-black text-black" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-white text-white" />
                     ))}
                   </div>
                 </div>
-                <p className="text-sm text-[#1D1D1F] leading-relaxed">
+                <p className="text-sm text-[#F5F5F7] leading-relaxed">
                   "{t("home.t2Text")}"
                 </p>
               </div>
               <div className="pt-6 mt-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold shrink-0">SB</div>
+                <div className="w-10 h-10 rounded-full bg-[#F5F5F7] text-[#0A0A0A] flex items-center justify-center text-xs font-bold shrink-0">SB</div>
                 <div>
-                  <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t2Author")}</h4>
+                  <h4 className="font-semibold text-sm text-[#F5F5F7] leading-none">{t("home.t2Author")}</h4>
                   <span className="text-[11px] text-[#86868B] block mt-1">{t("home.t2Role")}</span>
                 </div>
               </div>
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white p-8 rounded-2xl flex flex-col justify-between stagger-item border border-black/5 shadow-sm">
+            <div className="bg-[#121212] p-8 rounded-2xl flex flex-col justify-between stagger-item border border-white/10 shadow-sm">
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-[#0071E3]" />
-                    <span className="font-bold text-[#1D1D1F] text-xs">Verified Client</span>
+                    <span className="font-bold text-[#F5F5F7] text-xs">Verified Client</span>
                   </div>
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-black text-black" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-white text-white" />
                     ))}
                   </div>
                 </div>
-                <p className="text-sm text-[#1D1D1F] leading-relaxed">
+                <p className="text-sm text-[#F5F5F7] leading-relaxed">
                   "{t("home.t3Text")}"
                 </p>
               </div>
               <div className="pt-6 mt-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#1D1D1F] text-white flex items-center justify-center text-xs font-bold shrink-0">KH</div>
+                <div className="w-10 h-10 rounded-full bg-[#F5F5F7] text-[#0A0A0A] flex items-center justify-center text-xs font-bold shrink-0">KH</div>
                 <div>
-                  <h4 className="font-semibold text-sm text-[#1D1D1F] leading-none">{t("home.t3Author")}</h4>
+                  <h4 className="font-semibold text-sm text-[#F5F5F7] leading-none">{t("home.t3Author")}</h4>
                   <span className="text-[11px] text-[#86868B] block mt-1">
                     {t("home.t3Role")}
                   </span>
@@ -388,17 +388,17 @@ export default function Home() {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-24 px-6 md:px-12 bg-white border-b border-black/5">
+      <section className="py-24 px-6 md:px-12 bg-black border-b border-white/10">
         <div className="max-w-5xl mx-auto space-y-12">
           <div className="space-y-3 reveal-heading text-left">
-            <h2 className="font-poppins text-3xl md:text-5xl font-extrabold text-[#1D1D1F] tracking-tight">
+            <h2 className="font-poppins text-3xl md:text-5xl font-extrabold text-[#F5F5F7] tracking-tight">
               {t("home.portfolioHeading")}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-group h-auto md:h-[600px]">
             {/* Left Column - Tall Card */}
-            <div className="group relative bg-[#1D1D1F] rounded-2xl overflow-hidden h-[400px] md:h-full cursor-pointer stagger-item shadow-sm transition-transform duration-500 hover:scale-[1.01]">
+            <div className="group relative bg-[#121212] border border-white/10 rounded-2xl overflow-hidden h-[400px] md:h-full cursor-pointer stagger-item shadow-sm transition-transform duration-500 hover:scale-[1.01]">
               <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/10 to-black/80 pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
               <div className="absolute top-6 left-6 z-10">
                 <span className="bg-white/10 backdrop-blur-md text-white border border-white/10 py-1.5 px-3 rounded-full text-[10px] font-semibold uppercase tracking-wider">
@@ -414,7 +414,7 @@ export default function Home() {
             {/* Right Column - Two shorter stacked cards */}
             <div className="grid grid-rows-2 gap-6 h-[400px] md:h-full">
               {/* Card 1 */}
-              <div className="group relative bg-[#1D1D1F] rounded-2xl overflow-hidden cursor-pointer stagger-item shadow-sm transition-transform duration-500 hover:scale-[1.02]">
+              <div className="group relative bg-[#121212] border border-white/10 rounded-2xl overflow-hidden cursor-pointer stagger-item shadow-sm transition-transform duration-500 hover:scale-[1.02]">
                 <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/10 to-black/80 pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
                 <div className="absolute top-6 left-6 z-10">
                   <span className="bg-white/10 backdrop-blur-md text-white border border-white/10 py-1.5 px-3 rounded-full text-[10px] font-semibold uppercase tracking-wider">
@@ -428,7 +428,7 @@ export default function Home() {
               </div>
               
               {/* Card 2 */}
-              <div className="group relative bg-[#1D1D1F] rounded-2xl overflow-hidden cursor-pointer stagger-item shadow-sm transition-transform duration-500 hover:scale-[1.02]">
+              <div className="group relative bg-[#121212] border border-white/10 rounded-2xl overflow-hidden cursor-pointer stagger-item shadow-sm transition-transform duration-500 hover:scale-[1.02]">
                 <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/10 to-black/80 pointer-events-none transition-opacity duration-300 group-hover:opacity-80" />
                 <div className="absolute top-6 left-6 z-10">
                   <span className="bg-white/10 backdrop-blur-md text-white border border-white/10 py-1.5 px-3 rounded-full text-[10px] font-semibold uppercase tracking-wider">

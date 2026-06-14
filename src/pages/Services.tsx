@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
-import { Code, Camera, Video, Check, ArrowRight } from "lucide-react";
+import { Database, Mail, Target, Check, ArrowRight } from "lucide-react";
 import { CurrencyType, CheckoutProduct } from "../types";
 import { useTranslation } from "../context/LanguageContext";
 import TiltCard from "../components/TiltCard";
@@ -10,7 +10,6 @@ export default function Services() {
   const navigate = useNavigate();
   const { t, language } = useTranslation();
   const [currency, setCurrency] = useState<CurrencyType>("MAD");
-  const [videoVolume, setVideoVolume] = useState<1 | 2 | 3 | 4>(3);
 
   const getPrice = (type: "web" | "photo" | "video") => {
     if (type === "web") {
@@ -23,28 +22,14 @@ export default function Services() {
       if (currency === "USD") return "95 $";
       return "950 MAD";
     }
-    const rates = {
-      1: { MAD: 350, EUR: 33, USD: 35 },
-      2: { MAD: 650, EUR: 60, USD: 65 },
-      3: { MAD: 900, EUR: 84, USD: 90 },
-      4: { MAD: 1100, EUR: 102, USD: 110 }
-    };
-    const choice = rates[videoVolume];
-    if (currency === "EUR") return `${choice.EUR} €`;
-    if (currency === "USD") return `${choice.USD} $`;
-    return `${choice.MAD.toLocaleString("en-US")} MAD`;
+    // Third tier price
+    if (currency === "EUR") return "139 €";
+    if (currency === "USD") return "150 $";
+    return "1,499 MAD";
   };
 
   const getVideoSavings = () => {
-    if (videoVolume === 1) return "";
-    const originalPrices = videoVolume * 350;
-    const currentPrices = { 1: 350, 2: 650, 3: 900, 4: 1100 }[videoVolume];
-    const diff = originalPrices - currentPrices;
-    if (diff <= 0) return "";
-    
-    if (currency === "EUR") return t("price.save", { amount: `${(diff * 0.093).toFixed(0)} €` });
-    if (currency === "USD") return t("price.save", { amount: `${(diff * 0.1).toFixed(0)} $` });
-    return t("price.save", { amount: `${diff} MAD` });
+    return "";
   };
 
   const handlePurchase = (serviceName: string, amountId: "web" | "photo" | "video", detailAddition?: string) => {
@@ -54,9 +39,7 @@ export default function Services() {
     } else if (amountId === "photo") {
       numericPrice = currency === "MAD" ? 950 : currency === "EUR" ? 88 : 95;
     } else {
-      const selections = { 1: 350, 2: 650, 3: 900, 4: 1100 };
-      const rawMad = selections[videoVolume];
-      numericPrice = currency === "MAD" ? rawMad : currency === "EUR" ? Math.round(rawMad * 0.093) : Math.round(rawMad * 0.10);
+      numericPrice = currency === "MAD" ? 1499 : currency === "EUR" ? 139 : 150; // New fixed price for third tier
     }
 
     const payload: CheckoutProduct = {
@@ -64,8 +47,8 @@ export default function Services() {
       name: serviceName,
       price: numericPrice,
       currency: currency,
-      tierName: amountId === "video" ? `${videoVolume} ${language === "EN" ? "Product Videos" : "Vidéos de Produits"}` : serviceName,
-      details: detailAddition || "Standard Offer"
+      tierName: serviceName,
+      details: detailAddition || "Premium Engagement"
     };
 
     sessionStorage.setItem("nacy_selected_product", JSON.stringify(payload));
@@ -73,7 +56,7 @@ export default function Services() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#1D1D1F] pt-28 pb-20 px-6 md:px-12">
+    <div className="min-h-screen bg-black text-[#F5F5F7] pt-28 pb-20 px-6 md:px-12">
       <Helmet>
         <title>{t("services.metaTitle")}</title>
         <meta name="description" content={t("services.metaDesc")} />
@@ -86,20 +69,20 @@ export default function Services() {
           <span className="font-poppins font-medium text-xs tracking-widest text-[#0071E3] uppercase block">
             {t("services.badge")}
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#1D1D1F]">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[#F5F5F7]">
             {t("services.heading")}
           </h1>
-          <p className="text-[#6E6E73] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#A1A1A6] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
             {t("services.sub")}
           </p>
 
           <div className="flex justify-center pt-2">
-            <div className="inline-flex bg-[#F5F5F7] p-1 rounded-full text-xs font-medium border border-black/5">
+            <div className="inline-flex bg-[#121212] p-1 rounded-full text-xs font-medium border border-white/10">
               <button
                 type="button"
                 onClick={() => setCurrency("MAD")}
                 className={`py-1.5 px-4 rounded-full transition-all cursor-pointer ${
-                  currency === "MAD" ? "bg-black text-white shadow-sm" : "text-[#6E6E73] hover:text-black"
+                  currency === "MAD" ? "bg-black text-white shadow-sm" : "text-[#A1A1A6] hover:text-white"
                 }`}
               >
                 {t("price.switchMad")}
@@ -108,7 +91,7 @@ export default function Services() {
                 type="button"
                 onClick={() => setCurrency("EUR")}
                 className={`py-1.5 px-4 rounded-full transition-all cursor-pointer ${
-                  currency === "EUR" ? "bg-black text-white shadow-sm" : "text-[#6E6E73] hover:text-black"
+                  currency === "EUR" ? "bg-black text-white shadow-sm" : "text-[#A1A1A6] hover:text-white"
                 }`}
               >
                 {t("price.switchEur")}
@@ -117,7 +100,7 @@ export default function Services() {
                 type="button"
                 onClick={() => setCurrency("USD")}
                 className={`py-1.5 px-4 rounded-full transition-all cursor-pointer ${
-                  currency === "USD" ? "bg-black text-white shadow-sm" : "text-[#6E6E73] hover:text-black"
+                  currency === "USD" ? "bg-black text-white shadow-sm" : "text-[#A1A1A6] hover:text-white"
                 }`}
               >
                 {t("price.switchUsd")}
@@ -131,46 +114,46 @@ export default function Services() {
           
           {/* Service 1: Custom Web */}
           <TiltCard className="h-full">
-            <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item h-full">
+            <div className="glass-card bg-[#121212]/80 rounded-2xl p-8 flex flex-col justify-between border border-white/10 hover:bg-[#0A0A0A] hover:shadow-xl transition-all duration-300 stagger-item h-full">
               <div className="space-y-6">
-                <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
-                  <Code className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white">
+                  <Database className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
                   <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s01")}</span>
-                  <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "Website Creation" : "Création de Site Web"}</h2>
+                  <h2 className="text-2xl font-bold text-[#F5F5F7]">{t("nav.serviceWeb")}</h2>
                 </div>
-                <p className="text-[#6E6E73] text-sm leading-relaxed">
+                <p className="text-[#A1A1A6] text-sm leading-relaxed">
                   {t("services.webDesc")}
                 </p>
                 <div className="space-y-3.5 pt-2">
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.webF1")}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.webF2")}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.webF3")}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.webF4")}</span>
                   </div>
                 </div>
               </div>
               
-              <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
+              <div className="pt-8 border-t border-white/10 mt-8 flex items-center justify-between">
                 <div>
                   <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.startingFrom")}</span>
-                  <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("web")}</span>
+                  <span className="text-xl font-bold text-[#F5F5F7]">{getPrice("web")}</span>
                 </div>
                 <button
                   type="button"
-                  onClick={() => handlePurchase(language === "EN" ? "Website Creation" : "Création de Site Web", "web")}
+                  onClick={() => handlePurchase(t("nav.serviceWeb"), "web")}
                   className="btn-primary"
                 >
                   <span>{t("services.orderNow")}</span>
@@ -182,46 +165,46 @@ export default function Services() {
 
           {/* Service 2: AI Photo shooting */}
           <TiltCard className="h-full">
-            <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item h-full">
+            <div className="glass-card bg-[#121212]/80 rounded-2xl p-8 flex flex-col justify-between border border-white/10 hover:bg-[#0A0A0A] hover:shadow-xl transition-all duration-300 stagger-item h-full">
               <div className="space-y-6">
-                <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
-                  <Camera className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white">
+                  <Mail className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
                   <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s02")}</span>
-                  <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "AI Photo Shooting" : "Séance Photo IA"}</h2>
+                  <h2 className="text-2xl font-bold text-[#F5F5F7]">{t("nav.servicePhoto")}</h2>
                 </div>
-                <p className="text-[#6E6E73] text-sm leading-relaxed">
+                <p className="text-[#A1A1A6] text-sm leading-relaxed">
                   {t("services.photoDesc")}
                 </p>
                 <div className="space-y-3.5 pt-2">
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.photoF1")}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.photoF2")}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.photoF3")}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.photoF4")}</span>
                   </div>
                 </div>
               </div>
               
-              <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
+              <div className="pt-8 border-t border-white/10 mt-8 flex items-center justify-between">
                 <div>
                   <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.totalPackage")}</span>
-                  <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("photo")}</span>
+                  <span className="text-xl font-bold text-[#F5F5F7]">{getPrice("photo")}</span>
                 </div>
                 <button
                   type="button"
-                  onClick={() => handlePurchase(language === "EN" ? "AI Photo Shooting" : "Séance Photo IA", "photo", language === "EN" ? "Pack of 45 AI HD Photos" : "Pack de 45 Photos IA HD")}
+                  onClick={() => handlePurchase(t("nav.servicePhoto"), "photo")}
                   className="btn-primary"
                 >
                   <span>{t("services.bookShoot")}</span>
@@ -233,70 +216,46 @@ export default function Services() {
 
           {/* Service 3: Video Production */}
           <TiltCard className="h-full">
-            <div className="glass-card bg-[#F5F5F7]/80 rounded-2xl p-8 flex flex-col justify-between border border-black/5 hover:bg-white hover:shadow-xl transition-all duration-300 stagger-item h-full">
+            <div className="glass-card bg-[#121212]/80 rounded-2xl p-8 flex flex-col justify-between border border-white/10 hover:bg-[#0A0A0A] hover:shadow-xl transition-all duration-300 stagger-item h-full">
               <div className="space-y-6">
-                <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
-                  <Video className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white">
+                  <Target className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
                   <span className="text-xs font-semibold text-[#0071E3] tracking-wider block">{t("services.s03")}</span>
-                  <h2 className="text-2xl font-bold text-[#1D1D1F]">{language === "EN" ? "Video Production" : "Production Vidéo"}</h2>
+                  <h2 className="text-2xl font-bold text-[#F5F5F7]">{t("nav.serviceVideo")}</h2>
                 </div>
-                <p className="text-[#6E6E73] text-sm leading-relaxed">
+                <p className="text-[#A1A1A6] text-sm leading-relaxed">
                   {t("services.videoDesc")}
                 </p>
-                
-                {/* Volume selector */}
-                <div className="space-y-2 pt-1">
-                  <span className="text-[11px] text-[#6E6E73] block font-semibold uppercase tracking-wider">
-                    {language === "EN" ? "Select Video Batch Volume" : "Sélectionner le volume d'envoi"}
-                  </span>
-                  <div className="grid grid-cols-4 gap-1 bg-black/5 p-0.5 rounded-lg text-center text-[11px]">
-                    {[1, 2, 3, 4].map((v) => (
-                      <button
-                        key={v}
-                        type="button"
-                        onClick={() => setVideoVolume(v as any)}
-                        className={`py-1 rounded cursor-pointer ${
-                          videoVolume === v ? "bg-black text-white" : "text-[#6E6E73] hover:text-black font-medium"
-                        }`}
-                      >
-                        {v} Video{v > 1 ? "s" : ""}
-                      </button>
-                    ))}
-                  </div>
-                </div>
 
-                <div className="space-y-3.5">
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                <div className="space-y-3.5 pt-2">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.videoF1")}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.videoF2")}</span>
                   </div>
-                  <div className="flex items-center gap-2.5 text-xs text-[#6E6E73]">
+                  <div className="flex items-center gap-2.5 text-xs text-[#A1A1A6]">
                     <Check className="w-4 h-4 text-[#0071E3] shrink-0" />
                     <span>{t("services.videoF3")}</span>
                   </div>
                 </div>
               </div>
               
-              <div className="pt-8 border-t border-black/5 mt-8 flex items-center justify-between">
+              <div className="pt-8 border-t border-white/10 mt-8 flex items-center justify-between">
                 <div>
                   <span className="block text-[10px] text-[#86868B] uppercase tracking-wider font-semibold">{t("services.totalCost")}</span>
-                  <span className="text-xl font-bold text-[#1D1D1F]">{getPrice("video")}</span>
-                  {getVideoSavings() && (
-                    <span className="block text-[9px] text-[#00a86b] font-bold tracking-tight">{getVideoSavings()}</span>
-                  )}
+                  <span className="text-xl font-bold text-[#F5F5F7]">{getPrice("video")}</span>
                 </div>
                 <button
                   type="button"
-                  onClick={() => handlePurchase(language === "EN" ? "Video Production" : "Production Vidéo", "video", language === "EN" ? `${videoVolume} high resolution videos` : `${videoVolume} vidéos haute résolution`)}
+                  onClick={() => handlePurchase(t("nav.serviceVideo"), "video")}
                   className="btn-primary"
                 >
-                  <span>{t("services.orderVideos")}</span>
+                  <span>{t("services.orderNow")}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -306,9 +265,9 @@ export default function Services() {
         </div>
 
         {/* Contact CTA */}
-        <div className="bg-[#F5F5F7] rounded-3xl p-8 md:p-12 text-center space-y-4 border border-black/5">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#1D1D1F]">{t("services.customHeading")}</h2>
-          <p className="text-[#6E6E73] text-sm max-w-xl mx-auto">
+        <div className="bg-[#121212] rounded-3xl p-8 md:p-12 text-center space-y-4 border border-white/10">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#F5F5F7]">{t("services.customHeading")}</h2>
+          <p className="text-[#A1A1A6] text-sm max-w-xl mx-auto">
             {t("services.customSub")}
           </p>
           <div className="pt-2">

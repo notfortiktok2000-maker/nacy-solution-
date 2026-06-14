@@ -109,19 +109,19 @@ export default function Checkout() {
   // If no product in sessionStorage, show elegant blank state
   if (!product) {
     return (
-      <div className="min-h-screen bg-white text-[#1D1D1F] flex items-center justify-center px-6 pt-24 pb-12">
+      <div className="min-h-screen bg-black text-[#F5F5F7] flex items-center justify-center px-6 pt-24 pb-12">
         <Helmet>
           <title>{language === "EN" ? "Session Expired" : "Session Expirée"} | NACY ST Checkout</title>
           <meta name="robots" content="noindex, nofollow" />
         </Helmet>
         
-        <div className="max-w-md w-full bg-[#F5F5F7] border border-black/5 rounded-3xl p-8 text-center space-y-6 shadow-sm">
+        <div className="max-w-md w-full bg-[#121212] border border-white/10 rounded-3xl p-8 text-center space-y-6 shadow-sm">
           <div className="w-12 h-12 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto text-red-500">
             <AlertTriangle className="w-6 h-6" />
           </div>
           <div className="space-y-2">
-            <h2 className="font-bold text-xl text-[#1D1D1F]">{t("checkout.emptyTitle")}</h2>
-            <p className="text-sm text-[#6E6E73] leading-relaxed">
+            <h2 className="font-bold text-xl text-[#F5F5F7]">{t("checkout.emptyTitle")}</h2>
+            <p className="text-sm text-[#A1A1A6] leading-relaxed">
               {t("checkout.emptySub")}
             </p>
           </div>
@@ -138,7 +138,7 @@ export default function Checkout() {
   }
 
   return (
-    <div className="min-h-screen bg-white pt-28 pb-16 px-6 md:px-12 text-[#1D1D1F] font-inter">
+    <div className="min-h-screen bg-[#0A0A0A] pt-28 pb-16 px-6 md:px-12 text-[#F5F5F7] font-inter">
       <Helmet>
         <title>{t("checkout.metaTitle")}</title>
         <meta name="robots" content="noindex, nofollow" />
@@ -158,7 +158,7 @@ export default function Checkout() {
         {/* Header Title */}
         <div className="space-y-1">
           <span className="font-semibold text-xs text-[#0071E3] uppercase tracking-widest block">{t("checkout.summaryBadge")}</span>
-          <h1 className="font-bold text-3xl md:text-4xl text-[#1D1D1F]">{t("checkout.heading")}</h1>
+          <h1 className="font-bold text-3xl md:text-4xl text-[#F5F5F7]">{t("checkout.heading")}</h1>
         </div>
 
         {/* Main Columns */}
@@ -166,16 +166,16 @@ export default function Checkout() {
           
           {/* Left Column: Product Info (Col Span 5) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-[#F5F5F7] border border-black/5 rounded-3xl p-6 md:p-8 space-y-6 shadow-sm">
-              <h2 className="font-semibold text-lg text-[#1D1D1F] border-b border-black/5 pb-3">{t("checkout.packDetails")}</h2>
+            <div className="bg-[#121212] border border-white/10 rounded-3xl p-6 md:p-8 space-y-6 shadow-sm">
+              <h2 className="font-semibold text-lg text-[#F5F5F7] border-b border-white/10 pb-3">{t("checkout.packDetails")}</h2>
               
               {/* Service Circle logo & Name */}
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center text-black">
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-white">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-base text-[#1D1D1F]">{product.name}</h3>
+                  <h3 className="font-bold text-base text-[#F5F5F7]">{product.name}</h3>
                   <span className="inline-block bg-[#0071E3]/10 border border-[#0071E3]/20 text-[#0071E3] text-[10px] uppercase font-bold px-2 py-0.5 rounded-full mt-1">
                     {product.tierName || (language === "EN" ? "Standard Offer" : "Offre Standard")}
                   </span>
@@ -183,10 +183,10 @@ export default function Checkout() {
               </div>
 
               {/* Service pricing items table layout */}
-              <div className="space-y-2.5 text-xs text-[#6E6E73] pt-2">
+              <div className="space-y-2.5 text-xs text-[#A1A1A6] pt-2">
                 <div className="flex justify-between">
                   <span>{t("checkout.basePrestation")}</span>
-                  <span className="text-[#1D1D1F] font-semibold">
+                  <span className="text-[#F5F5F7] font-semibold">
                     {product.price} {product.currency === "EUR" ? "€" : product.currency === "USD" ? "$" : "MAD"}
                   </span>
                 </div>
@@ -198,8 +198,8 @@ export default function Checkout() {
                   <span>{t("checkout.fees")}</span>
                   <span className="text-[#00a86b] font-semibold">0.00 MAD</span>
                 </div>
-                <div className="h-px bg-black/5 my-2" />
-                <div className="flex justify-between text-sm font-semibold text-[#1D1D1F]">
+                <div className="h-px bg-white/5 my-2" />
+                <div className="flex justify-between text-sm font-semibold text-[#F5F5F7]">
                   <span>{t("checkout.totalDue")}</span>
                   <span className="text-[#0071E3] text-lg font-bold">
                     {product.price} {product.currency === "EUR" ? "€" : product.currency === "USD" ? "$" : "MAD"}
@@ -207,7 +207,7 @@ export default function Checkout() {
                 </div>
               </div>
 
-              <div className="bg-white/40 border border-black/5 p-4 rounded-xl text-center">
+              <div className="bg-[#0A0A0A]/40 border border-white/10 p-4 rounded-xl text-center">
                 <p className="text-[11px] text-[#86868B] italic leading-relaxed">
                   &ldquo;{t("checkout.disclaimer")}&rdquo;
                 </p>
@@ -217,8 +217,8 @@ export default function Checkout() {
 
           {/* Right Column: User Data Form (Col Span 7) */}
           <div className="lg:col-span-7">
-            <div className="bg-[#F5F5F7] border border-black/5 rounded-3xl p-6 md:p-8 space-y-6 shadow-sm">
-              <h2 className="font-semibold text-lg text-[#1D1D1F] border-b border-black/5 pb-3">{t("checkout.billingDetails")}</h2>
+            <div className="bg-[#121212] border border-white/10 rounded-3xl p-6 md:p-8 space-y-6 shadow-sm">
+              <h2 className="font-semibold text-lg text-[#F5F5F7] border-b border-white/10 pb-3">{t("checkout.billingDetails")}</h2>
               
               {errorMsg && (
                 <div className="bg-red-500/10 border border-red-500/25 p-4 rounded-xl text-xs text-red-600 flex items-center gap-3">
@@ -232,7 +232,7 @@ export default function Checkout() {
                 {/* Name fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("contact.formFirstName")} *</label>
+                    <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("contact.formFirstName")} *</label>
                     <div className="relative">
                       <User className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                       <input
@@ -242,12 +242,12 @@ export default function Checkout() {
                         value={formData.prenom}
                         onChange={handleInputChange}
                         placeholder="e.g. John"
-                        className="w-full bg-white border border-black/10 rounded-lg py-2.5 pl-9 pr-4 text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] text-xs"
+                        className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg py-2.5 pl-9 pr-4 text-[#F5F5F7] focus:outline-none focus:border-[#0071E3] text-xs"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("contact.formLastName")} *</label>
+                    <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("contact.formLastName")} *</label>
                     <div className="relative">
                       <User className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                       <input
@@ -257,7 +257,7 @@ export default function Checkout() {
                         value={formData.nom}
                         onChange={handleInputChange}
                         placeholder="e.g. Doe"
-                        className="w-full bg-white border border-black/10 rounded-lg py-2.5 pl-9 pr-4 text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] text-xs"
+                        className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg py-2.5 pl-9 pr-4 text-[#F5F5F7] focus:outline-none focus:border-[#0071E3] text-xs"
                       />
                     </div>
                   </div>
@@ -265,7 +265,7 @@ export default function Checkout() {
 
                 {/* WhatsApp Phone */}
                 <div>
-                  <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("checkout.phoneLabel")} *</label>
+                  <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.phoneLabel")} *</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                     <input
@@ -275,14 +275,14 @@ export default function Checkout() {
                       value={formData.tel}
                       onChange={handleInputChange}
                       placeholder="e.g. +212612345678"
-                      className="w-full bg-white border border-black/10 rounded-lg py-2.5 pl-9 pr-4 text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] text-xs"
+                      className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg py-2.5 pl-9 pr-4 text-[#F5F5F7] focus:outline-none focus:border-[#0071E3] text-xs"
                     />
                   </div>
                 </div>
 
                 {/* Street Address */}
                 <div>
-                  <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("checkout.addressLabel")} *</label>
+                  <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.addressLabel")} *</label>
                   <div className="relative">
                     <MapPin className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                     <input
@@ -292,7 +292,7 @@ export default function Checkout() {
                       value={formData.adresse}
                       onChange={handleInputChange}
                       placeholder={t("checkout.addressPlaceholder")}
-                      className="w-full bg-white border border-black/10 rounded-lg py-2.5 pl-9 pr-4 text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] text-xs"
+                      className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg py-2.5 pl-9 pr-4 text-[#F5F5F7] focus:outline-none focus:border-[#0071E3] text-xs"
                     />
                   </div>
                 </div>
@@ -300,7 +300,7 @@ export default function Checkout() {
                 {/* Ville & Code Postal */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("checkout.cityLabel")} *</label>
+                    <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.cityLabel")} *</label>
                     <input
                       type="text"
                       name="ville"
@@ -308,11 +308,11 @@ export default function Checkout() {
                       value={formData.ville}
                       onChange={handleInputChange}
                       placeholder="e.g. Tangier"
-                      className="w-full bg-white border border-black/10 rounded-lg py-2.5 px-3 text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] text-xs"
+                      className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg py-2.5 px-3 text-[#F5F5F7] focus:outline-none focus:border-[#0071E3] text-xs"
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#6E6E73] uppercase mb-1.5 tracking-wider">{t("checkout.postalLabel")} *</label>
+                    <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.postalLabel")} *</label>
                     <input
                       type="text"
                       name="cp"
@@ -320,7 +320,7 @@ export default function Checkout() {
                       value={formData.cp}
                       onChange={handleInputChange}
                       placeholder="e.g. 90000"
-                      className="w-full bg-white border border-black/10 rounded-lg py-2.5 px-3 text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] text-xs"
+                      className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg py-2.5 px-3 text-[#F5F5F7] focus:outline-none focus:border-[#0071E3] text-xs"
                     />
                   </div>
                 </div>
@@ -348,7 +348,7 @@ export default function Checkout() {
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             <span>{t("checkout.badgeSecure")}</span>
           </div>
-          <div className="hidden sm:block h-4 w-px bg-black/10" />
+          <div className="hidden sm:block h-4 w-px bg-white/10" />
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             <span>{t("checkout.badgeAssistance")}</span>

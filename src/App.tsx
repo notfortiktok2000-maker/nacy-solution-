@@ -2,7 +2,6 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import WhyUs from './pages/WhyUs';
-import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import Checkout from './pages/Checkout';
 import NotFound from './pages/NotFound';
@@ -22,7 +21,7 @@ export default function App() {
 
 function AppContent() {
   return (
-    <div className="flex flex-col min-h-screen bg-white text-[#1D1D1F] font-inter selection:bg-[#0071E3] selection:text-white relative overflow-hidden animate-page-enter">
+    <div className="flex flex-col min-h-screen bg-black text-[#F5F5F7] font-inter selection:bg-[#0071E3] selection:text-white relative overflow-hidden animate-page-enter">
       <ScrollToTop />
       {/* Global Minimalist Light Background elements */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
@@ -40,7 +39,6 @@ function AppContent() {
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/why-us" element={<WhyUs />} />
-            <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="*" element={<NotFound />} />

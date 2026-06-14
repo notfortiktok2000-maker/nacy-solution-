@@ -9,12 +9,12 @@ export function LanguageToggle() {
   const { language, setLanguage } = useTranslation();
 
   return (
-    <div className="relative inline-flex bg-black/[0.04] p-0.5 rounded-full border border-black/[0.03] select-none shrink-0" id="lang-switch-capsule">
+    <div className="relative inline-flex bg-white/[0.04] p-0.5 rounded-full border border-white/[0.03] select-none shrink-0" id="lang-switch-capsule">
       <button
         type="button"
         onClick={() => setLanguage("EN")}
         className={`relative z-10 py-1 px-3 text-[11px] font-bold tracking-wider rounded-full select-none cursor-pointer transition-colors duration-200 ${
-          language === "EN" ? "text-white" : "text-[#6E6E73] hover:text-black"
+          language === "EN" ? "text-white" : "text-[#A1A1A6] hover:text-white"
         }`}
       >
         {language === "EN" && (
@@ -30,7 +30,7 @@ export function LanguageToggle() {
         type="button"
         onClick={() => setLanguage("FR")}
         className={`relative z-10 py-1 px-3 text-[11px] font-bold tracking-wider rounded-full select-none cursor-pointer transition-colors duration-200 ${
-          language === "FR" ? "text-white" : "text-[#6E6E73] hover:text-black"
+          language === "FR" ? "text-white" : "text-[#A1A1A6] hover:text-white"
         }`}
       >
         {language === "FR" && (
@@ -103,7 +103,6 @@ export default function Navbar() {
   const navLinks = [
     { label: "Services", href: "/services", key: "nav.services" },
     { label: "Why Us", href: "/why-us", key: "nav.whyUs" },
-    { label: "Pricing", href: "/pricing", key: "nav.pricing" },
     { label: "Contact", href: "/contact", key: "nav.contact" },
   ];
 
@@ -113,8 +112,8 @@ export default function Navbar() {
         id="app-navbar"
         className={`fixed top-0 left-0 w-full h-[72px] z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-300 animate-navbar-slide-down ${
           isScrolled
-            ? "bg-white/80 border-b border-black/5 backdrop-blur-[14px] shadow-sm"
-            : "bg-white/40 border-b border-transparent backdrop-blur-[4px]"
+            ? "bg-black/80 border-b border-white/30 backdrop-blur-[14px] shadow-sm"
+            : "bg-black/40 border-b border-transparent backdrop-blur-[4px]"
         }`}
       >
         {/* Left Logo */}
@@ -131,12 +130,12 @@ export default function Navbar() {
                 key={link.label}
                 to={link.href}
                 className={`font-poppins font-medium text-[14px] transition-colors relative py-1 ${
-                  isActive ? "text-black font-semibold" : "text-[#6E6E73] hover:text-black"
+                  isActive ? "text-white font-semibold" : "text-[#A1A1A6] hover:text-white"
                 }`}
               >
                 {t(link.key)}
                 {isActive && (
-                  <span className="absolute bottom-[-4px] left-0 w-full h-0.5 bg-black rounded" />
+                  <span className="absolute bottom-[-4px] left-0 w-full h-0.5 bg-[#121212] rounded" />
                 )}
               </Link>
             );
@@ -164,12 +163,12 @@ export default function Navbar() {
             id="mobile-nav-toggle"
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-1.5 rounded-full border border-black/10 bg-black/5 hover:bg-black/10 transition-colors"
+            className="p-1.5 rounded-full border border-white/30 bg-white/5 hover:bg-white/10 transition-colors"
           >
             {isMobileMenuOpen ? (
-              <X className="w-5 h-5 text-black" />
+              <X className="w-5 h-5 text-white" />
             ) : (
-              <Menu className="w-5 h-5 text-black" />
+              <Menu className="w-5 h-5 text-white" />
             )}
           </button>
         </div>
@@ -177,7 +176,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-y-0 left-0 w-full bg-white z-[45] pt-24 px-8 flex flex-col justify-start gap-8 animate-fadeIn md:hidden">
+        <div className="fixed inset-y-0 left-0 w-full bg-[#0A0A0A] z-[45] pt-24 px-8 flex flex-col justify-start gap-8 animate-fadeIn md:hidden">
           <div className="flex flex-col gap-6">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.href;
@@ -187,7 +186,7 @@ export default function Navbar() {
                   to={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`font-poppins text-lg font-semibold py-1 block ${
-                    isActive ? "text-black" : "text-[#6E6E73]"
+                    isActive ? "text-white" : "text-[#A1A1A6]"
                   }`}
                 >
                   {t(link.key)}
@@ -196,17 +195,17 @@ export default function Navbar() {
             })}
           </div>
 
-          <div className="w-full h-px bg-black/5" />
+          <div className="w-full h-px bg-white/5" />
 
           {/* Language selection info on mobile */}
           <div className="flex items-center justify-between py-1">
-            <span className="font-poppins font-semibold text-sm text-[#6E6E73]">
+            <span className="font-poppins font-semibold text-sm text-[#A1A1A6]">
               {language === "EN" ? "Language" : "Langue"}
             </span>
             <LanguageToggle />
           </div>
 
-          <div className="w-full h-px bg-black/5" />
+          <div className="w-full h-px bg-white/5" />
 
           <button
             type="button"
@@ -227,15 +226,15 @@ export default function Navbar() {
         <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
           {/* Backdrop */}
           <div
-            className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+            className="absolute inset-0 bg-white/30 backdrop-blur-sm"
             onClick={() => setIsModalOpen(false)}
           />
 
           {/* Modal Content */}
-          <div className="relative w-full max-w-lg bg-white p-8 border border-black/10 rounded-3xl animate-scaleIn shadow-2xl z-10 text-[#1D1D1F]">
+          <div className="relative w-full max-w-lg bg-[#0A0A0A] p-8 border border-white/30 rounded-3xl animate-scaleIn shadow-2xl z-10 text-[#F5F5F7]">
             <button
               type="button"
-              className="absolute top-4 right-4 text-[#6E6E73] hover:text-black p-1 rounded-full bg-black/5 transition-colors"
+              className="absolute top-4 right-4 text-[#A1A1A6] hover:text-white p-1 rounded-full bg-white/5 transition-colors"
               onClick={() => setIsModalOpen(false)}
             >
               <X className="w-5 h-5" />
@@ -247,7 +246,7 @@ export default function Navbar() {
             <h3 className="font-poppins font-bold text-2xl mb-4 leading-tight">
               {t("nav.quoteSubtitle")}
             </h3>
-            <p className="text-[#6E6E73] text-sm mb-6 font-inter">
+            <p className="text-[#A1A1A6] text-sm mb-6 font-inter">
               {t("nav.quoteDescription")}
             </p>
 
@@ -256,15 +255,15 @@ export default function Navbar() {
                  <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
                    <Check className="w-8 h-8 text-emerald-600 animate-pulse" />
                  </div>
-                 <h4 className="font-poppins font-bold text-lg text-black">{t("nav.quoteComplete")}</h4>
-                 <p className="text-[#6E6E73] text-sm max-w-xs font-inter font-medium">
+                 <h4 className="font-poppins font-bold text-lg text-white">{t("nav.quoteComplete")}</h4>
+                 <p className="text-[#A1A1A6] text-sm max-w-xs font-inter font-medium">
                    {t("nav.quoteSuccessMsg")}
                  </p>
                </div>
             ) : (
               <form onSubmit={handleModalSubmit} className="space-y-4 font-inter text-sm">
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-[#6E6E73] mb-1.5 tracking-wider">
+                  <label className="block text-xs font-semibold uppercase text-[#A1A1A6] mb-1.5 tracking-wider">
                     {t("nav.fullName")}
                   </label>
                   <input
@@ -273,12 +272,12 @@ export default function Navbar() {
                     value={modalName}
                     onChange={(e) => setModalName(e.target.value)}
                     placeholder={t("nav.fullNamePlaceholder")}
-                    className="w-full bg-black/5 border border-black/10 rounded-lg py-2.5 px-4 text-black text-xs focus:outline-none focus:border-[#0071E3] transition-colors"
+                    className="w-full bg-white/5 border border-white/30 rounded-lg py-2.5 px-4 text-white text-xs focus:outline-none focus:border-[#0071E3] transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-[#6E6E73] mb-1.5 tracking-wider">
+                  <label className="block text-xs font-semibold uppercase text-[#A1A1A6] mb-1.5 tracking-wider">
                     {t("nav.emailAddress")}
                   </label>
                   <input
@@ -287,18 +286,18 @@ export default function Navbar() {
                     value={modalEmail}
                     onChange={(e) => setModalEmail(e.target.value)}
                     placeholder={t("nav.emailAddressPlaceholder")}
-                    className="w-full bg-black/5 border border-black/10 rounded-lg py-2.5 px-4 text-black text-xs focus:outline-none focus:border-[#0071E3] transition-colors"
+                    className="w-full bg-white/5 border border-white/30 rounded-lg py-2.5 px-4 text-white text-xs focus:outline-none focus:border-[#0071E3] transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-[#6E6E73] mb-1.5 tracking-wider">
+                  <label className="block text-xs font-semibold uppercase text-[#A1A1A6] mb-1.5 tracking-wider">
                     {t("nav.preferredService")}
                   </label>
                   <select
                     value={modalService}
                     onChange={(e) => setModalService(e.target.value)}
-                    className="w-full bg-white border border-black/10 rounded-lg py-2.5 px-3 text-black text-xs focus:outline-none focus:border-[#0071E3] transition-colors"
+                    className="w-full bg-[#0A0A0A] border border-white/30 rounded-lg py-2.5 px-3 text-white text-xs focus:outline-none focus:border-[#0071E3] transition-colors"
                   >
                     <option value="Website Creation">{t("nav.serviceWeb")}</option>
                     <option value="AI Photo Shooting">{t("nav.servicePhoto")}</option>
@@ -308,7 +307,7 @@ export default function Navbar() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase text-[#6E6E73] mb-1.5 tracking-wider">
+                  <label className="block text-xs font-semibold uppercase text-[#A1A1A6] mb-1.5 tracking-wider">
                     {t("nav.projectDetails")}
                   </label>
                   <textarea
@@ -317,7 +316,7 @@ export default function Navbar() {
                     value={modalMsg}
                     onChange={(e) => setModalMsg(e.target.value)}
                     placeholder={t("nav.detailsPlaceholder")}
-                    className="w-full bg-black/5 border border-black/10 rounded-lg py-2 px-3 text-black text-xs focus:outline-none focus:border-[#0071E3] transition-colors resize-none"
+                    className="w-full bg-white/5 border border-white/30 rounded-lg py-2 px-3 text-white text-xs focus:outline-none focus:border-[#0071E3] transition-colors resize-none"
                   />
                 </div>
 

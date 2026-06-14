@@ -21,7 +21,7 @@ export default function WhatsAppWidget() {
     >
       {/* Tooltip popping to the left */}
       <div 
-        className={`bg-[#1D1D1F] text-white text-[11px] font-medium tracking-wide font-poppins px-3.5 py-1.5 rounded-full shadow-lg transition-all duration-300 select-none pointer-events-none translate-x-2 ${
+        className={`bg-[#F5F5F7] text-[#0A0A0A] text-[11px] font-medium tracking-wide font-poppins px-3.5 py-1.5 rounded-full shadow-lg transition-all duration-300 select-none pointer-events-none translate-x-2 ${
           showTooltip ? "opacity-100 -translate-x-0" : "opacity-0 invisible"
         }`}
       >

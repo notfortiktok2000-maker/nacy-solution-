@@ -8,13 +8,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#1D1D1F] border-t border-black/10 pt-16 pb-8 px-6 md:px-12 text-white font-inter">
+    <footer className="bg-[#0A0A0A] border-t border-white/30 pt-16 pb-8 px-6 md:px-12 text-white font-inter">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
         
         {/* Brand Column */}
         <div className="space-y-4">
           <div className="flex items-center">
-            <Logo className="h-8 w-auto" isLight={true} />
+            <Logo className="h-8 w-auto" />
           </div>
           <p className="text-[#86868B] text-sm leading-relaxed max-w-xs">
             {t("footer.desc")}
@@ -89,12 +89,6 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/pricing" className="hover:text-white transition-colors gap-2 inline-flex items-center">
-                <span>{language === "EN" ? "Multi-Currency Pricing" : "Tarifs Multi-Devises"}</span>
-                <span className="text-[9px] bg-[#0071E3] text-white px-1.5 py-0.5 rounded-full uppercase scale-90">Live</span>
-              </Link>
-            </li>
-            <li>
               <Link to="/contact" className="hover:text-white transition-colors">
                 {language === "EN" ? "Free Consultation" : "Consultation Gratuite"}
               </Link>
@@ -140,7 +134,7 @@ export default function Footer() {
       </div>
 
       {/* Dividers & Bottom bar */}
-      <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#86868B]">
+      <div className="max-w-7xl mx-auto pt-8 border-t border-white/30 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#86868B]">
         <p>
           &copy; {currentYear} NACY ST. {t("footer.allRights")}
         </p>

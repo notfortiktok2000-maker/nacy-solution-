@@ -64,7 +64,7 @@ export default function WhyUs() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-[#1D1D1F] pt-28 pb-20 px-6 md:px-12">
+    <div className="min-h-screen bg-black text-[#F5F5F7] pt-28 pb-20 px-6 md:px-12">
       <Helmet>
         <title>{t("why.metaTitle")}</title>
         <meta name="description" content={t("why.metaDesc")} />
@@ -76,10 +76,10 @@ export default function WhyUs() {
           <span className="font-poppins font-semibold text-xs tracking-widest text-[#0071E3] uppercase block">
             {t("why.badge")}
           </span>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#1D1D1F] font-poppins">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#F5F5F7] font-poppins">
             {t("why.heading")}
           </h1>
-          <p className="text-[#6E6E73] text-base leading-relaxed font-inter font-medium max-w-lg mx-auto">
+          <p className="text-[#A1A1A6] text-base leading-relaxed font-inter font-medium max-w-lg mx-auto">
             {t("why.sub")}
           </p>
         </div>
@@ -91,16 +91,16 @@ export default function WhyUs() {
               key={pillar.id}
               ref={(el) => { cardRefs.current[pillar.id] = el; }}
               data-index={pillar.id}
-              className={`card-3d-item bg-[#F5F5F7]/85 p-8 rounded-3xl border border-black/5 flex gap-5 select-none ${
+              className={`card-3d-item bg-[#121212]/85 p-8 rounded-3xl border border-white/10 flex gap-5 select-none ${
                 visibleCards[pillar.id] ? "is-visible" : ""
               }`}
             >
-              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 border border-black/5 text-[#0071E3] shadow-sm transform transition-transform duration-300 group-hover:scale-110">
+              <div className="w-12 h-12 rounded-full bg-[#1A1A1A] flex items-center justify-center shrink-0 border border-white/10 text-[#0071E3] shadow-sm transform transition-transform duration-300 group-hover:scale-110">
                 {pillar.icon}
               </div>
               <div className="space-y-2">
-                <h3 className="font-extrabold text-lg text-[#1D1D1F] font-poppins">{pillar.title}</h3>
-                <p className="text-[#6E6E73] text-sm leading-relaxed font-inter font-medium">
+                <h3 className="font-extrabold text-lg text-[#F5F5F7] font-poppins">{pillar.title}</h3>
+                <p className="text-[#A1A1A6] text-sm leading-relaxed font-inter font-medium">
                   {pillar.desc}
                 </p>
               </div>
@@ -109,12 +109,12 @@ export default function WhyUs() {
         </div>
 
         {/* Summary Table or Quote Block */}
-        <div className="border border-black/10 rounded-2xl p-8 bg-white space-y-6 reveal-element">
-          <div className="border-l-4 border-black pl-5">
-            <p className="text-xl italic text-[#1D1D1F] font-semibold leading-relaxed">
+        <div className="border border-white/10 rounded-2xl p-8 bg-[#121212] space-y-6 reveal-element">
+          <div className="border-l-4 border-white pl-5">
+            <p className="text-xl italic text-[#F5F5F7] font-semibold leading-relaxed">
               {t("why.quote")}
             </p>
-            <span className="block mt-3 text-xs font-bold uppercase tracking-wider text-[#6E6E73]">
+            <span className="block mt-3 text-xs font-bold uppercase tracking-wider text-[#A1A1A6]">
               {t("why.quoteAuthor")}
             </span>
           </div>

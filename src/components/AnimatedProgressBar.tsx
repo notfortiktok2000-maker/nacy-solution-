@@ -40,12 +40,12 @@ export default function AnimatedProgressBar({ label, percentage, suffix = "%" }:
   return (
     <div ref={elementRef} className="space-y-2 w-full text-left">
       <div className="flex justify-between items-center text-xs font-semibold">
-        <span className="text-[#1D1D1F] uppercase tracking-wider">{label}</span>
+        <span className="text-[#F5F5F7] uppercase tracking-wider">{label}</span>
         <span className="text-[#0071E3] font-mono">{width}{suffix}</span>
       </div>
       
       {/* Outer track */}
-      <div className="relative w-full h-3 bg-black/[0.04] rounded-full overflow-hidden border border-black/[0.02]">
+      <div className="relative w-full h-3 bg-white/[0.04] rounded-full overflow-hidden border border-white/[0.02]">
         {/* Inner fill */}
         <div
           style={{
