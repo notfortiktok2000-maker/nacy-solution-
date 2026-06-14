@@ -18,28 +18,27 @@ export default function Contact() {
     e.preventDefault();
     setIsFormSending(true);
 
-    const formattedMessage = `New Inquiry — NACY ST%0A` +
-      `Client: *${firstName} ${lastName}*%0A` +
-      `WhatsApp: ${phone}%0A` +
-      `Email: ${email}%0A` +
-      `Requested Service: *${service}*%0A` +
-      `Message: ${message}%0A` +
-      `Date: ${new Date().toLocaleDateString("en-US")}`;
+    const formattedMessage = encodeURIComponent(
+      `New Inquiry — NACY ST\n` +
+      `Client: *${firstName} ${lastName}*\n` +
+      `WhatsApp: ${phone}\n` +
+      `Email: ${email}\n` +
+      `Requested Service: *${service}*\n` +
+      `Message: ${message}\n` +
+      `Date: ${new Date().toLocaleDateString("en-US")}`
+    );
 
-    setTimeout(() => {
-      setIsFormSending(false);
-      setFormSuccess(true);
-      
-      // Open WhatsApp Link in new tab securely
-      window.open(`https://wa.me/212710900502?text=${formattedMessage}`, "_blank", "noopener,noreferrer");
-      
-      // Reset form
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhone("");
-      setMessage("");
-    }, 1200);
+    // Open WhatsApp Link in same tab securely
+    window.location.href = `https://wa.me/212710900502?text=${formattedMessage}`;
+
+    // Reset form
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhone("");
+    setMessage("");
+    setIsFormSending(false);
+    setFormSuccess(true);
   };
 
   return (
@@ -201,7 +200,7 @@ export default function Contact() {
                 disabled={isFormSending}
                 className="w-full btn-primary justify-center text-xs py-3.5 mt-4 disabled:opacity-50"
               >
-                {isFormSending ? t("contact.formSending") : t("contact.formSubmitBtn")}
+                {isFormSending ? (language === "EN" ? "Submitting..." : "En cours...") : (language === "EN" ? "Submit" : "Soumettre")}
               </button>
             </form>
           )}

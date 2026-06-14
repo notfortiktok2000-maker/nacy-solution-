@@ -17,9 +17,9 @@ export default function Logo({ className = "h-8 w-auto" }: LogoProps) {
       <text
         x="-1"
         y="26"
-        fill="#00F0FF" /* Cyan shadow */
+        fill="#00F0FF"
         fontWeight="800"
-        fontSize="24"
+        fontSize="25"
         letterSpacing="-0.035em"
         style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif', fontWeight: 900 }}
       >
@@ -28,9 +28,9 @@ export default function Logo({ className = "h-8 w-auto" }: LogoProps) {
       <text
         x="1.5"
         y="26"
-        fill="#FF003C" /* Red/Orange shadow */
+        fill="#FF003C"
         fontWeight="800"
-        fontSize="24"
+        fontSize="25"
         letterSpacing="-0.035em"
         style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif', fontWeight: 900 }}
       >
@@ -41,7 +41,7 @@ export default function Logo({ className = "h-8 w-auto" }: LogoProps) {
         y="26"
         fill="#FFFFFF"
         fontWeight="800"
-        fontSize="24"
+        fontSize="25"
         letterSpacing="-0.035em"
         style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif', fontWeight: 900 }}
       >

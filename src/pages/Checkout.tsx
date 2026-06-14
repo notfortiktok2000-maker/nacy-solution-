@@ -25,8 +25,7 @@ export default function Checkout() {
     nom: "",
     tel: "",
     adresse: "",
-    ville: "",
-    cp: ""
+    ville: ""
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -63,7 +62,7 @@ export default function Checkout() {
       !formData.tel || 
       !formData.adresse || 
       !formData.ville || 
-      !formData.cp
+      false
     ) {
       setErrorMsg(t("checkout.formFieldsErr"));
       return;
@@ -83,27 +82,21 @@ export default function Checkout() {
     const priceFormatted = `${product.price} ${currencySymbols[product.currency] || product.currency}`;
 
     // Build WhatsApp message content
-    const waMessage = 
-      `New Order — NACY ST%0A` +
-      `Client: *${formData.prenom} ${formData.nom}*%0A` +
-      `Product ordered: *${product.name}*%0A` +
-      `Tier Selection: ${product.tierName || "Standard"}%0A` +
-      `Total Price: ${priceFormatted}%0A` +
-      `Billing Address: ${formData.adresse}, ${formData.ville} [${formData.cp}]%0A` +
-      `WhatsApp: ${formData.tel}%0A` +
-      `Date: ${today}`;
+    const waMessage = encodeURIComponent(
+      `New Order — NACY ST\n` +
+      `Client: *${formData.prenom} ${formData.nom}*\n` +
+      `Product ordered: *${product.name}*\n` +
+      `WhatsApp: ${formData.tel}\n` +
+      `City: ${formData.ville} - Address: ${formData.adresse}\n` +
+      `Date: ${today}`
+    );
 
-    setTimeout(() => {
-      // Clear session so they don't double buy
-      sessionStorage.removeItem("nacy_selected_product");
-      setIsSubmitting(false);
-
-      // Open WA contact number thread in new tab securely
-      window.open(`https://wa.me/212710900502?text=${waMessage}`, "_blank", "noopener,noreferrer");
-      
-      // Navigate back home to reset flow nicely
-      navigate("/");
-    }, 1200);
+    // Open WA contact number thread in same tab (fixes popup blocker issues on mobile)
+    window.location.href = `https://wa.me/212710900502?text=${waMessage}`;
+    
+    // Clear session so they don't double buy
+    sessionStorage.removeItem("nacy_selected_product");
+    setIsSubmitting(false);
   };
 
   // If no product in sessionStorage, show elegant blank state
@@ -152,12 +145,12 @@ export default function Checkout() {
           className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#86868B] hover:text-[#0071E3] transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-          <span>{t("checkout.backBtn")}</span>
+          <span>{t("checkout.backServices")}</span>
         </Link>
 
         {/* Header Title */}
         <div className="space-y-1">
-          <span className="font-semibold text-xs text-[#0071E3] uppercase tracking-widest block">{t("checkout.summaryBadge")}</span>
+          <span className="font-semibold text-xs text-[#0071E3] uppercase tracking-widest block">{t("checkout.orderSummary")}</span>
           <h1 className="font-bold text-3xl md:text-4xl text-[#F5F5F7]">{t("checkout.heading")}</h1>
         </div>
 
@@ -167,7 +160,7 @@ export default function Checkout() {
           {/* Left Column: Product Info (Col Span 5) */}
           <div className="lg:col-span-5 space-y-6">
             <div className="bg-[#121212] border border-white/10 rounded-3xl p-6 md:p-8 space-y-6 shadow-sm">
-              <h2 className="font-semibold text-lg text-[#F5F5F7] border-b border-white/10 pb-3">{t("checkout.packDetails")}</h2>
+              <h2 className="font-semibold text-lg text-[#F5F5F7] border-b border-white/10 pb-3">{t("checkout.pkgDetails")}</h2>
               
               {/* Service Circle logo & Name */}
               <div className="flex items-center gap-4">
@@ -182,34 +175,9 @@ export default function Checkout() {
                 </div>
               </div>
 
-              {/* Service pricing items table layout */}
-              <div className="space-y-2.5 text-xs text-[#A1A1A6] pt-2">
-                <div className="flex justify-between">
-                  <span>{t("checkout.basePrestation")}</span>
-                  <span className="text-[#F5F5F7] font-semibold">
-                    {product.price} {product.currency === "EUR" ? "€" : product.currency === "USD" ? "$" : "MAD"}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span>{t("checkout.support")}</span>
-                  <span className="text-[#00a86b] font-semibold">{t("checkout.free")}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>{t("checkout.fees")}</span>
-                  <span className="text-[#00a86b] font-semibold">0.00 MAD</span>
-                </div>
-                <div className="h-px bg-white/5 my-2" />
-                <div className="flex justify-between text-sm font-semibold text-[#F5F5F7]">
-                  <span>{t("checkout.totalDue")}</span>
-                  <span className="text-[#0071E3] text-lg font-bold">
-                    {product.price} {product.currency === "EUR" ? "€" : product.currency === "USD" ? "$" : "MAD"}
-                  </span>
-                </div>
-              </div>
-
-              <div className="bg-[#0A0A0A]/40 border border-white/10 p-4 rounded-xl text-center">
+              <div className="bg-[#0A0A0A]/40 border border-white/10 p-4 rounded-xl text-center mt-6">
                 <p className="text-[11px] text-[#86868B] italic leading-relaxed">
-                  &ldquo;{t("checkout.disclaimer")}&rdquo;
+                  {t("checkout.quoteNote")}
                 </p>
               </div>
             </div>
@@ -218,7 +186,7 @@ export default function Checkout() {
           {/* Right Column: User Data Form (Col Span 7) */}
           <div className="lg:col-span-7">
             <div className="bg-[#121212] border border-white/10 rounded-3xl p-6 md:p-8 space-y-6 shadow-sm">
-              <h2 className="font-semibold text-lg text-[#F5F5F7] border-b border-white/10 pb-3">{t("checkout.billingDetails")}</h2>
+              <h2 className="font-semibold text-lg text-[#F5F5F7] border-b border-white/10 pb-3">{t("checkout.billingHeading")}</h2>
               
               {errorMsg && (
                 <div className="bg-red-500/10 border border-red-500/25 p-4 rounded-xl text-xs text-red-600 flex items-center gap-3">
@@ -232,7 +200,7 @@ export default function Checkout() {
                 {/* Name fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("contact.formFirstName")} *</label>
+                    <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.firstNameLabel")} *</label>
                     <div className="relative">
                       <User className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                       <input
@@ -247,7 +215,7 @@ export default function Checkout() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("contact.formLastName")} *</label>
+                    <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.lastNameLabel")} *</label>
                     <div className="relative">
                       <User className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                       <input
@@ -265,7 +233,7 @@ export default function Checkout() {
 
                 {/* WhatsApp Phone */}
                 <div>
-                  <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.phoneLabel")} *</label>
+                  <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.waPhoneLabel")} *</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                     <input
@@ -282,7 +250,7 @@ export default function Checkout() {
 
                 {/* Street Address */}
                 <div>
-                  <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.addressLabel")} *</label>
+                  <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.billingAddrLabel")} *</label>
                   <div className="relative">
                     <MapPin className="absolute left-3 top-2.5 w-4 h-4 text-[#86868B]" />
                     <input
@@ -297,8 +265,8 @@ export default function Checkout() {
                   </div>
                 </div>
 
-                {/* Ville & Code Postal */}
-                <div className="grid grid-cols-2 gap-4">
+                {/* Ville */}
+                <div className="grid grid-cols-1 gap-4">
                   <div>
                     <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.cityLabel")} *</label>
                     <input
@@ -308,18 +276,6 @@ export default function Checkout() {
                       value={formData.ville}
                       onChange={handleInputChange}
                       placeholder="e.g. Tangier"
-                      className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg py-2.5 px-3 text-[#F5F5F7] focus:outline-none focus:border-[#0071E3] text-xs"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[11px] font-semibold text-[#A1A1A6] uppercase mb-1.5 tracking-wider">{t("checkout.postalLabel")} *</label>
-                    <input
-                      type="text"
-                      name="cp"
-                      required
-                      value={formData.cp}
-                      onChange={handleInputChange}
-                      placeholder="e.g. 90000"
                       className="w-full bg-[#0A0A0A] border border-white/10 rounded-lg py-2.5 px-3 text-[#F5F5F7] focus:outline-none focus:border-[#0071E3] text-xs"
                     />
                   </div>
@@ -333,13 +289,12 @@ export default function Checkout() {
                 >
                   <MessageSquare className="w-5 h-5" />
                   <span>
-                    {isSubmitting ? t("checkout.submitting") : t("checkout.submitBtn")}
+                    {isSubmitting ? (language === "EN" ? "Submitting..." : "En cours...") : (language === "EN" ? "Submit" : "Soumettre")}
                   </span>
                 </button>
               </form>
             </div>
           </div>
-
         </div>
 
         {/* Security / Quality Check Badges bottom element */}
